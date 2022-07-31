@@ -7,7 +7,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Component
 public class MyRestTemplate {
-    public String getDataGoKrJsonData(MediaType mediaType, UriComponentsBuilder uriComponentsBuilder, HttpMethod httpMethod) {
+    public String getDataGoKrOpenData(MediaType mediaType, UriComponentsBuilder uriComponentsBuilder, HttpMethod httpMethod) {
         RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(mediaType);

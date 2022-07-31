@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.getsampledata;
 
 import com.example.demo.sampleobject.CovidVaccinationCenter;
 import com.example.demo.template.MyRestTemplate;
@@ -15,9 +15,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SampleDataService {
+public class CovidVaccinationCentersService {
 
-    @Value("${data.serviceKey}")
+    @Value("${jooyeok.data.serviceKey}")
     private String serviceKey;
 
     @Autowired
@@ -30,9 +30,8 @@ public class SampleDataService {
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("page", page)
                 .queryParam("perPage", perPage);
-        String jsonData = myRestTemplate.getDataGoKrJsonData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
+        String jsonData = myRestTemplate.getDataGoKrOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
         if(jsonData=="") return null;
-
 
         JSONObject covidVaccinationCentersJsonObject = new JSONObject(jsonData); //JSON String -> JSON Object
         JSONArray dataJsonArray = (JSONArray) covidVaccinationCentersJsonObject.get("data");
