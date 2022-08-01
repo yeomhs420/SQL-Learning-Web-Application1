@@ -1,10 +1,16 @@
 package com.example.demo.sampleobject;
 
 import lombok.Data;
+import javax.persistence.*;
 
 @Data
+@Entity
+//@Table(name = "COVID_VACCINATION_CENTER")
 public class CovidVaccinationCenter {
+
+    @Id
     private int id; // 연번
+
     private String name; // 센터명
     private String phone; // 사무실전화번호
     private String address; // 주소
