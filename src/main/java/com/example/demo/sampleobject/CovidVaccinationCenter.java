@@ -5,7 +5,6 @@ import javax.persistence.*;
 
 @Data
 @Entity
-//@Table(name = "COVID_VACCINATION_CENTER")
 public class CovidVaccinationCenter {
 
     @Id
