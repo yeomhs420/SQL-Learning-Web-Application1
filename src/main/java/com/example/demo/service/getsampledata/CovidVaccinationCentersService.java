@@ -30,7 +30,7 @@ public class CovidVaccinationCentersService {
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("page", page)
                 .queryParam("perPage", perPage);
-        String jsonData = myRestTemplate.getDataGoKrOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
+        String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
         if(jsonData=="") return null;
 
         JSONObject covidVaccinationCentersJsonObject = new JSONObject(jsonData); //JSON String -> JSON Object

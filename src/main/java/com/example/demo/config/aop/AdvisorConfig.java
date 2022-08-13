@@ -20,7 +20,7 @@ public class AdvisorConfig {
     public List<Object> logAdvisor(ProceedingJoinPoint joinPoint) throws Throwable {
         List<Object> returnList;
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        Method method = methodSignature.getMethod();
+        Method method = methodSignature.getMethod(); // Pointcut으로 선정한 메소드 불러오기
         try {
             returnList = (List<Object>) joinPoint.proceed();
             System.out.println(method.getName()+"()에서 반환 받은 데이터 수 : "+returnList.size());
