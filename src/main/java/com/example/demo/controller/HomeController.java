@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.sampleobject.AgriFoodInfo;
 import com.example.demo.sampleobject.CovidInfectionStatus;
 import com.example.demo.sampleobject.CovidVaccinationCenter;
+import com.example.demo.service.getsampledata.AgriFoodInfoService;
 import com.example.demo.service.getsampledata.CovidInfectionStatusesService;
 import com.example.demo.service.getsampledata.CovidVaccinationCentersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,18 +29,24 @@ public class HomeController {
     @Autowired
     CovidInfectionStatusesService covidInfectionStatusesService;
 
+    @Autowired
+    AgriFoodInfoService agriFoodInfoService;
+
     @Transactional
     @GetMapping("/home")
     public String home(Model model, HttpServletRequest request) {
         List<CovidVaccinationCenter> covidVaccinationCenterList = null;
         List<CovidInfectionStatus> covidInfectionStatusList = null;
+        List<AgriFoodInfo> agriFoodInfoList = null;
         try {
             covidVaccinationCenterList = covidVaccinationCentersService.getCovidVaccinationCenters(1, 100);
             covidInfectionStatusList = covidInfectionStatusesService.getCovidInfectionStatuses(1, 31, "20210701", "20210731");
+            agriFoodInfoList = agriFoodInfoService.getAgriFoodInfo(1,100);
         } catch (Exception e) {e.printStackTrace();}
 
         for(int i=0;i<covidVaccinationCenterList.size();i++) em.persist(covidVaccinationCenterList.get(i));
         for(int i=0;i<covidInfectionStatusList.size();i++) em.persist(covidInfectionStatusList.get(i));
+        for(int i=0;i<agriFoodInfoList.size();i++) em.persist(agriFoodInfoList.get(i));
 
         return "outputobj";
     }
