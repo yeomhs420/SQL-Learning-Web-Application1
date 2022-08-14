@@ -38,10 +38,8 @@ public class CovidInfectionStatusesService {
                 .queryParam("endCreateDt", endCreateDt);
         String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
         if(jsonData=="") return null;
-        System.out.println(jsonData);
 
         JSONObject covidInfectionStatusesJsonObject = new JSONObject(jsonData); //JSON String -> JSON Object
-        System.out.println(covidInfectionStatusesJsonObject.toString());
         JSONObject response = (JSONObject)covidInfectionStatusesJsonObject.get("response");
         JSONObject body = (JSONObject)response.get("body");
         JSONObject items = (JSONObject)body.get("items");

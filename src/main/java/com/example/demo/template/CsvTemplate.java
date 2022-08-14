@@ -1,10 +1,7 @@
 package com.example.demo.template;
 
-import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

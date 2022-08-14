@@ -14,7 +14,6 @@ public class MyRestTemplate {
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> responseEntity;
-        System.out.println(uriComponentsBuilder.build().encode().toUri());
         try {
             responseEntity=restTemplate.exchange(
                     uriComponentsBuilder.build().encode().toUri(),
