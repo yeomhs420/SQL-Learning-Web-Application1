@@ -33,10 +33,8 @@ public class AgriFoodInfoService {
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("Page_No", Page_No)
                 .queryParam("Page_Size", Page_Size);
-//                .queryParam("food_Group_Code", food_Group_Code)
-//                .queryParam("food_Name", food_Name);
-        String jsonData = myRestTemplate.getDataGoKrOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
-//        System.out.println(jsonData);
+        String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
+//      System.out.println(jsonData);
         if(jsonData=="") return null;
 
         JSONObject agriFoodInfoJsonObject = XML.toJSONObject(jsonData); //JSON String -> JSON Object

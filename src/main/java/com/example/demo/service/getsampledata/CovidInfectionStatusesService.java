@@ -36,7 +36,7 @@ public class CovidInfectionStatusesService {
                 .queryParam("numOfRows", numOfRows)
                 .queryParam("startCreateDt", startCreateDt)
                 .queryParam("endCreateDt", endCreateDt);
-        String jsonData = myRestTemplate.getDataGoKrOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
+        String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
         if(jsonData=="") return null;
         System.out.println(jsonData);
 
