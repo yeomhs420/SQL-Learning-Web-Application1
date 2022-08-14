@@ -23,6 +23,8 @@ public class TestStatusByEventService {
         String csvClassPath = "classpath:static/csv/test_status_by_event.csv";
         List<List<String>> list = csvTemplate.getOpenData(csvClassPath);
 
+        System.out.println(list);
+
         if(list==null) return null;
 
         for(int i=0;i<list.size();i++){
