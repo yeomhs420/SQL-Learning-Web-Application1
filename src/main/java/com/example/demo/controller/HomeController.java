@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
@@ -42,7 +41,7 @@ public class HomeController {
         List<CovidInfectionStatus> covidInfectionStatusList = null;
         List<AgriFoodInfo> agriFoodInfoList = null;
         List<TestStatusByEvent> testStatusByEventList = null;
-        List<RecoveryCostInfo> regionalRecoveryList = null;
+        List<RegionalRecoveryCostInfo> regionalRecoveryList = null;
         try {
             covidVaccinationCenterList = covidVaccinationCentersService.getCovidVaccinationCenters(1, 100);
             covidInfectionStatusList = covidInfectionStatusesService.getCovidInfectionStatuses(1, 31, "20210701", "20210731");
@@ -56,6 +55,7 @@ public class HomeController {
         for(int i=0;i<covidInfectionStatusList.size();i++) em.persist(covidInfectionStatusList.get(i));
         for(int i=0;i<agriFoodInfoList.size();i++) em.persist(agriFoodInfoList.get(i));
         for(int i=0;i<testStatusByEventList.size();i++) em.persist(testStatusByEventList.get(i));
+        for(int i=0;i<regionalRecoveryList.size();i++) em.persist(regionalRecoveryList.get(i));
 
         return "outputobj";
     }
