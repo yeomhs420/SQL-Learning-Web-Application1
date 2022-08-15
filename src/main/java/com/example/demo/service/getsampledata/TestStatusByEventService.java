@@ -21,9 +21,8 @@ public class TestStatusByEventService {
 
         ArrayList<TestStatusByEvent> testStatusByEventsList = new ArrayList<>();
         String csvClassPath = "classpath:static/csv/test_status_by_event.csv";
-        List<List<String>> list = csvTemplate.getOpenData(csvClassPath);
 
-        System.out.println(list);
+        List<List<String>> list = csvTemplate.getOpenData(csvClassPath);
 
         if(list==null) return null;
 

@@ -11,6 +11,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
@@ -25,19 +26,21 @@ public class FacilityService {
     @Autowired
     MyRestTemplate myRestTemplate;
 
-    public void getData(int Page_No, int numOfRows) {
+    public void getData(int Page_No, int Page_Size) {
         System.out.println("servicekey = " + serviceKey);
 
         String requestUrl="http://apis.data.go.kr/B554390/FmsFacil/stat_ar";
+
 
         URI uri = UriComponentsBuilder.fromUriString(requestUrl)
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("type", "json")
                 .queryParam("pageNo", Page_No)
-                .queryParam("numOfRows", numOfRows)
+                .queryParam("numOfRows", Page_Size)
                 .build()
                 .encode()
                 .toUri();
+
 
         System.out.println(uri);
 

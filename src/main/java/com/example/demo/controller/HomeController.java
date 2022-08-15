@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.sampleobject.AgriFoodInfo;
-import com.example.demo.sampleobject.CovidInfectionStatus;
-import com.example.demo.sampleobject.CovidVaccinationCenter;
-import com.example.demo.sampleobject.TestStatusByEvent;
+import com.example.demo.sampleobject.*;
 import com.example.demo.service.getsampledata.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,7 +32,8 @@ public class HomeController {
     TestStatusByEventService testStatusByEventService;
 
     @Autowired
-    FacilityService facilityService;
+    RegionalRecoveryService regionalRecoveryService;
+
 
     @Transactional
     @GetMapping("/home")
@@ -44,13 +42,14 @@ public class HomeController {
         List<CovidInfectionStatus> covidInfectionStatusList = null;
         List<AgriFoodInfo> agriFoodInfoList = null;
         List<TestStatusByEvent> testStatusByEventList = null;
+        List<RecoveryCostInfo> regionalRecoveryList = null;
         try {
             covidVaccinationCenterList = covidVaccinationCentersService.getCovidVaccinationCenters(1, 100);
             covidInfectionStatusList = covidInfectionStatusesService.getCovidInfectionStatuses(1, 31, "20210701", "20210731");
             agriFoodInfoList = agriFoodInfoService.getAgriFoodInfo(1,100);
             testStatusByEventList = testStatusByEventService.getTestStatusByEvent(); // 파일을 그냥 가져오면 되므로 파라미터를 명시할 필요가 없음
+            regionalRecoveryList = regionalRecoveryService.getRecoveryCost();
 
-            facilityService.getData(1,10);
         } catch (Exception e) {e.printStackTrace();}
 
         for(int i=0;i<covidVaccinationCenterList.size();i++) em.persist(covidVaccinationCenterList.get(i));
