@@ -1,6 +1,6 @@
 package com.example.demo.service.getsampledata;
 
-import com.example.demo.sampleobject.RegionalRecoveryCostInfo;
+import com.example.demo.entity.sampledata.RegionalRecoveryCostInfo;
 import com.example.demo.template.CsvTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

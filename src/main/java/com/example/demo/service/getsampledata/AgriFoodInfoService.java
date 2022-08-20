@@ -1,8 +1,6 @@
 package com.example.demo.service.getsampledata;
 
-import com.example.demo.sampleobject.AgriFoodInfo;
-import com.example.demo.sampleobject.CovidInfectionStatus;
-import com.example.demo.sampleobject.CovidVaccinationCenter;
+import com.example.demo.entity.sampledata.AgriFoodInfo;
 import com.example.demo.template.MyRestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
