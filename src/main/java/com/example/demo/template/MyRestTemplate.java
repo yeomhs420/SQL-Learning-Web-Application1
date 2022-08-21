@@ -5,6 +5,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+
 @Component
 public class MyRestTemplate {
     public String getOpenData(MediaType mediaType, UriComponentsBuilder uriComponentsBuilder, HttpMethod httpMethod) {
@@ -14,9 +17,10 @@ public class MyRestTemplate {
         HttpEntity request = new HttpEntity(headers);
 
         ResponseEntity<String> responseEntity;
+
         try {
             responseEntity=restTemplate.exchange(
-                    uriComponentsBuilder.build().encode().toUri(),
+                    uriComponentsBuilder.build().encode(StandardCharsets.UTF_8).toUri(),
                     httpMethod,
                     request,
                     String.class

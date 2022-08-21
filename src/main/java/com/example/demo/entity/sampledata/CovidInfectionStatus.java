@@ -1,4 +1,4 @@
-package com.example.demo.sampleobject;
+package com.example.demo.entity.sampledata;
 
 import lombok.Data;
 import javax.persistence.*;
