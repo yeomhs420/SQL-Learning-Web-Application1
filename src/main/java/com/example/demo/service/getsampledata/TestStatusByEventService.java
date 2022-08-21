@@ -1,14 +1,10 @@
 package com.example.demo.service.getsampledata;
 
-import com.example.demo.sampleobject.TestStatusByEvent;
+import com.example.demo.entity.sampledata.TestStatusByEvent;
 import com.example.demo.template.CsvTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
-import javax.annotation.Resource;
-import java.io.*;
-import java.nio.charset.Charset;
 import java.util.*;
 
 @Service

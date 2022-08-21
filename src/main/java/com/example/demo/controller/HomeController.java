@@ -1,21 +1,21 @@
 package com.example.demo.controller;
 
-import com.example.demo.sampleobject.*;
+import com.example.demo.entity.sampledata.*;
 import com.example.demo.service.getsampledata.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.*;
 import javax.servlet.http.HttpServletRequest;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @Controller
 public class HomeController {
 
-    @PersistenceContext
+    @PersistenceContext(unitName = "sampleData")
     EntityManager em;
 
     @Autowired
@@ -34,7 +34,7 @@ public class HomeController {
     RegionalRecoveryService regionalRecoveryService;
 
 
-    @Transactional
+    @Transactional("transactionManager")
     @GetMapping("/home")
     public String home(Model model, HttpServletRequest request) {
         List<CovidVaccinationCenter> covidVaccinationCenterList = null;

@@ -1,10 +1,9 @@
 package com.example.demo.service.getsampledata;
 
-import com.example.demo.sampleobject.CovidInfectionStatus;
+import com.example.demo.entity.sampledata.CovidInfectionStatus;
 import com.example.demo.template.MyRestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;

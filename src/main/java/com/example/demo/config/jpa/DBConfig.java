@@ -1,5 +1,6 @@
 package com.example.demo.config.jpa;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
@@ -19,10 +20,21 @@ public class    DBConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
         emf.setDataSource(dataSource());
-        emf.setPackagesToScan(new String[] {"com.example.demo.sampleobject"});
+        emf.setPackagesToScan(new String[] {"com.example.demo.entity.sampledata"});
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         emf.setJpaProperties(jpaProperties());
-        emf.setPersistenceUnitName("H2Persistence");
+        emf.setPersistenceUnitName("sampleData");
+        return emf;
+    }
+
+    @Bean
+    public LocalContainerEntityManagerFactoryBean userEntityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean emf = new LocalContainerEntityManagerFactoryBean();
+        emf.setDataSource(userDataSource());
+        emf.setPackagesToScan(new String[] {"com.example.demo.entity.user"});
+        emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        emf.setJpaProperties(userJpaProperties());
+        emf.setPersistenceUnitName("userData");
         return emf;
     }
 
@@ -37,6 +49,15 @@ public class    DBConfig {
         return properties;
     }
 
+    Properties userJpaProperties(){
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "none");
+        properties.setProperty("hibernate.dialect","org.hibernate.dialect.H2Dialect");
+        properties.setProperty("hibernate.id.new_generator_mappings","true");
+        properties.setProperty("hibernate.physical_naming_strategy","org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy");
+        return properties;
+    }
+
     @Bean
     @ConfigurationProperties(prefix = "spring.datasource")
     public DataSource dataSource() {
@@ -44,9 +65,22 @@ public class    DBConfig {
     }
 
     @Bean
+    @ConfigurationProperties(prefix = "spring.user.datasource")
+    public DataSource userDataSource() {
+        return DataSourceBuilder.create().build();
+    }
+
+    @Bean
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(entityManagerFactory().getObject());
         jpaTransactionManager.setDataSource(dataSource());
+        return jpaTransactionManager;
+    }
+
+    @Bean
+    public PlatformTransactionManager userTransactionManager() {
+        JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(userEntityManagerFactory().getObject());
+        jpaTransactionManager.setDataSource(userDataSource());
         return jpaTransactionManager;
     }
 }
