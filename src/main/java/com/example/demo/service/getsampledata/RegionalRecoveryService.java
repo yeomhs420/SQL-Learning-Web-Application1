@@ -25,7 +25,7 @@ public class RegionalRecoveryService {
         for(int i=0;i<list.size();i++){
             RecoveryCostInfo recoveryCostInfo = new RecoveryCostInfo();
 
-            recoveryCostInfo.setRegion(list.get(i).get(0));
+            recoveryCostInfo.setRegion(list.get(i).get(0).replace("\"",""));
             recoveryCostInfo.setTotalCost(Integer.parseInt(list.get(i).get(1)));
             recoveryCostInfo.setSupportCost(Integer.parseInt(list.get(i).get(2)));  // TreasuryCost + ProvincialCost
             recoveryCostInfo.setTreasuryCost(Integer.parseInt(list.get(i).get(3)));
@@ -35,6 +35,7 @@ public class RegionalRecoveryService {
             recoveryCostList.add(recoveryCostInfo);
 
         }
+
 
         return recoveryCostList;
     }
