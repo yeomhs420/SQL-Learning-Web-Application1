@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-public class DBConfig {
+public class    DBConfig {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
