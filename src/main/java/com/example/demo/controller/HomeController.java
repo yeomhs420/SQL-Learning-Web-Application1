@@ -46,12 +46,14 @@ public class HomeController {
         List<AgriFoodInfo> agriFoodInfoList = null;
         List<TestStatusByEvent> testStatusByEventList = null;
         List<RegionalRecoveryCostInfo> regionalRecoveryList = null;
+        List<EducationCost> educationCostList = null;
         try {
             covidVaccinationCenterList = covidVaccinationCentersService.getCovidVaccinationCenters(1, 100);
             covidInfectionStatusList = covidInfectionStatusesService.getCovidInfectionStatuses(1, 31, "20210701", "20210731");
             agriFoodInfoList = agriFoodInfoService.getAgriFoodInfo(1,100);
             testStatusByEventList = testStatusByEventService.getTestStatusByEvent(); // 파일을 그냥 가져오면 되므로 파라미터를 명시할 필요가 없음
             regionalRecoveryList = regionalRecoveryService.getRecoveryCost();
+            educationCostList = educationCostService.getEducationCost();
 
         } catch (Exception e) {e.printStackTrace();}
 
