@@ -62,6 +62,7 @@ public class HomeController {
         for(int i=0;i<agriFoodInfoList.size();i++) em.persist(agriFoodInfoList.get(i));
         for(int i=0;i<testStatusByEventList.size();i++) em.persist(testStatusByEventList.get(i));
         for(int i=0;i<regionalRecoveryList.size();i++) em.persist(regionalRecoveryList.get(i));
+        for(int i=0;i<educationCostList.size();i++) em.persist(educationCostList.get(i));
 
         return "outputobj";
     }
