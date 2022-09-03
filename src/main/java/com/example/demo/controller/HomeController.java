@@ -33,6 +33,9 @@ public class HomeController {
     @Autowired
     RegionalRecoveryService regionalRecoveryService;
 
+    @Autowired
+    EducationCostService educationCostService;
+
 
 
     @Transactional("transactionManager")
