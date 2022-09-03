@@ -33,6 +33,10 @@ public class HomeController {
     @Autowired
     RegionalRecoveryService regionalRecoveryService;
 
+    @Autowired
+    EducationCostService educationCostService;
+
+
 
     @Transactional("transactionManager")
     @GetMapping("/home")
@@ -42,12 +46,14 @@ public class HomeController {
         List<AgriFoodInfo> agriFoodInfoList = null;
         List<TestStatusByEvent> testStatusByEventList = null;
         List<RegionalRecoveryCostInfo> regionalRecoveryList = null;
+        List<EducationCost> educationCostList = null;
         try {
             covidVaccinationCenterList = covidVaccinationCentersService.getCovidVaccinationCenters(1, 100);
             covidInfectionStatusList = covidInfectionStatusesService.getCovidInfectionStatuses(1, 31, "20210701", "20210731");
             agriFoodInfoList = agriFoodInfoService.getAgriFoodInfo(1,100);
             testStatusByEventList = testStatusByEventService.getTestStatusByEvent(); // 파일을 그냥 가져오면 되므로 파라미터를 명시할 필요가 없음
             regionalRecoveryList = regionalRecoveryService.getRecoveryCost();
+            educationCostList = educationCostService.getEducationCost();
 
         } catch (Exception e) {e.printStackTrace();}
 
@@ -56,7 +62,10 @@ public class HomeController {
         for(int i=0;i<agriFoodInfoList.size();i++) em.persist(agriFoodInfoList.get(i));
         for(int i=0;i<testStatusByEventList.size();i++) em.persist(testStatusByEventList.get(i));
         for(int i=0;i<regionalRecoveryList.size();i++) em.persist(regionalRecoveryList.get(i));
+        for(int i=0;i<educationCostList.size();i++) em.persist(educationCostList.get(i));
 
         return "outputobj";
     }
+
+
 }
