@@ -1,0 +1,14 @@
+.quicksand {
+    font-family: 'Quicksand', sans-serif;
+}
+.nskr {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+a {
+    text-decoration:none;
+}
+
+.w45{margin: 0 auto; width:45%;}
+.w70{margin: 0 auto; width:70%;}
+.w90{margin: 0 auto; width:90%;}
+.w100{margin: 0 auto; width:100%;}

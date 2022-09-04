@@ -1,8 +1,6 @@
 package com.example.demo.service.getsampledata;
 
-import com.example.demo.sampleobject.AgriFoodInfo;
-import com.example.demo.sampleobject.CovidInfectionStatus;
-import com.example.demo.sampleobject.CovidVaccinationCenter;
+import com.example.demo.entity.sampledata.AgriFoodInfo;
 import com.example.demo.template.MyRestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -33,12 +31,10 @@ public class AgriFoodInfoService {
                 .queryParam("serviceKey", serviceKey)
                 .queryParam("Page_No", Page_No)
                 .queryParam("Page_Size", Page_Size);
-        String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
-//      System.out.println(jsonData);
+        String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_XML, uriComponentsBuilder, HttpMethod.GET);
         if(jsonData=="") return null;
 
-        JSONObject agriFoodInfoJsonObject = XML.toJSONObject(jsonData); //JSON String -> JSON Object
-        System.out.println(agriFoodInfoJsonObject.toString());
+        JSONObject agriFoodInfoJsonObject = XML.toJSONObject(jsonData);
         JSONObject response = (JSONObject)agriFoodInfoJsonObject.get("response");
         JSONObject body = (JSONObject)response.get("body");
         JSONObject items = (JSONObject)body.get("items");

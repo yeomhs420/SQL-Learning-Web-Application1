@@ -1,10 +1,9 @@
 package com.example.demo.service.getsampledata;
 
-import com.example.demo.sampleobject.CovidInfectionStatus;
+import com.example.demo.entity.sampledata.CovidInfectionStatus;
 import com.example.demo.template.MyRestTemplate;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.XML;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
@@ -38,10 +37,8 @@ public class CovidInfectionStatusesService {
                 .queryParam("endCreateDt", endCreateDt);
         String jsonData = myRestTemplate.getOpenData(MediaType.APPLICATION_JSON, uriComponentsBuilder, HttpMethod.GET);
         if(jsonData=="") return null;
-        System.out.println(jsonData);
 
         JSONObject covidInfectionStatusesJsonObject = new JSONObject(jsonData); //JSON String -> JSON Object
-        System.out.println(covidInfectionStatusesJsonObject.toString());
         JSONObject response = (JSONObject)covidInfectionStatusesJsonObject.get("response");
         JSONObject body = (JSONObject)response.get("body");
         JSONObject items = (JSONObject)body.get("items");
