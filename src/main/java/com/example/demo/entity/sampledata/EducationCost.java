@@ -20,6 +20,8 @@ public class EducationCost {
     private int id;
 
     private String subject;
+
+    // 문제로 사용할 시 단위는 천 만임을 명시할 것
     private int totalcost;
     private int firstgrade;
     private int secondgrade;

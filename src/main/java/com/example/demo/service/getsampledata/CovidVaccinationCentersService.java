@@ -41,6 +41,7 @@ public class CovidVaccinationCentersService {
             covidVaccinationCenter.setId(Integer.parseInt(center.get("연번").toString()));
             covidVaccinationCenter.setName(center.get("센터명").toString());
             covidVaccinationCenter.setPhone(center.get("사무실전화번호").toString());
+            if(covidVaccinationCenter.getPhone()=="null") covidVaccinationCenter.setPhone(null);
             covidVaccinationCenter.setAddress(center.get("주소").toString());
             covidVaccinationCenter.setPostalCode(center.get("우편번호").toString());
             covidVaccinationCenterList.add(covidVaccinationCenter);
