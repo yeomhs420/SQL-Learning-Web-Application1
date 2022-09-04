@@ -26,7 +26,7 @@ public class EducationCostService {
         for(int j = 0;j<list.size();j++){
             EducationCost educationCost = new EducationCost();
 
-            educationCost.setSubject(list.get(j).get(0));
+            educationCost.setSubject(list.get(j).get(0).replace("\"", ""));
             educationCost.setTotalcost(Integer.parseInt(list.get(j).get(1)));
             educationCost.setFirstgrade(Integer.parseInt(list.get(j).get(2)));
             educationCost.setSecondgrade(Integer.parseInt(list.get(j).get(3)));
