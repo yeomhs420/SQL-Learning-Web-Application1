@@ -57,7 +57,7 @@ public class CovidInfectionStatusesService {
         return covidInfectionStatusList;
     }
 
-    private Date dateConverter(String dateStr) {
+    public Date dateConverter(String dateStr) {
         Date date=null;
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
         try {
