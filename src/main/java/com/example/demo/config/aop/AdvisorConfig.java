@@ -13,8 +13,9 @@ import java.util.List;
 @Component
 @Aspect
 public class AdvisorConfig {
-    @Pointcut("execution(* com.example.demo.service.getsampledata.*.get*(..))")
+    @Pointcut("execution(* com.example.demo.service.sampledata.*.get*(..))")
     public void logPointcut(){}
+
 
     @Around("logPointcut()")
     public List<Object> logAdvisor(ProceedingJoinPoint joinPoint) throws Throwable {
