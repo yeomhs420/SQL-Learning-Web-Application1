@@ -9,8 +9,8 @@ public interface RegionalRecoveryCostInfoRepository extends JpaRepository<Region
 
     List<RegionalRecoveryCostInfo> findByIdBetween(Long id1, Long id2);
 
-    List<RegionalRecoveryCostInfo> findByNameStartingWith(String name);
+    List<RegionalRecoveryCostInfo> findByRegionStartingWith(String region);
 
-    List<RegionalRecoveryCostInfo> findFirst2ByName(String name);
+    List<RegionalRecoveryCostInfo> findFirst2ByRegion(String region);
 
 }
