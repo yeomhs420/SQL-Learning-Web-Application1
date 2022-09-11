@@ -27,5 +27,4 @@ public class EducationCost {
     private int secondgrade;
     private int thirdgrade;
 
-
 }

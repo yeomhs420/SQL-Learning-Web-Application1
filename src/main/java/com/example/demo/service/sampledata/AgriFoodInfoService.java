@@ -1,4 +1,4 @@
-package com.example.demo.service.getsampledata;
+package com.example.demo.service.sampledata;
 
 import com.example.demo.entity.sampledata.AgriFoodInfo;
 import com.example.demo.template.MyRestTemplate;
