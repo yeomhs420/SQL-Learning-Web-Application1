@@ -12,6 +12,7 @@ public class AppStartedListener implements ApplicationListener<ApplicationStarte
     @Autowired
     SaveDBService saveDBService;
 
+    // 애플리케이션이 시작되고 ApplicationContext가 생성되고 난 후에 실행되는 리스너 메소드
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
         saveDBService.saveAllSampleData();

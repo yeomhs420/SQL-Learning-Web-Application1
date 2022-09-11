@@ -22,11 +22,11 @@ public class SQLTestControllerExample {
         return "test/test_form";
     }
 
-    @PostMapping("/test")
-    public String testResult(@Valid SQLData sqlData, BindingResult result, Model model){
-        List<Map<String, Object>> resultList = sqlResultService.getResult(sqlData.getSql());
-        if(!sqlResultService.processResult(resultList, result, model)) return "error/sql_error";
-        for(int i=0;i<resultList.size();i++) System.out.println(resultList.get(i));
-        return "test/test_form";
-    }
+//    @PostMapping("/test")
+//    public String testResult(@Valid SQLData sqlData, BindingResult result, Model model){
+//        List<Map<String, Object>> resultList = sqlResultService.getResult(sqlData.getSql());
+//        if(!sqlResultService.processResult(resultList, result, model)) return "error/sql_error";
+//        for(int i=0;i<resultList.size();i++) System.out.println(resultList.get(i));
+//        return "test/test_form";
+//    }
 }
