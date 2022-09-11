@@ -24,11 +24,16 @@ public class SQLResultService {
         return testMapper.getResult(sql);
     }
 
-    public boolean processResult(List<Map<String, Object>> resultList, BindingResult result, Model model) {
+    public boolean checkKeywords(BindingResult result, Model model) {
         if(result.hasErrors()) {
             model.addAttribute("error_msg", result.getAllErrors().get(0).getCode());
             return false;
-        } else if(resultList==null) {
+        }
+        return true;
+    }
+
+    public boolean checkSyntax(List<Map<String, Object>> resultList, Model model) {
+        if(resultList==null) {
             model.addAttribute("error_msg", "Invaild SQL Syntax");
             return false;
         }

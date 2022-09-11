@@ -28,8 +28,10 @@ public class HomeController {
     @PostMapping("/test")
     public String testResult(@Valid SQLData sqlData, BindingResult result, Model model){
         System.out.println("SQL : "+ sqlData.getSql());
+
+        if(!sqlResultService.checkKeywords(result, model)) return "error/sql_error";
         List<Map<String, Object>> resultList = sqlResultService.getResult(sqlData.getSql());
-        if(!sqlResultService.processResult(resultList, result, model)) return "error/sql_error";
+        if(!sqlResultService.checkSyntax(resultList, model)) return "error/sql_error";
 
         System.out.println("---------------Result----------------");
         for(int i=0;i<resultList.size();i++) System.out.println(resultList.get(i));
