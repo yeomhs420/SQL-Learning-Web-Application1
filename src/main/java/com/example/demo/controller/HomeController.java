@@ -20,6 +20,10 @@ public class HomeController {
 
     @Autowired SQLResultService sqlResultService;
 
+    @GetMapping("/home")
+    public String home() {
+        return "outputobj";
+    }
 
     @GetMapping("/test")
     public String testForm() {

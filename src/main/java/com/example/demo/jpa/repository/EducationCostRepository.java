@@ -11,6 +11,6 @@ public interface EducationCostRepository extends JpaRepository<EducationCost, In
 
     List<EducationCost> findBysubjectStartingWith(String subject);
 
-    List<EducationCost> findBysubjectContainging(String subject);
+    List<EducationCost> findBysubjectContaining(String subject);
 
 }
