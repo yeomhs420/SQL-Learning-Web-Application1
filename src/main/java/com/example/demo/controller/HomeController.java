@@ -20,6 +20,10 @@ public class HomeController {
 
     @Autowired SQLResultService sqlResultService;
 
+    @GetMapping("/home")
+    public String home() {
+        return "outputobj";
+    }
 
     @GetMapping("/test")
     public String testForm() {
@@ -39,7 +43,7 @@ public class HomeController {
         return "test/test_form";
     }
 
-    @InitBinder
+    @InitBinder("sqlData")
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(new SQLValidator());
     }
