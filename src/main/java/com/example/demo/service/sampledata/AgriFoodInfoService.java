@@ -43,11 +43,11 @@ public class AgriFoodInfoService {
         for(int i=0; i<item.length(); i++){
             JSONObject status = (JSONObject) item.get(i);
             AgriFoodInfo agriFoodInfo = new AgriFoodInfo();
-            agriFoodInfo.setFood_Code(status.get("food_Code").toString());
-            agriFoodInfo.setLarge_Name(status.get("large_Name").toString());
-            agriFoodInfo.setMiddle_Name(status.get("middle_Name").toString());
-            agriFoodInfo.setFood_Name(status.get("food_Name").toString());
-            agriFoodInfo.setFood_Volume(Double.parseDouble(status.get("food_Volume").toString()));
+            agriFoodInfo.setFoodCode(status.get("food_Code").toString());
+            agriFoodInfo.setLargeName(status.get("large_Name").toString());
+            agriFoodInfo.setMiddleName(status.get("middle_Name").toString());
+            agriFoodInfo.setFoodName(status.get("food_Name").toString());
+            agriFoodInfo.setFoodVolume(Double.parseDouble(status.get("food_Volume").toString()));
             AgriFoodInfoList.add(agriFoodInfo);
         }
         return AgriFoodInfoList;
