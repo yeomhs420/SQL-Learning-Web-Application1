@@ -9,9 +9,9 @@ import javax.persistence.Id;
 public class AgriFoodInfo {
 
     @Id
-    private String food_Code; // 음식코드
-    private String large_Name; // 대분류명
-    private String middle_Name; // 중분류명
-    private String food_Name; // 음식명
-    private double food_Volume; // 식품 중량
+    private String foodCode; // 음식코드
+    private String largeName; // 대분류명
+    private String middleName; // 중분류명
+    private String foodName; // 음식명
+    private double foodVolume; // 식품 중량
 }
