@@ -38,7 +38,7 @@ public class HomeController {
         return "test/test_form";
     }
 
-    @InitBinder
+    @InitBinder("sqlData")
     protected void initBinder(WebDataBinder binder) {
         binder.setValidator(new SQLValidator());
     }
