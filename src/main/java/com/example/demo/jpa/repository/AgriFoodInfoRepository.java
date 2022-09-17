@@ -8,9 +8,9 @@ import java.util.Date;
 import java.util.List;
 
 public interface AgriFoodInfoRepository extends JpaRepository<AgriFoodInfo, Integer> {
-    List<AgriFoodInfo> findByFood_NameLike(String galbi);
-    List<AgriFoodInfo> findByFood_CodeStartingWith(String C);
-    List<AgriFoodInfo> findByFood_VolumeBetween(float min, float max);
+    List<AgriFoodInfo> findByFoodNameLike(String galbi);
+    List<AgriFoodInfo> findByFoodCodeStartingWith(String C);
+    List<AgriFoodInfo> findByFoodVolumeBetween(float min, float max);
 }
 
 
