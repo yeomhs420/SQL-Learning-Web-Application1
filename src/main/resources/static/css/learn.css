@@ -1,0 +1,49 @@
+#learn-menu{
+    color: rgba(0,0,0,.9);
+}
+
+.unit-list {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.unit-describe {
+    background-color : #FFFFFF;
+}
+
+#learn-container{
+    margin: 0 auto;
+    width:70%;
+}
+
+#forum-page{
+    transform: translateY(40%);
+}
+
+.learn-part{
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+.ex-table {
+    border-collapse: collapse;
+}
+
+.ex-table th, .ex-table td {
+    font-weight: normal;
+    text-align: center;
+    vertical-align : middle;
+    border: 1px solid black;
+}
+
+th {
+    text-align: center !important;
+    vertical-align : middle;
+}
+
+.w30{margin: 0 auto; width:30%;}
+.w50{margin: 0 auto; width:50%;}
+.w70{margin: 0 auto; width:70%;}
+.w90{margin: 0 auto; width:90%;}
+.w100{margin: 0 auto; width:100%;}
