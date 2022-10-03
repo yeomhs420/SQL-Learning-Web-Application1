@@ -7,3 +7,7 @@
 nav {
     width:100%;
 }
+.dropdown-menu {
+    min-width:100%;
+    font-size:0.9rem;
+}

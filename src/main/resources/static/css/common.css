@@ -1,12 +1,44 @@
-.quicksand {
-    font-family: 'Quicksand', sans-serif;
+.quicksand {font-family: 'Quicksand', sans-serif;}
+
+.nskr {font-family: 'Noto Sans KR', sans-serif;}
+
+.initial-font {font-family: 'initial'}
+
+a {color:black; text-decoration:none;}
+a:hover {color:black;}
+
+.fr {float: right;}
+
+.fl {float: left;}
+
+.unit-box-1 {border : 3px solid #0d6efd; }
+.unit-body-1 {border : 1px solid #0d6efd; background-color : #ECFAFF; }
+.unit-body-1:hover {background-color : #B0EAFF;}
+.unit-box-2 {border : 3px solid #198754; }
+.unit-body-2 {border : 1px solid #198754; background-color : #DFFEDC;}
+.unit-body-2:hover {background-color : #B8FFB0;}
+.unit-box-3 {border : 3px solid #ffc107; }
+.unit-body-3 {border : 1px solid #ffc107; background-color : #FDFEDC;}
+.unit-body-3:hover {background-color : #FDFFAE;}
+.unit-box-4 {border : 3px solid #dc3545; }
+.unit-body-4 {border : 1px solid #dc3545; background-color : #FFDADA;}
+.unit-body-4:hover {background-color : #FFB0B0;}
+.unit-box-5 {border : 3px solid #6c757d; }
+.unit-body-5 {border : 1px solid #6c757d; background-color : #e9ecef;}
+.unit-body-5:hover {background-color : #ced4da;}
+
+.fclear:after {
+    clear: both;
+    display: block;
+    visibility: hidden;
+    content:"";
 }
-.nskr {
-    font-family: 'Noto Sans KR', sans-serif;
+
+.fw-bold {
+    font-weight:bold;
 }
-a {
-    text-decoration:none;
-}
+
+.dropdown-menu {min-width:100%}
 
 .w45{margin: 0 auto; width:45%;}
 .w70{margin: 0 auto; width:70%;}
