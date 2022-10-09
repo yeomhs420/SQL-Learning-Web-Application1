@@ -23,8 +23,8 @@ public class LearnController {
         return "learn/topiclist";
     }
 
-    @RequestMapping("/{unit}")
-    public String unit(@PathVariable("unit") String unit) {
-        return "learn/unit/unit"+unit;
+    @RequestMapping("/unit/{unit_num}")
+    public String unit(@PathVariable("unit_num") String unit_num) {
+        return "learn/unit/unit"+unit_num;
     }
 }
