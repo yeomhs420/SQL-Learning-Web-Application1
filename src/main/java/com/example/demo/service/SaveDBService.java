@@ -26,7 +26,7 @@ public class SaveDBService {
     @Autowired TestStatusByEventRepository testStatusByEventRepository;
 
 
-    @Transactional
+    @Transactional("userTransactionManager")
     public void saveAllSampleData() {
         List<CovidVaccinationCenter> covidVaccinationCenterList = null;
         List<CovidInfectionStatus> covidInfectionStatusList = null;

@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-public class    DBConfig {
+public class DBConfig {
 
     @Bean
     @Primary
@@ -26,7 +26,7 @@ public class    DBConfig {
         emf.setPackagesToScan(new String[] {"com.example.demo.entity.sampledata"});
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         emf.setJpaProperties(jpaProperties());
-        emf.setPersistenceUnitName("sampleData");
+        // emf.setPersistenceUnitName("sampleData");
         return emf;
     }
 
@@ -37,7 +37,7 @@ public class    DBConfig {
         emf.setPackagesToScan(new String[] {"com.example.demo.entity.user"});
         emf.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         emf.setJpaProperties(jpaProperties());
-        emf.setPersistenceUnitName("userData");
+        // emf.setPersistenceUnitName("userData");
         return emf;
     }
 
@@ -69,14 +69,12 @@ public class    DBConfig {
     @Primary
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(entityManagerFactory().getObject());
-        jpaTransactionManager.setDataSource(dataSource());
         return jpaTransactionManager;
     }
 
     @Bean
     public PlatformTransactionManager userTransactionManager() {
         JpaTransactionManager jpaTransactionManager = new JpaTransactionManager(userEntityManagerFactory().getObject());
-        jpaTransactionManager.setDataSource(userDataSource());
         return jpaTransactionManager;
     }
 }
