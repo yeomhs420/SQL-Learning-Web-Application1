@@ -11,15 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Iterator;
 import java.util.List;
 
 @Component
 public class JpaRepositoryExample {
-    @PersistenceContext(unitName = "sampleData")
-    EntityManager em;
 
     @Autowired CovidInfectionStatusesService covidInfectionStatusesService;
     @Autowired CovidInfectionStatusRepository covidInfectionStatusRepository;

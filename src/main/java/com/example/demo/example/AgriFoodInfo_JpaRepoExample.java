@@ -14,11 +14,7 @@ import javax.persistence.PersistenceContext;
 import java.util.List;
 
 public class AgriFoodInfo_JpaRepoExample {
-    @PersistenceContext(unitName = "sampleData")
-    EntityManager em;
 
-    @Autowired
-    AgriFoodInfoService agriFoodInfoService;
     @Autowired
     AgriFoodInfoRepository agriFoodInfoRepository;
 
