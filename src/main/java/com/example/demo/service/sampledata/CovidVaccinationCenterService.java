@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class CovidVaccinationCentersService {
+public class CovidVaccinationCenterService {
 
     @Value("${jooyeok.data.serviceKey}")
     private String serviceKey;
@@ -23,7 +23,7 @@ public class CovidVaccinationCentersService {
     @Autowired
     MyRestTemplate myRestTemplate;
 
-    public List<CovidVaccinationCenter> getCovidVaccinationCenters(int page, int perPage) {
+    public List<CovidVaccinationCenter> getAllData(int page, int perPage) {
         ArrayList<CovidVaccinationCenter> covidVaccinationCenterList = new ArrayList<>();
         String requestUrl="https://api.odcloud.kr/api/15077603/v1/uddi:1b3d37ab-8012-4b60-94b1-fc89ce89d1e2";
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(requestUrl)

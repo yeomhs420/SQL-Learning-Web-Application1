@@ -18,7 +18,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class CovidInfectionStatusesService {
+public class CovidInfectionStatusService {
 
     @Value("${jooyeok.data.serviceKey}")
     private String serviceKey;
@@ -26,7 +26,7 @@ public class CovidInfectionStatusesService {
     @Autowired
     MyRestTemplate myRestTemplate;
 
-    public List<CovidInfectionStatus> getCovidInfectionStatuses(int pageNo, int numOfRows, String startCreateDt, String endCreateDt) {
+    public List<CovidInfectionStatus> getAllData(int pageNo, int numOfRows, String startCreateDt, String endCreateDt) {
         ArrayList<CovidInfectionStatus> covidInfectionStatusList = new ArrayList<>();
         String requestUrl="http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(requestUrl)

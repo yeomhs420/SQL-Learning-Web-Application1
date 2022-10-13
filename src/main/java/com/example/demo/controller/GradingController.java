@@ -28,7 +28,6 @@ public class GradingController {
         System.out.println(userAnswer.get(1));
         String userAnswer2 = userAnswer.get(2).toString();
         sqlData.setSql(userAnswer2);
-
         TestResult testResult = new TestResult();
         sqlValidator.validate(sqlData, bindingResult);
         if(bindingResult.hasErrors()) {
@@ -41,6 +40,9 @@ public class GradingController {
             return testResult;
         }
         System.out.println(sqlResult.size());
+        for(int i=0;i<sqlResult.size();i++) {
+            System.out.println(sqlResult.get(i).toString());
+        }
         testResult.setCorrectCount(5);
 
         List<Question> questionList = new ArrayList<>();
