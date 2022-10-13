@@ -14,7 +14,7 @@ import java.util.List;
 @Configuration
 @Aspect
 public class AdvisorConfig {
-    @Pointcut("execution(* com.example.demo.service.sampledata.*.get*(..))")
+    @Pointcut("execution(* com.example.demo.service.sampledata..get*(..))")
     public void logPointcut(){}
 
 
@@ -25,7 +25,7 @@ public class AdvisorConfig {
         Method method = methodSignature.getMethod(); // Pointcut으로 선정한 메소드 불러오기
         try {
             returnList = (List<Object>) joinPoint.proceed();
-            System.out.println(method.getName()+"()에서 반환 받은 데이터 수 : "+returnList.size());
+            System.out.println(method.getDeclaringClass()+"."+method.getName()+"()에서 반환 받은 데이터 수 : "+returnList.size());
         } catch (Throwable throwable) {
             throw throwable;
         }

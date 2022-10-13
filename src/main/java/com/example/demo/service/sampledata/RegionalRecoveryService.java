@@ -13,7 +13,7 @@ public class RegionalRecoveryService {
     @Autowired
     CsvTemplate csvTemplate;
 
-    public List<RegionalRecoveryCostInfo> getRecoveryCost() {
+    public List<RegionalRecoveryCostInfo> getAllData() {
 
         ArrayList<RegionalRecoveryCostInfo> recoveryCostList = new ArrayList<>();
         String csvClassPath = "classpath:static/csv/regional_recovery_cost.csv";
