@@ -7,7 +7,7 @@ import javax.persistence.Id;
 
 @Data
 @Entity
-public class ThePersonInCharge {
+public class Employee {
 
     @Id
     private int id;

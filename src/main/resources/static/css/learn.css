@@ -12,13 +12,9 @@
     background-color : #FFFFFF;
 }
 
-#learn-container{
+#learn-container, #test-container{
     margin: 0 auto;
     width:70%;
-}
-
-#forum-page{
-    transform: translateY(40%);
 }
 
 .learn-part{
