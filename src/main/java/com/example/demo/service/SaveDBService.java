@@ -22,7 +22,8 @@ public class SaveDBService {
     @Autowired TestStatusByEventService testStatusByEventService;
     @Autowired RegionalRecoveryService regionalRecoveryService;
     @Autowired EducationCostService educationCostService;
-    @Autowired ThePersonInChargeService thePersonInChargeService;
+    @Autowired
+    EmployeeService employeeService;
     @Autowired AssignmentService assignmentService;
     @Autowired DepartmentService departmentService;
     @Autowired LeisureService leisureService;
@@ -34,7 +35,8 @@ public class SaveDBService {
     @Autowired EducationCostRepository educationCostRepository;
     @Autowired RegionalRecoveryCostInfoRepository regionalRecoveryCostInfoRepository;
     @Autowired TestStatusByEventRepository testStatusByEventRepository;
-    @Autowired ThePersonInChargeRepository thePersonInChargeRepository;
+    @Autowired
+    EmployeeRepository employeeRepository;
     @Autowired AssignmentRepository assignmentRepository;
     @Autowired DepartmentRepository departmentRepository;
     @Autowired LeisureRepository leisureRepository;
@@ -49,7 +51,7 @@ public class SaveDBService {
         List<TestStatusByEvent> testStatusByEventList = null;
         List<RegionalRecoveryCostInfo> regionalRecoveryList = null;
         List<EducationCost> educationCostList = null;
-        List<ThePersonInCharge> thePersonInChargeList = null;
+        List<Employee> employeeList = null;
         List<Assignment> assignmentList = null;
         List<Department> departmentList = null;
         List<Leisure> leisureList = null;
@@ -62,7 +64,7 @@ public class SaveDBService {
             testStatusByEventList = testStatusByEventService.getAllData();
             regionalRecoveryList = regionalRecoveryService.getAllData();
             educationCostList = educationCostService.getAllData();
-            thePersonInChargeList = thePersonInChargeService.getAllData();
+            employeeList = employeeService.getAllData();
             assignmentList = assignmentService.getAllData();
             departmentList = departmentService.getAllData();
             leisureList = leisureService.getAllData();
@@ -75,7 +77,7 @@ public class SaveDBService {
         for(int i=0;i<testStatusByEventList.size();i++) testStatusByEventRepository.save(testStatusByEventList.get(i));
         for(int i=0;i<regionalRecoveryList.size();i++) regionalRecoveryCostInfoRepository.save(regionalRecoveryList.get(i));
         for(int i=0;i<educationCostList.size();i++) educationCostRepository.save(educationCostList.get(i));
-        for(int i=0;i<thePersonInChargeList.size();i++) thePersonInChargeRepository.save(thePersonInChargeList.get(i));
+        for(int i = 0; i< employeeList.size(); i++) employeeRepository.save(employeeList.get(i));
         for(int i=0;i<assignmentList.size();i++) assignmentRepository.save(assignmentList.get(i));
         for(int i=0;i<departmentList.size();i++) departmentRepository.save(departmentList.get(i));
         for(int i=0;i<leisureList.size();i++) leisureRepository.save(leisureList.get(i));
