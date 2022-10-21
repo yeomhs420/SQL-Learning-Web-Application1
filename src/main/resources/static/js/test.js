@@ -18,9 +18,27 @@ jQuery.fn.serializeObject = function() {
     return obj;
 };
 
+var limitTime=5;
+var timeoutId;
+var target = $('#submit-btn');
+
+function startTimeout() {
+    target.attr("disabled", true);
+    timeoutId=setInterval(printCurrentDate, 1000);
+}
+function printCurrentDate() {
+    if(--limitTime>0) target.html("<span style='color:red;'>"+limitTime+"초 후 다시 제출 가능</span>");
+    else {
+        target.html("답안 제출");
+        clearInterval(timeoutId);
+        limitTime=5;
+        target.attr("disabled", false);
+    }
+}
+
 $('#answer-form').submit(function() {
+    startTimeout();
     var serializedFormData = $('#answer-form').serializeObject();
-    console.log(serializedFormData.unit)
     console.log(serializedFormData)
     $.ajax({
         url:"http://localhost:8080/test/grading",
@@ -37,4 +55,3 @@ $('#answer-form').submit(function() {
     })
     return false;
 });
-
