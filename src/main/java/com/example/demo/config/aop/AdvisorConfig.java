@@ -17,7 +17,6 @@ public class AdvisorConfig {
     @Pointcut("execution(* com.example.demo.service.sampledata..get*(..))")
     public void logPointcut(){}
 
-
     @Around("logPointcut()")
     public List<Object> logAdvisor(ProceedingJoinPoint joinPoint) throws Throwable {
         List<Object> returnList;
