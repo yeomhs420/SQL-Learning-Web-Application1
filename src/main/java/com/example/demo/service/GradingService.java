@@ -116,10 +116,10 @@ public class GradingService {
                 if(sqlResult.get(i).containsKey("POSITION")&&sqlResult.get(i).get("POSITION").toString().equals(employeeList.get(i).getPosition())) correctCount++;
                 if(sqlResult.get(i).containsKey("SALARY")&&sqlResult.get(i).get("SALARY").toString().equals(String.valueOf(employeeList.get(i).getSalary()))) correctCount++;
             }
-            if(correctCount==15) {
-                question3.setIsCorrect(true);
-                testResult.setCorrectCount(testResult.getCorrectCount()+1);
-            }
+        }
+        if(correctCount==15) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
 
         questionList.add(question1);
