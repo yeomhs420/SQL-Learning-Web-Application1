@@ -34,10 +34,6 @@ a:hover {color:black;}
     content:"";
 }
 
-.fw-bold {
-    font-weight:bold;
-}
-
 .dropdown-menu {min-width:100%}
 
 .f13{font-size: 13px}
