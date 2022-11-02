@@ -51,7 +51,10 @@ public class GradingService {
             resultForShow.add(tempRow);
             for(LinkedHashMap<String, Object> row : sqlResult) {
                 tempRow = new ArrayList<>();
-                for(Map.Entry<String, Object> entry : row.entrySet()) tempRow.add(entry.getValue().toString());
+                for(Map.Entry<String, Object> entry : row.entrySet()) {
+                    if(entry.getValue()==null) tempRow.add("null");
+                    else tempRow.add(entry.getValue().toString());
+                }
                 resultForShow.add(tempRow);
             }
         }
