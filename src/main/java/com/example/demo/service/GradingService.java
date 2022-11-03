@@ -22,12 +22,27 @@ public class GradingService {
     @Autowired EmployeeRepository employeeRepository;
 
     public TestResult grade(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
-        TestResult testResult = new TestResult();
         int unit = Integer.parseInt(userAnswer.get("unit").toString());
         switch (unit) {
-            case 1 : testResult = gradeUnit1(userAnswer, sqlData, bindingResult, testResult); break;
+            case 1 : return gradeUnit1(userAnswer, sqlData, bindingResult);
+            case 2 : return gradeUnit2(userAnswer, sqlData, bindingResult);
+            case 3 : return gradeUnit3(userAnswer, sqlData, bindingResult);
+            case 4 : return gradeUnit4(userAnswer, sqlData, bindingResult);
+            case 5 : return gradeUnit5(userAnswer, sqlData, bindingResult);
+            case 6 : return gradeUnit6(userAnswer, sqlData, bindingResult);
+            case 7 : return gradeUnit7(userAnswer, sqlData, bindingResult);
+            case 8 : return gradeUnit8(userAnswer, sqlData, bindingResult);
+            case 9 : return gradeUnit9(userAnswer, sqlData, bindingResult);
+            case 10 : return gradeUnit10(userAnswer, sqlData, bindingResult);
+            case 11 : return gradeUnit11(userAnswer, sqlData, bindingResult);
+            case 12 : return gradeUnit12(userAnswer, sqlData, bindingResult);
+            case 13 : return gradeUnit13(userAnswer, sqlData, bindingResult);
+            case 14 : return gradeUnit14(userAnswer, sqlData, bindingResult);
+            case 15 : return gradeUnit15(userAnswer, sqlData, bindingResult);
+            case 16 : return gradeUnit16(userAnswer, sqlData, bindingResult);
+            case 17 : return gradeUnit17(userAnswer, sqlData, bindingResult);
         }
-        return testResult;
+        return null;
     }
 
     public List<LinkedHashMap<String, Object>> validateAndGetSqlResult(String answer, SQLData sqlData, BindingResult bindingResult, Question question) {
@@ -72,7 +87,9 @@ public class GradingService {
         }
     }
 
-    public TestResult gradeUnit1(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult, TestResult testResult) {
+    public TestResult gradeUnit1(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
         int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
         int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
         String answer3 = userAnswer.get("question3").toString();
@@ -128,4 +145,437 @@ public class GradingService {
         testResult.setQuestionList(questionList);
         return testResult;
     }
+
+    public TestResult gradeUnit2(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit3(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit4(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit5(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit6(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit7(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit8(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit9(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit10(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit11(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit12(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit13(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit14(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit15(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit16(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
+    public TestResult gradeUnit17(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
+        TestResult testResult = new TestResult();
+
+        List<Question> questionList = new ArrayList<>();
+
+        // 문제 1 채점
+        Question question1 = new Question();
+        question1.setNum(1);
+
+
+        // 문제 2 채점
+        Question question2 = new Question();
+        question2.setNum(2);
+
+
+        // 문제 3 채점
+        Question question3 = new Question();
+        question3.setNum(3);
+
+
+        questionList.add(question1);
+        questionList.add(question2);
+        questionList.add(question3);
+        testResult.setQuestionList(questionList);
+        return testResult;
+    }
+
 }
