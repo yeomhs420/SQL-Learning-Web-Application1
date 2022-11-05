@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{>part/common}}
+    <link href="/static/css/learn.css" rel="stylesheet">
+    <title>Learn</title>
+</head>
+<body>
+<div id="main-container" class="quicksand nskr">
+    {{>part/nav}}
+    <div id="learn-container" class="mt-4 mb-4">
+        <header class="d-flex justify-content-center mb-4">
+            <div class="d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-filetype-sql" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM0 14.841a1.129 1.129 0 0 0 .401.823c.13.108.288.192.478.252s.411.091.665.091c.338 0 .624-.053.858-.158.237-.106.416-.252.54-.44a1.17 1.17 0 0 0 .187-.656c0-.224-.045-.41-.135-.56a1 1 0 0 0-.375-.357 2.027 2.027 0 0 0-.565-.21l-.621-.144a.97.97 0 0 1-.405-.176.369.369 0 0 1-.143-.299c0-.156.061-.284.184-.384.125-.101.296-.152.513-.152.143 0 .266.022.37.068a.624.624 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.199-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.552.05-.776.15-.225.099-.4.24-.528.421-.127.182-.19.395-.19.639 0 .201.04.376.123.524.082.149.199.27.351.367.153.095.332.167.54.213l.618.144c.207.049.36.113.462.193a.387.387 0 0 1 .153.325c0 .11-.029.207-.085.29A.558.558 0 0 1 2 15.31c-.111.047-.249.07-.413.07-.117 0-.224-.013-.32-.04a.835.835 0 0 1-.248-.115.579.579 0 0 1-.255-.384H0Zm6.878 1.489-.507-.739c.176-.162.31-.362.401-.6.092-.239.138-.507.138-.806v-.501c0-.371-.07-.693-.208-.967a1.495 1.495 0 0 0-.589-.636c-.256-.15-.561-.225-.917-.225-.351 0-.656.075-.914.225-.256.149-.453.36-.592.636a2.138 2.138 0 0 0-.205.967v.5c0 .37.069.691.205.965.139.273.336.485.592.636a1.8 1.8 0 0 0 .914.222 1.8 1.8 0 0 0 .6-.1l.294.422h.788ZM4.262 14.2v-.522c0-.246.038-.456.114-.63a.91.91 0 0 1 .325-.398.885.885 0 0 1 .495-.138c.192 0 .357.046.495.138a.88.88 0 0 1 .325.398c.077.174.115.384.115.63v.522c0 .164-.018.312-.053.445-.035.13-.087.244-.155.34l-.106-.14-.105-.147h-.733l.451.65a.638.638 0 0 1-.251.047.872.872 0 0 1-.487-.147.916.916 0 0 1-.32-.404 1.67 1.67 0 0 1-.11-.644Zm3.986 1.057h1.696v.674H7.457v-3.999h.79v3.325Z"/>
+                </svg>
+            </div>
+            <div class="text-center fs-1 ms-2">JOIN</div>
+        </header>
+        <section>
+            <div id="concept-container">
+                <div id="join-info" class="learn-part mb-4">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">JOIN</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >테이블의 분리</th>
+                            </tr>
+                            <tr>
+                                <th width="15%">설명</th>
+                                <td class="initial-font">
+                                    JOIN은 분리된 테이블을 합쳐주는 연산입니다. 먼저, 테이블을 분리하는 이유부터 짚고 넘어가보죠.<br>
+                                    여러분이 데이터베이스 관리자라고 해보죠.<br>
+                                    여러분은 회사 내 업무별 담당 직원과 그 직원의 정보를 저장하고 있는 데이터베이스를 관리하고 있는 상황입니다.<br>
+                                    <img class="m-2" src="/static/img/join1.png" width="70%"><br>
+                                    <p class="f13">[이미지 1]</p>
+                                    여기서 김헌창 팀장은 업무 a와 e를 맡고 있고, 이에 따라 해당 테이블에는 중복 데이터가 발생했습니다.<br>
+                                    데이터베이스에서 발생하는 중복 데이터는 나중에 데이터를 관리할 때 매우 좋지 않은 영향을 끼칩니다.<br>
+                                    <br>
+                                    예를 들어 업무 e를 김헌창 팀장이 아닌 김주역 신입이 맡는걸로 변경 되었다고 하면 직급~비고까지 컬럼의 데이터를 하나하나 모두 바꿀 것입니까?<br>
+                                    그리고 어떤 부서명의 부서 코드가 바뀌었다고 하면 부서코드를 하나하나 바꿀 것입니까?<br>
+                                    <br>
+                                    아니면 아래와 같이 <strong>표를 알맞게 쪼개어서</strong> 첫 번째 표의 업무 e 담당자명을 김주역 이라고만 바꾸고, 부서명의 코드가 바뀌었을 경우 세 번째 표의 부서코드만 수정해줄 것입니까?<br>
+                                    <img class="m-2" src="/static/img/join2.png" width="90%"><br>
+                                    <p class="f13">[이미지 2]</p><br>
+                                    데이터베이스에 데이터를 작성할 때는 토픽마다 테이블을 나눠주는 것이 좋습니다. 테이블을 적절히 분리하는 것을 정규화라고 합니다.<br>
+                                    토픽을 나누는 기준을 스스로 잘 파악하고 중복 데이터를 최대한 줄일 수록 좋은 데이터베이스 관리자가 될 것입니다.<br>
+                                </td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >JOIN</th>
+                            </tr>
+                            <tr>
+                                <th>설명</th>
+                                <td class="initial-font">
+                                    JOIN 문은 여러 테이블을 특정 컬럼을 기준으로 합쳐줍니다.<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>기본 문법</th>
+                                <td class="initial-font">
+                                    JOIN 문은 대개 ON 절과 함께 사용합니다. ON 절에는 테이블을 합치는 기준을 명시합니다.<br>
+                                    예를 들어, [이미지 2]에서 "담당자정보" 테이블과 "부서" 테이블을 합친다고 해봅시다.<br>
+                                    두 테이블을 합치기 위한 기준 컬럼은 각각 "부서명"이 되겠죠? 그래서 ON 절은 "ON 담당자정보.부서명 = 부서.부서명"으로 작성하면 됩니다.<br>
+                                    <br>
+                                    최종 SQL과 그 결과는 다음과 같습니다.<br>
+                                    <strong>SELECT * FROM 담당자정보 JOIN 부서 ON 담당자정보.부서명 = 부서.부서명;</strong><br>
+                                    <img class="m-2" src="/static/img/join6.png" width="70%"><br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>JOIN의 종류</th>
+                                <td class="initial-font">
+                                    JOIN의 대표적인 종류 5가지입니다.<br>
+                                    <img class="m-2" src="/static/img/join3.png" width="70%"><br>
+                                    1) (INNER) JOIN : 일반적인 JOIN 문으로 INNER JOIN으로 적든 그냥 JOIN으로 적든 결과는 동일<br>
+                                    2) OUTER JOIN : 조건에 맞지 않는 부분도 NULL을 생성해서라도 모든 컬럼을 조회<br>
+                                    3) LEFT JOIN : 조건에 맞지 않는 부분도 NULL을 생성해서라도 왼쪽 테이블에 있는 모든 컬럼만 조회<br>
+                                    4) UNION : 두 테이블을 컬럼째로 이어붙혀 조회<br>
+                                    5) CROSS JOIN : JOIN할 수 있는 모든 경우에 대해 조회 (컬럼 수 = Table1의 컬럼 수 x Table2의 컬럼 수)<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>JOIN Visualizer 사이트</th>
+                                <td class="initial-font">
+                                    JOIN 케이스별 SQL를 확인할 수 있는 사이트입니다.<br>
+                                    사이트에 들어간 뒤 벤다이어그램에서 원하는 영역을 클릭하면 해당 SQL문이 자동으로 출력됩니다.<br>
+                                    <a href="https://sql-joins.leopard.in.ua/">[링크 클릭] https://sql-joins.leopard.in.ua/</a><br>
+                                    <img class="m-2" src="/static/img/join4.png" width="70%"><br>
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        <footer>
+
+        </footer>
+    </div>
+</div>
+</body>
+</html>

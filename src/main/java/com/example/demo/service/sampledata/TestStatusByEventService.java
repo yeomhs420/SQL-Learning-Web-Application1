@@ -13,7 +13,7 @@ public class TestStatusByEventService {
     @Autowired
     CsvTemplate csvTemplate;
 
-    public List<TestStatusByEvent> getTestStatusByEvent() {
+    public List<TestStatusByEvent> getAllData() {
 
         ArrayList<TestStatusByEvent> testStatusByEventsList = new ArrayList<>();
         String csvClassPath = "classpath:static/csv/test_status_by_event.csv";

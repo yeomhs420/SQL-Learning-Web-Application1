@@ -24,7 +24,7 @@ public class AgriFoodInfoService {
     @Autowired
     MyRestTemplate myRestTemplate;
 
-    public List<AgriFoodInfo> getAgriFoodInfo(int Page_No, int Page_Size) {
+    public List<AgriFoodInfo> getAllData(int Page_No, int Page_Size) {
         ArrayList<AgriFoodInfo> AgriFoodInfoList = new ArrayList<>();
         String requestUrl="http://apis.data.go.kr/1390802/AgriFood/MzenFoodCode/getKoreanFoodList";
         UriComponentsBuilder uriComponentsBuilder = UriComponentsBuilder.fromHttpUrl(requestUrl)

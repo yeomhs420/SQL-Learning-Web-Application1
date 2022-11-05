@@ -15,7 +15,7 @@ public class EducationCostService {
     @Autowired
     CsvTemplate csvTemplate;
 
-    public List<EducationCost> getEducationCost(){
+    public List<EducationCost> getAllData(){
 
         ArrayList<EducationCost> educationCostList = new ArrayList<>();
         String csvClassPath = "classpath:static/csv/education_cost.csv";

@@ -7,6 +7,5 @@ import java.util.List;
 @Data
 public class TestResult {
     private int correctCount;
-    private String errorMsg;
     private List<Question> questionList;
 }

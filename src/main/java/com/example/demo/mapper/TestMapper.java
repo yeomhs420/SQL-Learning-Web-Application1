@@ -5,11 +5,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
 @Mapper
 public interface TestMapper {
     @Select("${sql}")
-    List<Map<String, Object>> getResult(@Param("sql") String sql);
+    List<LinkedHashMap<String, Object>> getResult(@Param("sql") String sql);
 }
