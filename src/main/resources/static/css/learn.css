@@ -22,11 +22,11 @@
     margin-bottom:30px;
 }
 
-.ex-table {
+.ex-table, .result-table {
     border-collapse: collapse;
 }
 
-.ex-table th, .ex-table td {
+.ex-table th, .ex-table td, .result-table th, .result-table td {
     font-weight: normal;
     text-align: center;
     vertical-align : middle;

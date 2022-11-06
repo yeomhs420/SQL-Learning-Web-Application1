@@ -3,6 +3,7 @@
 <head>
     {{>part/common}}
     <link href="/static/css/learn.css" rel="stylesheet">
+    <link href="/static/css/test.css" rel="stylesheet">
     <title>Learn</title>
 </head>
 <body>
@@ -19,8 +20,8 @@
             <div class="text-center fs-1 ms-2">기본 문법 테스트</div>
         </header>
         <section>
-            <div id="question-container">
-                <form id="answer-form" action="#" method="post">
+            <div id="question-container" class="mb-4">
+                <form id="answer-form" class="fclear" method="post">
                     <input id="unit" name="unit" type="hidden" value="{{test_num}}">
                     <div id="question1" class="learn-part mb-4">
                         <div class="d-flex mb-2">
@@ -106,7 +107,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <div id="question3" class="learn-part mb-4">
+                    <div id="question3" class="learn-part mb-2">
                         <div class="d-flex mb-2">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
@@ -124,8 +125,13 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        EMPLOYEE 테이블에서 모든 직원들의 이름(NAME), 직급(POSITION), 연봉(SALARY)를 조회하세요.<br>
-                                        EMPLOYEE 테이블의 DDL은 다음과 같습니다.<br>
+                                        EMPLOYEE 테이블에서 모든 직원들의 이름(NAME), 직급(POSITION), 연봉(SALARY)를 조회하는 SQL문을 작성하세요.<br><br>
+
+                                        ▣ 조건<br>
+                                        - 컬럼 : 별칭(AS) 사용 금지<br>
+                                        - 정렬 : ID 오름차순 (ORDER BY 절을 사용하지 않더라도 기본적으로 ID로 오름차순 정렬이 이루어집니다.)<br><br>
+
+                                        [EMPLOYEE]<br>
                                         <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
                                             CREATE TABLE EMPLOYEE (<br>
                                             &emsp;ID INTEGER NOT NULL,<br>
@@ -155,11 +161,104 @@
                             </tbody>
                         </table>
                     </div>
-                    <input class="btn btn-primary btn-lg" type="submit">
+                    <button id="submit-btn" class="btn btn-light btn-lg fr border border-dark" type="submit">답안 제출</button>
                 </form>
             </div>
-            <div id="answer-container">
+            <div id="result-container">
+                <div><p id="correct-count" class="fs-4"></p></div>
+                <div id="result1" class="learn-part mb-4">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle correct" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle incorrect" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">Question 1</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-1" class="initial-font" align="center"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="result2" class="learn-part mb-4">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle correct" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle incorrect" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">Question 2</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-2" class="initial-font" align="center"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="result3" class="learn-part mb-2">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle correct" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle incorrect" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">Question 3</div>
+                    </div>
 
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-3" class="initial-font" align="center"></td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
+                            </tr>
+                            <tr>
+                                <td class="d-flex justify-content-center initial-font">
+                                    <div class="error-msg"></div>
+                                    <table class="result-table m-1 initial-font w70">
+                                        <tbody></tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
         <footer>
