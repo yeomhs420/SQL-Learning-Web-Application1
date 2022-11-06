@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{>part/common}}
+    <link href="/static/css/learn.css" rel="stylesheet">
+    <title>Learn</title>
+</head>
+<body>
+<div id="main-container" class="quicksand nskr">
+    {{>part/nav}}
+    <div id="learn-container" class="mt-4 mb-4">
+        <header class="d-flex justify-content-center mb-4">
+            <div class="d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-filetype-sql" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2v-1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM0 14.841a1.129 1.129 0 0 0 .401.823c.13.108.288.192.478.252s.411.091.665.091c.338 0 .624-.053.858-.158.237-.106.416-.252.54-.44a1.17 1.17 0 0 0 .187-.656c0-.224-.045-.41-.135-.56a1 1 0 0 0-.375-.357 2.027 2.027 0 0 0-.565-.21l-.621-.144a.97.97 0 0 1-.405-.176.369.369 0 0 1-.143-.299c0-.156.061-.284.184-.384.125-.101.296-.152.513-.152.143 0 .266.022.37.068a.624.624 0 0 1 .245.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.199-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.552.05-.776.15-.225.099-.4.24-.528.421-.127.182-.19.395-.19.639 0 .201.04.376.123.524.082.149.199.27.351.367.153.095.332.167.54.213l.618.144c.207.049.36.113.462.193a.387.387 0 0 1 .153.325c0 .11-.029.207-.085.29A.558.558 0 0 1 2 15.31c-.111.047-.249.07-.413.07-.117 0-.224-.013-.32-.04a.835.835 0 0 1-.248-.115.579.579 0 0 1-.255-.384H0Zm6.878 1.489-.507-.739c.176-.162.31-.362.401-.6.092-.239.138-.507.138-.806v-.501c0-.371-.07-.693-.208-.967a1.495 1.495 0 0 0-.589-.636c-.256-.15-.561-.225-.917-.225-.351 0-.656.075-.914.225-.256.149-.453.36-.592.636a2.138 2.138 0 0 0-.205.967v.5c0 .37.069.691.205.965.139.273.336.485.592.636a1.8 1.8 0 0 0 .914.222 1.8 1.8 0 0 0 .6-.1l.294.422h.788ZM4.262 14.2v-.522c0-.246.038-.456.114-.63a.91.91 0 0 1 .325-.398.885.885 0 0 1 .495-.138c.192 0 .357.046.495.138a.88.88 0 0 1 .325.398c.077.174.115.384.115.63v.522c0 .164-.018.312-.053.445-.035.13-.087.244-.155.34l-.106-.14-.105-.147h-.733l.451.65a.638.638 0 0 1-.251.047.872.872 0 0 1-.487-.147.916.916 0 0 1-.32-.404 1.67 1.67 0 0 1-.11-.644Zm3.986 1.057h1.696v.674H7.457v-3.999h.79v3.325Z"/>
+                </svg>
+            </div>
+            <div class="text-center fs-1 ms-2">DELETE 절</div>
+        </header>
+        <section>
+            <div id="concept-container">
+                <div id="mysql-info" class="learn-part mb-4">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">DELETE 절</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >DELETE</th>
+                                </tr>
+                                <tr>
+                                    <th width="15%">설명</th>
+                                    <td class="initial-font">MYSQL에서는 DELETE 문을 사용하여 테이블의 레코드를 삭제합니다.</td>
+                                </tr>
+                            </div>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >테이블의 레코드를 삭제하는 방법</th>
+                                </tr>
+                                <tr>
+                                    <th>설명</th>
+                                    <td class="initial-font">
+                                        DELETE FROM WHERE 절을 사용해 레코드를 삭제할 수 있습니다.<br>
+                                        WHERE 조건을 만족하는 레코드의 값만을 수정합니다.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>문법</th>
+                                    <td class="initial-font">
+                                        DELETE FROM 테이블이름<br>
+                                        WHERE 필드이름 = 데이터값
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>주의사항</th>
+                                    <td class="initial-font">
+                                        WHERE 절은 생략 가능합니다.<br>
+                                        단, 해당 테이블의 모든 값이 삭제하기 때문에 사용을 지양해야 합니다.<br>
+                                        <br>
+                                        DELETE 문을 사용해 테이블의 모든 데이터를 삭제하더라도 테이블은 남아있습니다.<br>
+                                        테이블까지 삭제하고 싶은 경우, DROP TABLE 문을 사용해야 합니다.
+                                    </td>
+                                </tr>
+                            </div>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >DELETE 예시</th>
+                                </tr>
+                                <tr>
+                                    <th>예제</th>
+                                    <td class="initial-font">
+                                        <strong>
+                                        DELETE FROM STUDENT WHERE SID = 3430070;
+                                        </strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>예제 결과</th>
+                                    <td class="initial-font">
+                                        <img class="m-2" src="/static/img/JMImages/unit4-1.png" width="50%"><br>
+                                        <p class="f13">[DELETE 실행 전]</p>
+                                        <img class="m-2" src="/static/img/JMImages/unit4-2.png" width="50%"><br>
+                                        <p class="f13">[DELETE 실행 후]</p>
+                                    </td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        <footer>
+
+        </footer>
+    </div>
+</div>
+</body>
+</html>
