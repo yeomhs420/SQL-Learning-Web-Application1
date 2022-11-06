@@ -11,17 +11,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.Iterator;
 import java.util.List;
 
 @Component
 public class JpaRepositoryExample {
-    @PersistenceContext(unitName = "sampleData")
-    EntityManager em;
 
-    @Autowired CovidInfectionStatusesService covidInfectionStatusesService;
+    @Autowired
+    CovidInfectionStatusService covidInfectionStatusService;
     @Autowired CovidInfectionStatusRepository covidInfectionStatusRepository;
     @Autowired CovidVaccinationCenterRepository covidVaccinationCenterRepository;
 
@@ -63,7 +60,7 @@ public class JpaRepositoryExample {
         System.out.println();
         System.out.println("예시 5");
         List<CovidInfectionStatus> statuses = covidInfectionStatusRepository.findByDateBetween(
-                covidInfectionStatusesService.dateConverter("20210710"), covidInfectionStatusesService.dateConverter("20210720")
+                covidInfectionStatusService.dateConverter("20210710"), covidInfectionStatusService.dateConverter("20210720")
         );
         for(int i=0;i<statuses.size();i++) System.out.println(statuses.get(i).getAccDeathCnt());
     }

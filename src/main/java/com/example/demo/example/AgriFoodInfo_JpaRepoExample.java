@@ -1,24 +1,13 @@
 package com.example.demo.example;
 
 import com.example.demo.entity.sampledata.AgriFoodInfo;
-import com.example.demo.entity.sampledata.CovidVaccinationCenter;
 import com.example.demo.jpa.repository.AgriFoodInfoRepository;
-import com.example.demo.jpa.repository.CovidInfectionStatusRepository;
-import com.example.demo.jpa.repository.CovidVaccinationCenterRepository;
-import com.example.demo.service.sampledata.AgriFoodInfoService;
-import com.example.demo.service.sampledata.CovidInfectionStatusesService;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 public class AgriFoodInfo_JpaRepoExample {
-    @PersistenceContext(unitName = "sampleData")
-    EntityManager em;
 
-    @Autowired
-    AgriFoodInfoService agriFoodInfoService;
     @Autowired
     AgriFoodInfoRepository agriFoodInfoRepository;
 

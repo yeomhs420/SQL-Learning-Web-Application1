@@ -34,11 +34,9 @@ a:hover {color:black;}
     content:"";
 }
 
-.fw-bold {
-    font-weight:bold;
-}
-
 .dropdown-menu {min-width:100%}
+
+.f13{font-size: 13px}
 
 .w45{margin: 0 auto; width:45%;}
 .w70{margin: 0 auto; width:70%;}
