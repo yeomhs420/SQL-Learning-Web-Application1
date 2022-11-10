@@ -15,15 +15,13 @@ import java.util.List;
 @Service
 public class SaveDBService {
 
-    @Autowired
-    CovidVaccinationCenterService covidVaccinationCenterService;
+    @Autowired CovidVaccinationCenterService covidVaccinationCenterService;
     @Autowired CovidInfectionStatusService covidInfectionStatusService;
     @Autowired AgriFoodInfoService agriFoodInfoService;
     @Autowired TestStatusByEventService testStatusByEventService;
     @Autowired RegionalRecoveryService regionalRecoveryService;
     @Autowired EducationCostService educationCostService;
-    @Autowired
-    EmployeeService employeeService;
+    @Autowired EmployeeService employeeService;
     @Autowired AssignmentService assignmentService;
     @Autowired DepartmentService departmentService;
     @Autowired LeisureService leisureService;
@@ -35,15 +33,14 @@ public class SaveDBService {
     @Autowired EducationCostRepository educationCostRepository;
     @Autowired RegionalRecoveryCostInfoRepository regionalRecoveryCostInfoRepository;
     @Autowired TestStatusByEventRepository testStatusByEventRepository;
-    @Autowired
-    EmployeeRepository employeeRepository;
+    @Autowired EmployeeRepository employeeRepository;
     @Autowired AssignmentRepository assignmentRepository;
     @Autowired DepartmentRepository departmentRepository;
     @Autowired LeisureRepository leisureRepository;
     @Autowired MenteeMentoRepository menteeMentoRepository;
 
 
-    @Transactional("userTransactionManager")
+    @Transactional("transactionManager")
     public void saveAllSampleData() {
         List<CovidVaccinationCenter> covidVaccinationCenterList = null;
         List<CovidInfectionStatus> covidInfectionStatusList = null;
@@ -77,7 +74,7 @@ public class SaveDBService {
         for(int i=0;i<testStatusByEventList.size();i++) testStatusByEventRepository.save(testStatusByEventList.get(i));
         for(int i=0;i<regionalRecoveryList.size();i++) regionalRecoveryCostInfoRepository.save(regionalRecoveryList.get(i));
         for(int i=0;i<educationCostList.size();i++) educationCostRepository.save(educationCostList.get(i));
-        for(int i = 0; i< employeeList.size(); i++) employeeRepository.save(employeeList.get(i));
+        for(int i=0;i<employeeList.size(); i++) employeeRepository.save(employeeList.get(i));
         for(int i=0;i<assignmentList.size();i++) assignmentRepository.save(assignmentList.get(i));
         for(int i=0;i<departmentList.size();i++) departmentRepository.save(departmentList.get(i));
         for(int i=0;i<leisureList.size();i++) leisureRepository.save(leisureList.get(i));
