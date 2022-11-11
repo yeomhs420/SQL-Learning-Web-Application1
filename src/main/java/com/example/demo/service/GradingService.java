@@ -1,22 +1,31 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.sampledata.MenteeMento;
+import com.example.demo.entity.sampledata.QMenteeMento;
 import com.example.demo.entity.sampledata.join.Employee;
+import com.example.demo.entity.sampledata.join.QAssignment;
+import com.example.demo.entity.sampledata.join.QLeisure;
 import com.example.demo.jpa.repository.join.EmployeeRepository;
 import com.example.demo.validator.SQLValidator;
 import com.example.demo.vo.Question;
 import com.example.demo.vo.SQLData;
 import com.example.demo.vo.TestResult;
+import com.querydsl.jpa.JPAExpressions;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.*;
 
 @Service
 @Transactional
 public class GradingService {
 
+    @PersistenceContext EntityManager em;
     @Autowired SQLValidator sqlValidator;
     @Autowired TestService testService;
     @Autowired EmployeeRepository employeeRepository;
@@ -527,22 +536,61 @@ public class GradingService {
     public TestResult gradeUnit16(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==3) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==2) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
+        showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+
+        // 답 : SELECT A.WORK FROM ASSIGNMENT AS A LEFT JOIN LEISURE AS L ON A.EMPLOYEE_ID=L.EMPLOYEE_ID WHERE L.EMPLOYEE_ID IS NOT NULL;
+        JPAQueryFactory query = new JPAQueryFactory(em);
+        QAssignment qa = QAssignment.assignment;
+        QLeisure ql = QLeisure.leisure;
+        List<String> resultList = query.select(qa.work)
+                .from(qa).leftJoin(ql)
+                .on(qa.employeeId.eq(ql.employeeId))
+                .where(ql.hobby.isNotNull())
+                .fetch();
+
+        int correctCount=0;
+        if(sqlResult!=null&&sqlResult.size()==3&&sqlResult.get(0).size()==1) {
+            for(int i=0;i<3;i++) {
+                if(sqlResult.get(i).containsKey("WORK")&&sqlResult.get(i).get("WORK").toString().equals(resultList.get(i))) correctCount++;
+            }
+        }
+        if(correctCount==3) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         questionList.add(question1);
         questionList.add(question2);
@@ -570,6 +618,21 @@ public class GradingService {
         Question question3 = new Question();
         question3.setNum(3);
 
+        // UNIT 17 문제
+        // SELECT * FROM MENTEE_MENTO WHERE MENTO_ID IN(SELECT MENTO_ID FROM MENTEE_MENTO GROUP BY MENTO_ID HAVING COUNT(MENTO_ID)>=3);
+        JPAQueryFactory query = new JPAQueryFactory(em);
+        QMenteeMento qe = QMenteeMento.menteeMento;
+        List<MenteeMento> resultList2 = query.selectFrom(qe)
+                .where(qe.mentoId.in(
+                        JPAExpressions.select(qe.mentoId)
+                                .from(qe)
+                                .groupBy(qe.mentoId)
+                                .having(qe.mentoId.count().goe(3))
+                ))
+                .fetch();
+        for(int i=0;i<resultList2.size();i++){
+            System.out.println(resultList2.get(i));
+        }
 
         questionList.add(question1);
         questionList.add(question2);
