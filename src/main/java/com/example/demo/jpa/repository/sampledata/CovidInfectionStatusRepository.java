@@ -1,4 +1,4 @@
-package com.example.demo.jpa.repository;
+package com.example.demo.jpa.repository.sampledata;
 
 import com.example.demo.entity.sampledata.CovidInfectionStatus;
 import org.springframework.data.jpa.repository.JpaRepository;

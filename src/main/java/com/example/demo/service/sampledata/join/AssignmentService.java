@@ -11,8 +11,7 @@ import java.util.List;
 @Service
 public class AssignmentService {
 
-    @Autowired
-    CsvTemplate csvTemplate;
+    @Autowired CsvTemplate csvTemplate;
 
     public List<Assignment> getAllData() {
 

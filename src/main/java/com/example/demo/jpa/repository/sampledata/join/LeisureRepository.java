@@ -1,4 +1,4 @@
-package com.example.demo.jpa.repository.join;
+package com.example.demo.jpa.repository.sampledata.join;
 
 import com.example.demo.entity.sampledata.join.Leisure;
 import org.springframework.data.jpa.repository.JpaRepository;
