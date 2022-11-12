@@ -5,7 +5,7 @@ import com.example.demo.entity.sampledata.QMenteeMento;
 import com.example.demo.entity.sampledata.join.Employee;
 import com.example.demo.entity.sampledata.join.QAssignment;
 import com.example.demo.entity.sampledata.join.QLeisure;
-import com.example.demo.jpa.repository.join.EmployeeRepository;
+import com.example.demo.jpa.repository.sampledata.join.EmployeeRepository;
 import com.example.demo.validator.SQLValidator;
 import com.example.demo.vo.Question;
 import com.example.demo.vo.SQLData;
