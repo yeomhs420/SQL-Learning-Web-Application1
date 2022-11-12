@@ -2,8 +2,8 @@ package com.example.demo.example;
 
 import com.example.demo.entity.sampledata.CovidInfectionStatus;
 import com.example.demo.entity.sampledata.CovidVaccinationCenter;
-import com.example.demo.jpa.repository.CovidInfectionStatusRepository;
-import com.example.demo.jpa.repository.CovidVaccinationCenterRepository;
+import com.example.demo.jpa.repository.sampledata.CovidInfectionStatusRepository;
+import com.example.demo.jpa.repository.sampledata.CovidVaccinationCenterRepository;
 import com.example.demo.service.sampledata.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
