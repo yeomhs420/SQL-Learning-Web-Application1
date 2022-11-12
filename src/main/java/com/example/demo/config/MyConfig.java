@@ -1,9 +1,11 @@
 package com.example.demo.config;
 
+import com.example.demo.service.LoginService;
 import com.example.demo.vo.Topic;
 import com.example.demo.vo.Unit;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.*;
 
