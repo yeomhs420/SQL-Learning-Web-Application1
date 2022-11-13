@@ -20,7 +20,7 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = {"com.example.demo.jpa.repository.sampledata"},
         entityManagerFactoryRef = "entityManagerFactory",
         transactionManagerRef = "transactionManager")
-public class TestDBConfig {
+public class SampleDataDBConfig {
 
     @Bean
     @Primary
