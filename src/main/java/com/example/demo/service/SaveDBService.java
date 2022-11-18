@@ -18,7 +18,6 @@ public class SaveDBService {
     @Autowired
     CovidVaccinationCenterService covidVaccinationCenterService;
     @Autowired CovidInfectionStatusService covidInfectionStatusService;
-    @Autowired AgriFoodInfoService agriFoodInfoService;
     @Autowired TestStatusByEventService testStatusByEventService;
     @Autowired RegionalRecoveryService regionalRecoveryService;
     @Autowired EducationCostService educationCostService;
@@ -31,7 +30,6 @@ public class SaveDBService {
 
     @Autowired CovidInfectionStatusRepository covidInfectionStatusRepository;
     @Autowired CovidVaccinationCenterRepository covidVaccinationCenterRepository;
-    @Autowired AgriFoodInfoRepository agriFoodInfoRepository;
     @Autowired EducationCostRepository educationCostRepository;
     @Autowired RegionalRecoveryCostInfoRepository regionalRecoveryCostInfoRepository;
     @Autowired TestStatusByEventRepository testStatusByEventRepository;
@@ -47,7 +45,6 @@ public class SaveDBService {
     public void saveAllSampleData() {
         List<CovidVaccinationCenter> covidVaccinationCenterList = null;
         List<CovidInfectionStatus> covidInfectionStatusList = null;
-        List<AgriFoodInfo> agriFoodInfoList = null;
         List<TestStatusByEvent> testStatusByEventList = null;
         List<RegionalRecoveryCostInfo> regionalRecoveryList = null;
         List<EducationCost> educationCostList = null;
@@ -60,7 +57,6 @@ public class SaveDBService {
         try {
             covidVaccinationCenterList = covidVaccinationCenterService.getAllData(1, 100);
             covidInfectionStatusList = covidInfectionStatusService.getAllData(1, 31, "20210701", "20210731");
-            agriFoodInfoList = agriFoodInfoService.getAllData(1,100);
             testStatusByEventList = testStatusByEventService.getAllData();
             regionalRecoveryList = regionalRecoveryService.getAllData();
             educationCostList = educationCostService.getAllData();
@@ -73,7 +69,6 @@ public class SaveDBService {
 
         for(int i=0;i<covidVaccinationCenterList.size();i++) covidVaccinationCenterRepository.save(covidVaccinationCenterList.get(i));
         for(int i=0;i<covidInfectionStatusList.size();i++) covidInfectionStatusRepository.save(covidInfectionStatusList.get(i));
-        for(int i=0;i<agriFoodInfoList.size();i++) agriFoodInfoRepository.save(agriFoodInfoList.get(i));
         for(int i=0;i<testStatusByEventList.size();i++) testStatusByEventRepository.save(testStatusByEventList.get(i));
         for(int i=0;i<regionalRecoveryList.size();i++) regionalRecoveryCostInfoRepository.save(regionalRecoveryList.get(i));
         for(int i=0;i<educationCostList.size();i++) educationCostRepository.save(educationCostList.get(i));

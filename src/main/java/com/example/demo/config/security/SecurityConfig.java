@@ -14,7 +14,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
+        http.authorizeRequests().antMatchers("/h2-console/*").permitAll();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
         http.httpBasic().disable();
+
     }
 
     @Bean
