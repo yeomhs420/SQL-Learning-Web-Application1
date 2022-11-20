@@ -54,6 +54,7 @@ $('#answer-form').submit(function() {
         console.log(json);
         var questionList = json.questionList;
         $('#correct-count').text("맞은 개수 : "+json.correctCount+"/"+json.questionList.length);
+        if(json.correctCount===json.questionList.length) alert("축하합니다! 테스트를 통과했습니다!");
         for(var i=0;i<questionList.length;i++) {
             var question = questionList[i];
             var result = question.sqlResult;
@@ -75,7 +76,6 @@ $('#answer-form').submit(function() {
                     for(var c=0;c<result[r].length;c++) rowStr+="<td>"+result[r][c]+"</td>";
                     rowStr+="</tr>"
                     $('#result'+(i+1)+' .result-table > tbody:last').append(rowStr);
-                    console.log(rowStr);
                 }
             }
         }
