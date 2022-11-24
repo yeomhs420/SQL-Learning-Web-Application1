@@ -12,5 +12,4 @@ public class Question {
     private String errorMsg; // SQL문 작성 문제의 경우 SQL 검증
     private List<List<String>> sqlResult; // SQL문 작성 문제의 경우 SQL 결과를 저장
 
-
 }

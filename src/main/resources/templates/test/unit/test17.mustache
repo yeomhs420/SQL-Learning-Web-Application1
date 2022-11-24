@@ -17,7 +17,7 @@
                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                 </svg>
             </div>
-            <div class="text-center fs-1 ms-2">날짜와 시간 함수 테스트</div>
+            <div class="text-center fs-1 ms-2">서브쿼리 테스트</div>
         </header>
         <section>
             <div id="question-container" class="mb-4">
@@ -40,7 +40,7 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">다음 중 설명이 틀린 것은?</td>
+                                    <td class="initial-font">다음 중 서브쿼리를 사용할 수 없는 곳은?</td>
                                 </tr>
                             </div>
                             <div>
@@ -50,15 +50,15 @@
                                 <tr>
                                     <td class="initial-font">
                                         <input type="radio" id="1" name="question1" value="1" checked>
-                                        <label for="1">TIMESTAMP 타입은 날짜와 시간을 모두 포함하는 타입이다.</label><br>
+                                        <label for="1">UPDATE의 SET 절</label><br>
                                         <input type="radio" id="2" name="question1" value="2">
-                                        <label for="2">DATETIME 타입은 날짜와 시간을 모두 포함하는 타입이다.</label><br>
+                                        <label for="2">HAVING 절</label><br>
                                         <input type="radio" id="3" name="question1" value="3">
-                                        <label for="3">DATETIME 타입은 문자형, TIMESTAMP 타입은 숫자형이다.</label><br>
+                                        <label for="3">GROUP BY 절</label><br>
                                         <input type="radio" id="4" name="question1" value="4">
-                                        <label for="4">DATETIME 타입은 4byte, TIMESTAMP 타입은 8byte이다.</label><br>
+                                        <label for="4">INSERT의 VALUES 절</label><br>
                                         <input type="radio" id="5" name="question1" value="5">
-                                        <label for="5">DATETIME 타입은 데이터값을 입력해주어야만 날짜가 입력이 된다.</label><br>
+                                        <label for="5">SELECT 절</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -82,9 +82,7 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">
-                                        다음 날짜와 시간 '2022-12-25 12:34:56'에 대한 결과값으로 올바른 것은?
-                                    </td>
+                                    <td class="initial-font">다음 중 옳지 않은 것은?</td>
                                 </tr>
                             </div>
                             <div>
@@ -94,22 +92,22 @@
                                 <tr>
                                     <td class="initial-font">
                                         <input type="radio" id="1" name="question2" value="1" checked>
-                                        <label for="1">SELECT DATE('2022-12-25 12:34:56');   결과값 : 12-25</label><br>
+                                        <label for="1">서브쿼리의 결과가 1건 이하여야 결과에 비교 연산자를 사용할 수 있다.</label><br>
                                         <input type="radio" id="2" name="question2" value="2">
-                                        <label for="2">SELECT MONTH('2022-12-25 12:34:56');   결과값 : 12</label><br>
+                                        <label for="2">IN, ALL, ANY, SOME, EXISTS 뒤에 서브쿼리가 올 수 있다.</label><br>
                                         <input type="radio" id="3" name="question2" value="3">
-                                        <label for="3">SELECT DAY('2022-12-25 12:34:56');   결과값 : Sunday</label><br>
+                                        <label for="3">서브쿼리는 괄호로 감싸서 사용해야 한다.</label><br>
                                         <input type="radio" id="4" name="question2" value="4">
-                                        <label for="4">SELECT HOUR('2022-12-25 12:34:56');   결과값 : 12:00:00</label><br>
+                                        <label for="4">FROM 절에서 사용되는 서브쿼리는 별명을 정의해야 한다.</label><br>
                                         <input type="radio" id="5" name="question2" value="5">
-                                        <label for="5">SELECT MINUTE('2022-12-25 12:34:56');   결과값 : 56</label><br>
+                                        <label for="5">메인쿼리는 서브쿼리의 컬럼을 사용할 수 있다.</label><br>
                                     </td>
                                 </tr>
                             </div>
                             </tbody>
                         </table>
                     </div>
-                    <div id="question3" class="learn-part mb-4">
+                    <div id="question3" class="learn-part mb-2">
                         <div class="d-flex mb-2">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
@@ -127,9 +125,24 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        2023년 1월 1일은 무슨 요일인지 영문으로 반환하시오.<br><br>
+                                        C 대학에서는 학생의 역량 강화를 위해 멘티-멘토 프로그램을 시행하고 있습니다.<br>
+                                        MENTEE_MENTO 테이블에는 학생 ID, 학생 이름, 멘토 학생의 ID가 저장되어 있습니다.<br>
+                                        멘토 학생도 자신의 멘토가 있으며, 서로가 멘토가 될 수도 있습니다. 예를 들어, 소프트웨어 공학 과목에서는 A 학생이 B 학생의 멘토가 되고, 운영체제 과목에서는 B 학생이 A 학생의 멘토가 될 수 있습니다.<br>
+                                        담당하고 있는 멘티가 3명 이상인 멘토를 갖는 모든 학생의 ID와 이름을 조회하는 SQL문을 작성하세요.<br><br>
+
                                         ▣ 조건<br>
-                                        - 컬럼 : 별칭(AS) 사용 금지<br>
+                                        - 컬럼 : STUDENT_ID, STUDENT_NAME 2개의 컬럼만 조회하도록 합니다.<br>
+                                        - 정렬 : STUDENT_ID 오름차순으로 정렬합니다.<br><br>
+
+                                        [MENTEE_MENTO]<br>
+                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
+                                            CREATE TABLE MENTEE_MENTO (<br>
+                                            &emsp;STUDENT_ID INTEGER NOT NULL,<br>
+                                            &emsp;STUDENT_NAME VARCHAR(255),<br>
+                                            &emsp;MENTO_ID INTEGER NOT NULL,<br>
+                                            &emsp;PRIMARY KEY (STUDENT_ID)<br>
+                                            )
+                                        </p>
                                     </td>
                                 </tr>
                             </div>

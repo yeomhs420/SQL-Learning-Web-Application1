@@ -4,11 +4,11 @@
 
 .initial-font {font-family: 'initial'}
 
-a {color:black; text-decoration:none;}
-a:hover {color:black;}
+a:hover {color: rgba(0,0,0,1) !important;}
+.topic a {color:black; text-decoration:none;}
+nav a{color: rgba(0,0,0,.7) !important;}
 
 .fr {float: right;}
-
 .fl {float: left;}
 
 .unit-box-1 {border : 3px solid #0d6efd; }
