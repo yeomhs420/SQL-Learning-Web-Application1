@@ -158,26 +158,39 @@ public class GradingService {
     public TestResult gradeUnit2(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==3) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
-        Question question3 = new Question();
-        question3.setNum(3);
+        /*Question question3 = new Question();
+        question3.setNum(3);*/
 
 
         questionList.add(question1);
         questionList.add(question2);
-        questionList.add(question3);
+        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
