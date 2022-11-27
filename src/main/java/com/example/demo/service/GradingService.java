@@ -98,7 +98,6 @@ public class GradingService {
 
     public TestResult gradeUnit1(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
-
         int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
         int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
         String answer3 = userAnswer.get("question3").toString();
@@ -144,6 +143,12 @@ public class GradingService {
             }
         }
         if(correctCount==15) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
+
+        if(!answer3.toUpperCase().contains("REPLACE")) question3.setErrorMsg("You should contain 'REPLACE' method!");
+        if(sqlResult!=null&&sqlResult.size()==1&&sqlResult.get(0).containsKey("'MySQL'")&&sqlResult.get(0).get("'MySQL'").toString().equals("MySQL")) {
             question3.setIsCorrect(true);
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
