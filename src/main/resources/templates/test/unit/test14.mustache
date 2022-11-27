@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{>part/common}}
+    <link href="/static/css/learn.css" rel="stylesheet">
+    <link href="/static/css/test.css" rel="stylesheet">
+    <title>Learn</title>
+</head>
+<body>
+<div id="main-container" class="quicksand nskr">
+    {{>part/nav}}
+    <div id="test-container" class="mt-4 mb-4">
+        <header class="d-flex justify-content-center mb-4">
+            <div class="d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                </svg>
+            </div>
+            <div class="text-center fs-1 ms-2">GROUP BY 문법 테스트</div>
+        </header>
+        <section>
+            <div id="question-container" class="mb-4">
+                <form id="answer-form" class="fclear" method="post">
+                    <input id="unit" name="unit" type="hidden" value="{{test_num}}">
+                    <div id="question1" class="learn-part mb-4">
+                        <div class="d-flex mb-2">
+                            <div class="d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                            </div>
+                            <div class="text-center fs-3 ms-2">Question 1</div>
+                        </div>
+                        <table class="table table-bordered">
+                            <tbody>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >문제</th>
+                                </tr>
+                                <tr>
+                                    <td class="initial-font">다음 중 GROUP BY 절에 대한 설명으로 알맞은 것을 고르시오</td>
+                                </tr>
+                            </div>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >답안</th>
+                                </tr>
+                                <tr>
+                                    <td class="initial-font">
+                                        <input type="radio" id="1" name="question1" value="1" checked>
+                                        <label for="1">신지 : 레코드의 집합을 그룹화 하는데 사용해요</label><br>
+                                        <input type="radio" id="2" name="question1" value="2">
+                                        <label for="2">종민 : 하나의 그룹을 하나의 레코드로 반환하므로 결과 집합의 크기를 크게 할 수 있어요</label><br>
+                                        <input type="radio" id="3" name="question1" value="3">
+                                        <label for="3">강민 : SUM() 함수로 선택된 필드의 저장된 값의 총합을 알 수 있습니다</label><br>
+                                        <input type="radio" id="4" name="question1" value="4">
+                                        <label for="4">우주 : COUNT() 함수로 특정 조건을 만족하는 레코드 개수를 알 수 있습니다</label><br>
+                                        <input type="radio" id="5" name="question1" value="5">
+                                        <label for="5">창민 : 문법상 ORDER BY 절 앞에 위치해야 합니다</label><br>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="question2" class="learn-part mb-4">
+                        <div class="d-flex mb-2">
+                            <div class="d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                            </div>
+                            <div class="text-center fs-3 ms-2">Question 2</div>
+                        </div>
+                        <table class="table table-bordered">
+                            <tbody>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >문제</th>
+                                </tr>
+                                <tr>
+                                    <td class="initial-font">
+                                        각 부서의 인원 수를 그룹화 하고자 할 때<br>
+                                        다음 SQL문 중 문법 상 올바른 SQL 문을 고르시오<br>
+
+                                        <img class="m-2" src="/static/img/JMImages/test2-1.png" width="40%">
+                                    </td>
+                                </tr>
+                            </div>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >답안</th>
+                                </tr>
+                                <tr>
+                                    <td class="initial-font">
+                                        <input type="radio" id="1" name="question2" value="1" checked>
+                                        <label for="1">SELECT DEPARTMENT, COUNT(*) FROM EMPLOYEE GROUP BY DEPARTMENT</label><br>
+                                        <input type="radio" id="2" name="question2" value="2">
+                                        <label for="2">FROM EMPLOYEE GROUP BY DEPARTMENT SELECT DEPARTMENT, COUNT(*)</label><br>
+                                        <input type="radio" id="3" name="question2" value="3">
+                                        <label for="3">SELECT DEPARTMENT, COUNT(*) GROUP BY DEPARTMENT FROM EMPLOYEE</label><br>
+                                        <input type="radio" id="4" name="question2" value="4">
+                                        <label for="4">GROUP BY DEPARTMENT SELECT DEPARTMENT, COUNT(*) FROM EMPLOYEE </label><br>
+                                        <input type="radio" id="5" name="question2" value="5">
+                                        <label for="5">COUNT(*) FROM EMPLOYEE SELECT DEPARTMENT GROUP BY DEPARTMENT</label><br>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="question3" class="learn-part mb-2">
+                        <div class="d-flex mb-2">
+                            <div class="d-flex align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
+                                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                    <path d="M5.255 5.786a.237.237 0 0 0 .241.247h.825c.138 0 .248-.113.266-.25.09-.656.54-1.134 1.342-1.134.686 0 1.314.343 1.314 1.168 0 .635-.374.927-.965 1.371-.673.489-1.206 1.06-1.168 1.987l.003.217a.25.25 0 0 0 .25.246h.811a.25.25 0 0 0 .25-.25v-.105c0-.718.273-.927 1.01-1.486.609-.463 1.244-.977 1.244-2.056 0-1.511-1.276-2.241-2.673-2.241-1.267 0-2.655.59-2.75 2.286zm1.557 5.763c0 .533.425.927 1.01.927.609 0 1.028-.394 1.028-.927 0-.552-.42-.94-1.029-.94-.584 0-1.009.388-1.009.94z"/>
+                                </svg>
+                            </div>
+                            <div class="text-center fs-3 ms-2">Question 3</div>
+                        </div>
+                        <table class="table table-bordered">
+                            <tbody>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >문제</th>
+                                </tr>
+                                <tr>
+                                    <td class="initial-font">
+                                        각 부서별로 그룹화하여 평균 SALARY를 구하는 SQL문을 작성하시오<br><br>
+
+
+                                        ▣ 조건<br>
+                                        - 결과 : DEPARTMENT와 평균 AGE를 포함해야 함<br>
+                                        - 컬럼 : 별칭(AS) 사용 금지, COUNT()에서 * 사용 금지<br>
+                                        - 문법 : ORDER BY 사용 금지<br><br>
+
+                                        <img class="m-2" src="/static/img/JMImages/test2-1.png" width="40%"><br><br>
+
+                                    </td>
+                                </tr>
+                            </div>
+                            <div>
+                                <tr>
+                                    <th class="table-secondary" colspan="2" >답안</th>
+                                </tr>
+                                <tr>
+                                    <td class="initial-font">
+                                        <textarea id="question3" name="question3" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                    </td>
+                                </tr>
+                            </div>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button id="submit-btn" class="btn btn-light btn-lg fr border border-dark" type="submit">답안 제출</button>
+                </form>
+            </div>
+            <div id="result-container">
+                <div><p id="correct-count" class="fs-4"></p></div>
+                <div id="result1" class="learn-part mb-4">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle correct" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle incorrect" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">Question 1</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-1" class="initial-font" align="center"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="result2" class="learn-part mb-4">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle correct" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle incorrect" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">Question 2</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-2" class="initial-font" align="center"></td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="result3" class="learn-part mb-2">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-check-circle correct" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M10.97 4.97a.235.235 0 0 0-.02.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05z"/>
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x-circle incorrect" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">Question 3</div>
+                    </div>
+
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-3" class="initial-font" align="center"></td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
+                            </tr>
+                            <tr>
+                                <td class="d-flex justify-content-center initial-font">
+                                    <div class="error-msg"></div>
+                                    <table class="result-table m-1 initial-font w70">
+                                        <tbody></tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        <footer>
+
+        </footer>
+    </div>
+</div>
+<script src="/static/js/test.js"></script>
+</body>
+</html>
