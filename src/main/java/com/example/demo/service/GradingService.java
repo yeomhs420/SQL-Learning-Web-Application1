@@ -431,6 +431,7 @@ public class GradingService {
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(answer2);
 
         List<LinkedHashMap<String, Object>> sqlResult2 = validateAndGetSqlResult(answer2, sqlData, bindingResult, question2); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question2.setSqlResult(getSqlResultForShow(question2, sqlResult2)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
@@ -453,6 +454,7 @@ public class GradingService {
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
         List<LinkedHashMap<String, Object>> sqlResult3 = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult3)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
