@@ -49,16 +49,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1" name="question1" value="1" checked>
-                                        <label for="1">SELECT FLOOR(0.4);</label><br>
-                                        <input type="radio" id="2" name="question1" value="2">
-                                        <label for="2">SELECT CEIL(-0.4);</label><br>
-                                        <input type="radio" id="3" name="question1" value="3">
-                                        <label for="3">SELECT ROUND(0.4);</label><br>
-                                        <input type="radio" id="4" name="question1" value="4">
-                                        <label for="4">SELECT SIGN(0.0);</label><br>
-                                        <input type="radio" id="5" name="question1" value="5">
-                                        <label for="5">SELECT COS(PI()/2);</label><br>
+                                        <input type="radio" id="1_1" name="question1" value="1" checked>
+                                        <label for="1_1">SELECT FLOOR(0.4);</label><br>
+                                        <input type="radio" id="1_2" name="question1" value="2">
+                                        <label for="1_2">SELECT CEIL(-0.4);</label><br>
+                                        <input type="radio" id="1_3" name="question1" value="3">
+                                        <label for="1_3">SELECT ROUND(0.4);</label><br>
+                                        <input type="radio" id="1_4" name="question1" value="4">
+                                        <label for="1_4">SELECT SIGN(0.0);</label><br>
+                                        <input type="radio" id="1_5" name="question1" value="5">
+                                        <label for="1_5">SELECT COS(PI()/2);</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -91,14 +91,14 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1" name="question2" value="1" checked>
-                                        <label for="1">SELECT BIN(16);   답:10000</label><br>
-                                        <input type="radio" id="2" name="question2" value="2">
-                                        <label for="2">SELECT OCT(16);   답:20</label><br>
-                                        <input type="radio" id="3" name="question2" value="3">
-                                        <label for="3">SELECT HEX(16);   답:10</label><br>
-                                        <input type="radio" id="4" name="question2" value="4">
-                                        <label for="4">SELECT CONV(16, 16, 10);   답:1</label><br>
+                                        <input type="radio" id="2_1" name="question2" value="1" checked>
+                                        <label for="2_1">SELECT BIN(16);   답:10000</label><br>
+                                        <input type="radio" id="2_2" name="question2" value="2">
+                                        <label for="2_2">SELECT OCT(16);   답:20</label><br>
+                                        <input type="radio" id="2_3" name="question2" value="3">
+                                        <label for="2_3">SELECT HEX(16);   답:10</label><br>
+                                        <input type="radio" id="2_4" name="question2" value="4">
+                                        <label for="2_4">SELECT CONV(16, 16, 10);   답:1</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -123,19 +123,7 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        MOD()함수를 사용하여 보기의 숫자를 출력하시오.<br><br>
-                                        ▣ 조건<br>
-                                        - 컬럼 : 별칭(AS) 사용 금지<br>
-                                    </td>
-                                </tr>
-                            </div>
-                            <div>
-                                <tr>
-                                    <th class="table-secondary" colspan="2" >보기</th>
-                                </tr>
-                                <tr>
-                                    <td class="initial-font">
-                                        숫자 : 3
+                                        'SELECT MOD(7, 4);'에 대한 출력값으로 옳은 것은?<br>
                                     </td>
                                 </tr>
                             </div>
@@ -145,7 +133,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question3" name="question3" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="1" name="question3" value="1" checked>
+                                        <label for="1">1</label><br>
+                                        <input type="radio" id="2" name="question3" value="2">
+                                        <label for="2">2</label><br>
+                                        <input type="radio" id="3" name="question3" value="3">
+                                        <label for="3">3</label><br>
+                                        <input type="radio" id="4" name="question3" value="4">
+                                        <label for="4">4</label><br>
+                                        <input type="radio" id="5" name="question3" value="5">
+                                        <label for="4">5</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -232,19 +229,6 @@
                             </tr>
                             <tr>
                                 <td id="user-answer-3" class="initial-font" align="center"></td>
-                            </tr>
-                        </div>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
                             </tr>
                         </div>
                         </tbody>

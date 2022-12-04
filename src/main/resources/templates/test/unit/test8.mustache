@@ -41,10 +41,8 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        다음 중 테이블에서 직급(POSITION)이 '대리'인 사원의 수를 반환하는 SQL문을 작성하시오.<br>
-                                        <img src="/static/img/unit8.png" width="40%"><br><br>
-                                        ▣ 조건<br>
-                                        - 컬럼 : 별칭(AS) 사용 금지<br>
+                                        SELECT COUNT(POSITION) FROM EMPLOYEE WHERE POSITION='대리';에 대한 결과로 옳은 것은 ?<br>
+                                        <img src="/static/img/unit8.png" width="40%"><br>
                                     </td>
                                 </tr>
                             </div>
@@ -54,7 +52,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question1" name="question1" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="1_1" name="question1" value="1" checked>
+                                        <label for="1_1">1</label><br>
+                                        <input type="radio" id="1_2" name="question1" value="2">
+                                        <label for="1_2">2</label><br>
+                                        <input type="radio" id="1_3" name="question1" value="3">
+                                        <label for="1_3">3</label><br>
+                                        <input type="radio" id="1_4" name="question1" value="4">
+                                        <label for="1_4">4</label><br>
+                                        <input type="radio" id="1_5" name="question1" value="5">
+                                        <label for="1_5">5</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -79,10 +86,8 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        다음 중 테이블에서 가장 높은 급여(SALARY)를 반환하는 SQL문을 작성하시오.<br>
+                                        SELECT MAX(SALARY) FROM EMPLOYEE;에 대한 결과로 옳은 것은 ?<br>
                                         <img src="/static/img/unit8.png" width="40%"><br><br>
-                                        ▣ 조건<br>
-                                        - 컬럼 : 별칭(AS) 사용 금지<br>
                                     </td>
                                 </tr>
                             </div>
@@ -92,7 +97,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question2" name="question2" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="2_1" name="question2" value="1" checked>
+                                        <label for="2_1">5100</label><br>
+                                        <input type="radio" id="2_2" name="question2" value="2">
+                                        <label for="2_2">3600</label><br>
+                                        <input type="radio" id="2_3" name="question2" value="3">
+                                        <label for="2_3">3800</label><br>
+                                        <input type="radio" id="2_4" name="question2" value="4">
+                                        <label for="2_4">5400</label><br>
+                                        <input type="radio" id="2_5" name="question2" value="5">
+                                        <label for="2_5">2500</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -164,19 +178,6 @@
                         <tr>
                             <td id="user-answer-1" class="initial-font" align="center"></td>
                         </tr>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
-                            </tr>
-                        </div>
                         </tbody>
                     </table>
                 </div>
@@ -202,19 +203,6 @@
                             </tr>
                             <tr>
                                 <td id="user-answer-2" class="initial-font" align="center"></td>
-                            </tr>
-                        </div>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
                             </tr>
                         </div>
                         </tbody>
