@@ -1,17 +1,19 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.sampledata.Bbs;
-import com.example.demo.entity.sampledata.Comment;
+import com.example.demo.entity.user.Bbs;
+import com.example.demo.entity.user.Comment;
+import com.example.demo.entity.user.User;
 import com.example.demo.service.BbsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.*;
 
 @Controller
@@ -19,7 +21,11 @@ import java.util.*;
 public class GeneralForumController {
 
     @Autowired
-    BbsService bbsService;
+    private BbsService bbsService;
+    @Autowired
+    private HttpSession session;
+
+
     @RequestMapping({"/", ""})
     public String generalforum(Model model, HttpServletRequest request){
 
@@ -28,16 +34,15 @@ public class GeneralForumController {
         int page = 1;
 
 
-        if(request.getParameter("p") != null)
-            page = Integer.parseInt(request.getParameter("p"));    // 현재 페이지
+        if(request.getParameter("p") != null) page = Integer.parseInt(request.getParameter("p"));    // 현재 페이지
 
-        int fpage = page - (page - 1) % 5;    // 1~5 -> 1 , 6~10 -> 6
+        int fPage = page - (page - 1) % 5;    // 1~5 -> 1 , 6~10 -> 6
 
-        for(int i = fpage; i <= page; i++){
-            pList.add(i);   // 현재 index(p)까지 표시
+        for(int i = fPage; i <= page; i++){
+            pList.add(i);   // 현재 index(p)까지 표시}
         }
 
-        for(int i = page; i < fpage + 4; i++){
+        for(int i = page; i < fPage + 4; i++){
             if(bbsService.getBbsList(request, i).hasNext())   // 다음 페이지에 게시글이 존재할 시 index 표시
                 pList.add(i + 1);
             else
@@ -49,11 +54,11 @@ public class GeneralForumController {
         model.addAttribute("pageIndexList", pList);
 
 
-        if(fpage != 1)
-            model.addAttribute("preIndex", fpage - 5);  // 이전 페이지
+        if(fPage != 1)
+            model.addAttribute("preIndex", fPage - 5);  // 이전 페이지
 
-        if(bbsService.getBbsList(request, fpage + 4).hasNext())
-            model.addAttribute("nextIndex", fpage + 5); // 다음 페이지
+        if(bbsService.getBbsList(request, fPage + 4).hasNext())
+            model.addAttribute("nextIndex", fPage + 5); // 다음 페이지
 
         if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
             String name = request.getParameter("name");
@@ -86,23 +91,40 @@ public class GeneralForumController {
     }
 
     @RequestMapping("/write")
-    public String bbsWrite(Model model){
+    public String bbsWrite(Model model, HttpServletRequest request){
 
         return "/board/write";
     }
 
     @RequestMapping("/writeAction")
-    public String bbsWriteAction(Model model, HttpServletRequest request){
+    public String bbsWriteAction(RedirectAttributes re, HttpServletRequest request){
+        User User = (User)session.getAttribute("user");
 
-        if(bbsService.insertBbs(request, model))
+        if(bbsService.insertBbs(request,User.getUserID(), re))
             return "redirect:/generalforum";
 
-        else
-            return "/board/write";
+        else {
+            re.addFlashAttribute("msg", "입력이 안된 사항이 있습니다.");
+            return "redirect:/generalforum/write";
+        }
     }
 
     @RequestMapping("/bbs_update")
-    public String bbsUpdate(@RequestParam Long bbs_id, Model model){
+    public String bbsUpdate(@RequestParam Long bbs_id, Model model, RedirectAttributes re){
+
+        User user = (User)session.getAttribute("user");
+
+        if(user == null) {
+            re.addFlashAttribute("msg", "로그인이 필요합니다.");
+            return "redirect:/login";
+        }
+
+        String sessionID = user.getUserID();
+
+        if(!sessionID.equals(bbsService.getUserIdByBbsId(bbs_id))){
+            re.addFlashAttribute("msg", "권한이 없습니다");
+            return "redirect:/generalforum/bbs_view?bbs_id="+bbs_id;
+        }
 
         Bbs bbs = bbsService.getBbs(bbs_id);
 
@@ -112,21 +134,34 @@ public class GeneralForumController {
     }
 
     @RequestMapping("/bbs_updateAction")
-    public String bbsUpdateAction(HttpServletRequest request, Model model){
+    public String bbsUpdateAction(HttpServletRequest request, RedirectAttributes re){
 
-        model.addAttribute("bbsId", request.getParameter("bbs_id"));
-
-        if(bbsService.updateBbs(request, model))
+        if(bbsService.updateBbs(request))
             return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
 
-        else
-            return "/board/bbs_update";
+        else {
+            re.addFlashAttribute("msg", "입력이 안된 사항이 있습니다.");
+            return "redirect:/generalforum/bbs_update?bbs_id=" + request.getParameter("bbs_id");
+        }
 
     }
 
-
     @RequestMapping("/bbs_delete")
-    public String bbsDelete(@RequestParam Long bbs_id){
+    public String bbsDelete(@RequestParam Long bbs_id, RedirectAttributes re){
+
+        User user = (User)session.getAttribute("user");
+
+        if(user == null) {
+            re.addFlashAttribute("msg", "로그인이 필요합니다.");
+            return "redirect:/login";
+        }
+
+        String sessionID = user.getUserID();
+
+        if(!sessionID.equals(bbsService.getUserIdByBbsId(bbs_id))){
+            re.addFlashAttribute("msg", "권한이 없습니다");
+            return "redirect:/generalforum/bbs_view?bbs_id="+bbs_id;
+        }
 
         bbsService.deleteBbs(bbs_id);
 
@@ -135,21 +170,44 @@ public class GeneralForumController {
 
 
     @RequestMapping("/commentAction")
-    public String commentAction(HttpServletRequest request, Model model){
+    public String commentAction(HttpServletRequest request, Model model, RedirectAttributes re){
 
         model.addAttribute("bbsId", request.getParameter("bbs_id"));
 
-        if(bbsService.insertComment(request, model))
+        User user = (User)session.getAttribute("user");
+
+        if(user == null) {
+            re.addFlashAttribute("msg", "로그인이 필요합니다.");
             return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
-        else
-            return "/board/bbs_view";
+        }
+
+        if(bbsService.insertComment(request, user, model))
+            return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
+        else {
+            re.addFlashAttribute("msg", "내용을 입력해 주세요.");
+            return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
+        }
 
     }
 
     @RequestMapping("/comment_delete")
-    public String commentDelete(@RequestParam Long comment_id){
+    public String commentDelete(@RequestParam Long bbs_id, @RequestParam Long comment_id, RedirectAttributes re){
 
-        Long bbs_id = bbsService.deleteComment(comment_id);
+        User user = (User)session.getAttribute("user");
+
+        if(user == null) {
+            re.addFlashAttribute("msg", "로그인이 필요합니다.");
+            return "redirect:/login";
+        }
+
+        String sessionID = user.getUserID();
+
+        if(!sessionID.equals(bbsService.getUserIdByCommentId(comment_id))){
+            re.addFlashAttribute("msg", "권한이 없습니다");
+            return "redirect:/generalforum/bbs_view?bbs_id="+ bbs_id;
+        }
+
+        bbsService.deleteComment(comment_id);
 
         return "redirect:/generalforum/bbs_view?bbs_id=" + bbs_id;
 

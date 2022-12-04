@@ -1,6 +1,6 @@
-package com.example.demo.jpa.repository;
+package com.example.demo.jpa.repository.user;
 
-import com.example.demo.entity.sampledata.Comment;
+import com.example.demo.entity.user.Comment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -15,7 +15,9 @@ public class TestService {
 
     public List<LinkedHashMap<String, Object>> getSQLResult(String sql){
         List<LinkedHashMap<String, Object>> resultList;
-        try { resultList=testMapper.getResult(sql); }
+        try {
+            resultList=testMapper.getResult(sql); //  Null이 결과인 컬럼은 Map의 키에 저장되지 않고 누락되기 때문에 설정 필요
+        }
         catch (Exception e) { return null; }
         return testMapper.getResult(sql);
     }

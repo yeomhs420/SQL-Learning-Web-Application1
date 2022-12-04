@@ -21,7 +21,7 @@
             <div class="content" style="margin:10px 10px 10px 0px">
                 <span>
                     {{body}}
-                    <a href="/generalforum/comment_delete?comment_id={{id}}&bbs_id={{bbs.id}}" style="float: right;">
+                    <a href="/bugforum/comment_delete?comment_id={{id}}&bbs_id={{bbs.id}}" style="float: right;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
                         <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                     </svg>
@@ -39,7 +39,7 @@
 <div style="margin-top:40px">
     <div>
         <!-- 댓글 작성 폼-->
-        <form method = "post" action="/generalforum/commentAction">
+        <form method = "post" action="/bugforum/commentAction">
             <!-- 댓글 본문 입력 -->
             <div class="mb-3">
                 <label class="form-label">댓글 내용</label>
@@ -50,7 +50,7 @@
                 <input type="hidden" name="bbs_id" value={{id}}>
             {{/bbs}}
 
-            <button style="margin-top:5px" type="submit" class="btn btn-outline-primary btn-sm">댓글 등록</button>
+            <button style="margin-top:5px" type="submit" class="btn btn-outline-primary btn-sm"> 댓글 작성</button>
         </form>
     </div>
 </div>

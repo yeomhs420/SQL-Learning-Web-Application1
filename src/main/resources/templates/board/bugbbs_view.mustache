@@ -47,15 +47,15 @@
             </table>
 
             <div style="text-align:right;">
-                <a href="/generalforum/bbs_update?bbs_id={{bbs.id}}" class="btn btn-primary">수정</a>
-                <a onclick="return confirm('정말로 삭제하시겠습니까?')" href="/generalforum/bbs_delete?bbs_id={{bbs.id}}" class="btn btn-primary">삭제</a>
+                <a href="/bugforum/bbs_update?bbs_id={{bbs.id}}" class="btn btn-primary">수정</a>
+                <a onclick="return confirm('정말로 삭제하시겠습니까?')" href="/bugforum/bbs_delete?bbs_id={{bbs.id}}" class="btn btn-primary">삭제</a>
             </div>
 
         {{/bbs}}
 
     </div>
 
-    {{>comment/comments}} <!-- 댓글 목록 -->
+    {{>comment/bugcomments}} <!-- 댓글 목록 -->
 
 
 </div>

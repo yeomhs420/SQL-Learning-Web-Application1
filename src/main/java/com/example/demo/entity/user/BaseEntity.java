@@ -1,4 +1,4 @@
-package com.example.demo.entity.sampledata;
+package com.example.demo.entity.user;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;

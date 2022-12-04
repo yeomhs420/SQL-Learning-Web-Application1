@@ -105,6 +105,20 @@
                                 </td>
                             </tr>
 
+                            <tr>
+                                <th>ESCAPE 식별자</th>
+
+                                <td class="initial-font">
+                                    '%' 및 '_' 가 포함된 문자 패턴을 검색하기 위해 사용<br><br>
+
+                                    <strong>
+                                        SELECT 컬럼명 FROM 테이블 WHERE 컬럼명 LIKE '%A\_%' ESCAPE '\';<br>
+                                    </strong>
+
+                                    ->  '\'가 escape 식별자가 되면서 '\' 뒤의 '_' 가 문자 그대로 해석하여 A 뒤에 _가 오는 문자를 포함하는 문자열을 찾아줌
+                                </td>
+                            </tr>
+
 
 
 

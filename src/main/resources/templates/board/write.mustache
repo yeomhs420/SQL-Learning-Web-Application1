@@ -4,9 +4,15 @@
 {{#msg}}
     <script>
         alert('{{msg}}')
-        location.href='write'
     </script>
 {{/msg}}
+
+{{^user}}
+    <script>
+        alert("로그인이 필요합니다")
+        location.href = '/login'
+    </script>
+{{/user}}
 
 <head>
     {{>part/common}}
@@ -34,3 +40,4 @@
             </form>
         </div>
     </div>
+
