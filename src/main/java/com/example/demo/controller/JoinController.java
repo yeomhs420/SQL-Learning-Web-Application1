@@ -62,6 +62,8 @@ public class JoinController {
 
         session.setAttribute("user", user);
 
+        session.setMaxInactiveInterval(7200);
+
         return "redirect:/home";
 
     }
