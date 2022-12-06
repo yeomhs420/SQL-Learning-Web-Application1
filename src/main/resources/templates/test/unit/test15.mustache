@@ -88,7 +88,7 @@
                                         - 컬럼 : 별칭(AS) 사용 금지, COUNT() 함수에서 * 사용 금지<br>
                                         - 문법 : ORDER BY 사용 금지<br><br>
 
-                                        각 부서별로 그룹화하여 부서별 평균 AGE를 구하는 SQL문을 작성하시오<br>
+                                        각 부서별로 그룹화하여 부서별 평균 AGE가 50을 넘는 부서를 구하는 SQL문으로 올바른 것을 고르시오<br>
 
                                         <img class="m-2" src="/static/img/JMImages/test2-1.png" width="40%">
                                     </td>
@@ -100,7 +100,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question2" name="question2" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="1" name="question2" value="1" checked>
+                                        <label for="2_1">SELECT * FROM SALARY GROUP BY AGE DESC ORDER BY</label><br>
+                                        <input type="radio" id="2" name="question2" value="2">
+                                        <label for="2_2">SELECT * FROM EMPLOYEE WHERE POSITION GROUP BY SALARY HAVING AVG(AGE) < 50</label><br>
+                                        <input type="radio" id="3" name="question2" value="3">
+                                        <label for="2_3">SELECT DEPARTMENT, AGE FROM EMPLOYEE HAVING POSITION DESC</label><br>
+                                        <input type="radio" id="4" name="question2" value="4">
+                                        <label for="2_4">SELECT DEPARTMENT, AVG(SALARY) FROM EMPLOYEE GROUP BY SALARY</label><br>
+                                        <input type="radio" id="5" name="question2" value="5">
+                                        <label for="2_5">SELECT DEPARTMENT, AVG(AGE) FROM EMPLOYEE GROUP BY DEPARTMENT HAVING AVG(AGE) > 50</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -160,19 +169,6 @@
                             </tr>
                             <tr>
                                 <td id="user-answer-2" class="initial-font" align="center"></td>
-                            </tr>
-                        </div>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
                             </tr>
                         </div>
                         </tbody>

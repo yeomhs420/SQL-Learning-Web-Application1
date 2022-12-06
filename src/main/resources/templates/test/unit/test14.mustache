@@ -130,11 +130,11 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        각 부서별로 그룹화하여 평균 SALARY를 구하는 SQL문을 작성하시오<br><br>
+                                        각 부서별로 그룹화하여 평균 SALARY를 구하는 SQL문으로 올바른 것을 구하시오<br><br>
 
 
                                         ▣ 조건<br>
-                                        - 결과 : DEPARTMENT와 평균 AGE를 포함해야 함<br>
+                                        - 결과 : DEPARTMENT와 평균 SALARY를 포함해야 함<br>
                                         - 컬럼 : 별칭(AS) 사용 금지, COUNT()에서 * 사용 금지<br>
                                         - 문법 : ORDER BY 사용 금지<br><br>
 
@@ -149,7 +149,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question3" name="question3" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="1" name="question3" value="1" checked>
+                                        <label for="3_1">SELECT * FROM SALARY DESC ORDER BY</label><br>
+                                        <input type="radio" id="2" name="question3" value="2">
+                                        <label for="3_2">SELECT * FROM EMPLOYEE WHERE POSITION GROUP BY SALARY</label><br>
+                                        <input type="radio" id="3" name="question3" value="3">
+                                        <label for="3_3">SELECT DEPARTMENT, AGE FROM EMPLOYEE HAVING POSITION DESC</label><br>
+                                        <input type="radio" id="4" name="question3" value="4">
+                                        <label for="3_4">SELECT DEPARTMENT, AVG(SALARY) FROM EMPLOYEE GROUP BY SALARY</label><br>
+                                        <input type="radio" id="5" name="question3" value="5">
+                                        <label for="3_5">SELECT DEPARTMENT, AVG(AGE) FROM EMPLOYEE GROUP BY AGE</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -236,19 +245,6 @@
                             </tr>
                             <tr>
                                 <td id="user-answer-3" class="initial-font" align="center"></td>
-                            </tr>
-                        </div>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
                             </tr>
                         </div>
                         </tbody>
