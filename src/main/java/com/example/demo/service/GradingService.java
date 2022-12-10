@@ -86,7 +86,6 @@ public class GradingService {
             resultForShow.add(tempRow);
             for(LinkedHashMap<String, Object> row : sqlResult) {
                 tempRow = new ArrayList<>();
-                //System.out.println(row);
                 if(row != null){
                     for(Map.Entry<String, Object> entry : row.entrySet()) {
                         if(entry.getValue()==null) tempRow.add("null");
@@ -199,15 +198,8 @@ public class GradingService {
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
 
-
-        // 문제 3 채점
-        /*Question question3 = new Question();
-        question3.setNum(3);*/
-
-
         questionList.add(question1);
         questionList.add(question2);
-        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -241,14 +233,8 @@ public class GradingService {
         }
 
 
-        // 문제 3 채점
-        /*Question question3 = new Question();
-        question3.setNum(3);*/
-
-
         questionList.add(question1);
         questionList.add(question2);
-        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -280,15 +266,8 @@ public class GradingService {
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
 
-
-        // 문제 3 채점
-        /*Question question3 = new Question();
-        question3.setNum(3);*/
-
-
         questionList.add(question1);
         questionList.add(question2);
-        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -329,7 +308,6 @@ public class GradingService {
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
-        //showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         if(!answer3.toUpperCase().contains("REPLACE")) question3.setErrorMsg("You should contain 'REPLACE' method!");
         if(sqlResult!=null&&sqlResult.size()==1&&sqlResult.get(0).containsKey("'MySQL'")&&sqlResult.get(0).get("'MySQL'").toString().equals("MySQL")) {
@@ -381,7 +359,6 @@ public class GradingService {
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
-        //showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // 답 : SELECT MOD(7,4); 외...
         if(!answer3.toUpperCase().contains("MOD")) question3.setErrorMsg("You should contain 'MOD' method!");
@@ -431,7 +408,6 @@ public class GradingService {
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
-        showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // 답 : SELECT DAYNAME('2023-01-01');
 
@@ -463,8 +439,6 @@ public class GradingService {
 
         List<LinkedHashMap<String, Object>> sqlResult1 = validateAndGetSqlResult(answer1, sqlData, bindingResult, question1); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question1.setSqlResult(getSqlResultForShow(question1, sqlResult1)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
-        //System.out.println(getSqlResultForShow(question1, sqlResult1));
-        //showSqlResult(question1.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // SELECT COUNT(POSITION) FROM EMPLOYEE WHERE POSITION='대리';
         JPAQueryFactory query1 = new JPAQueryFactory(em);
@@ -477,12 +451,11 @@ public class GradingService {
                 )
                 .fetch();
 
-        //System.out.println(resultList1.get(0)); 사용자의 답안을 출력
-
         if(sqlResult1!=null&&sqlResult1.size()==1&&sqlResult1.get(0).containsKey("COUNT(POSITION)")&&Long.valueOf(String.valueOf(sqlResult1.get(0).get("COUNT(POSITION)")))==resultList1.get(0)) {
             question1.setIsCorrect(true);
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
+
 
         // 문제 2 채점
         Question question2 = new Question();
@@ -491,8 +464,6 @@ public class GradingService {
 
         List<LinkedHashMap<String, Object>> sqlResult2 = validateAndGetSqlResult(answer2, sqlData, bindingResult, question2); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question2.setSqlResult(getSqlResultForShow(question2, sqlResult2)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
-        //System.out.println(getSqlResultForShow(question2, sqlResult2));
-        //showSqlResult(question2.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // SELECT MAX(SALARY) FROM EMPLOYEE;
         JPAQueryFactory query2 = new JPAQueryFactory(em);
@@ -500,12 +471,12 @@ public class GradingService {
                 query2.select(qe.salary.max())
                         .from(qe)
                         .fetch();
-        System.out.println(resultList2.get(0));
 
         if(sqlResult2!=null&&sqlResult2.size()==1&&sqlResult2.get(0).containsKey("MAX(SALARY)")&&Integer.parseInt(String.valueOf(sqlResult2.get(0).get("MAX(SALARY)")))==resultList2.get(0)) {
             question2.setIsCorrect(true);
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
+
 
         // 문제 3 채점
         Question question3 = new Question();
@@ -514,7 +485,6 @@ public class GradingService {
 
         List<LinkedHashMap<String, Object>> sqlResult3 = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult3)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
-        //showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // SELECT AVG(AGE) FROM EMPLOYEE;
         JPAQueryFactory query3 = new JPAQueryFactory(em);
@@ -522,7 +492,6 @@ public class GradingService {
                 query3.select(qe.age.avg())
                         .from(qe)
                         .fetch();
-        //System.out.println(resultList3.get(0));
 
         if(sqlResult3!=null&&sqlResult3.size()==1&&sqlResult3.get(0).containsKey("AVG(AGE)")&&Double.parseDouble(String.valueOf(sqlResult3.get(0).get("AVG(AGE)")))==resultList3.get(0)) {
             question3.setIsCorrect(true);
@@ -919,14 +888,8 @@ public class GradingService {
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
 
-        // 문제 3 채점
-        /*Question question3 = new Question();
-        question3.setNum(3);*/
-
-
         questionList.add(question1);
         questionList.add(question2);
-        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -1063,5 +1026,4 @@ public class GradingService {
         testResult.setQuestionList(questionList);
         return testResult;
     }
-
 }

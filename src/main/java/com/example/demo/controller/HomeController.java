@@ -17,7 +17,6 @@ public class HomeController {
 
     @GetMapping
     public String home(Model model) {
-        model.addAttribute("userID", session.getAttribute("userID"));
         return "outputobj";
     }
 }
