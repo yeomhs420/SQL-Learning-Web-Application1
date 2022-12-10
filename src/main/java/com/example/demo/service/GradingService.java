@@ -99,6 +99,7 @@ public class GradingService {
 
     public TestResult gradeUnit1(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
+
         int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
         int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
         String answer3 = userAnswer.get("question3").toString();
@@ -435,7 +436,7 @@ public class GradingService {
         List<LinkedHashMap<String, Object>> sqlResult2 = validateAndGetSqlResult(answer2, sqlData, bindingResult, question2); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question2.setSqlResult(getSqlResultForShow(question2, sqlResult2)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
         //System.out.println(getSqlResultForShow(question2, sqlResult2));
-        showSqlResult(question2.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+        //showSqlResult(question2.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // SELECT MAX(SALARY) FROM EMPLOYEE;
         JPAQueryFactory query2 = new JPAQueryFactory(em);
@@ -712,7 +713,7 @@ public class GradingService {
         List<String> resultList = query.select(qa.work)
                 .from(qa).leftJoin(ql)
                 .on(qa.employeeId.eq(ql.employeeId))
-                .where(ql.hobby.isNull())
+                .where(ql.hobby.isNotNull())
                 .fetch();
 
         int correctCount=0;
