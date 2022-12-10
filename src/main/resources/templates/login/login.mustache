@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{>part/common}}
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="/static/css/login.css">
+</head>
+{{>part/nav}}
+
+{{#msg}}
+    <script>
+        alert('{{msg}}')
+        location.href = '/login'
+    </script>
+{{/msg}}
+
+<body>
+    <div class="login-form">
+        <h1 class="logo">SQL</h1>
+        <form method="post" action="/login/action">
+            <input type="text" name="userID" class="text-field" placeholder="아이디">
+            <input type="password" name="userPassword" class="text-field" placeholder="비밀번호">
+            <input type="submit" value="로그인" class="submit-btn">
+        </form>
+
+        <div class="links">
+            <a href="#">비밀번호를 잊어버리셨나요?</a>
+        </div>
+    </div>
+</body>
+</html>

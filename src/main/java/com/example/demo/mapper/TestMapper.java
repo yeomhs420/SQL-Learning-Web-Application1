@@ -14,3 +14,5 @@ public interface TestMapper {
     @Select("${sql}")
     List<LinkedHashMap<String, Object>> getResult(@Param("sql") String sql);
 }
+
+

@@ -1,11 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.entity.sampledata.MenteeMento;
+import com.example.demo.entity.sampledata.*;
 import com.example.demo.entity.sampledata.QMenteeMento;
 import com.example.demo.entity.sampledata.join.Employee;
 import com.example.demo.entity.sampledata.join.QAssignment;
 import com.example.demo.entity.sampledata.join.QEmployee;
 import com.example.demo.entity.sampledata.join.QLeisure;
+import com.example.demo.jpa.repository.sampledata.CovidVaccinationCenterRepository;
+import com.example.demo.jpa.repository.sampledata.EducationCostRepository;
+import com.example.demo.jpa.repository.sampledata.RegionalRecoveryCostInfoRepository;
 import com.example.demo.jpa.repository.sampledata.join.EmployeeRepository;
 import com.example.demo.validator.SQLValidator;
 import com.example.demo.vo.Question;
@@ -30,6 +33,12 @@ public class GradingService {
     @Autowired SQLValidator sqlValidator;
     @Autowired TestService testService;
     @Autowired EmployeeRepository employeeRepository;
+    @Autowired EducationCostRepository educationCostRepository;
+    @Autowired CovidVaccinationCenterRepository covidVaccinationCenterRepository;
+
+    @Autowired RegionalRecoveryCostInfoRepository regionalRecoveryCostInfoRepository;
+
+
 
     public TestResult grade(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         int unit = Integer.parseInt(userAnswer.get("unit").toString());
@@ -76,10 +85,16 @@ public class GradingService {
             resultForShow.add(tempRow);
             for(LinkedHashMap<String, Object> row : sqlResult) {
                 tempRow = new ArrayList<>();
-                for(Map.Entry<String, Object> entry : row.entrySet()) {
-                    if(entry.getValue()==null) tempRow.add("null");
-                    else tempRow.add(entry.getValue().toString());
+                //System.out.println(row);
+                if(row != null){
+                    for(Map.Entry<String, Object> entry : row.entrySet()) {
+                        if(entry.getValue()==null) tempRow.add("null");
+                        else tempRow.add(entry.getValue().toString());
+                    }
                 }
+                else
+                    tempRow.add("null");
+
                 resultForShow.add(tempRow);
             }
         }
@@ -485,19 +500,49 @@ public class GradingService {
 
         List<Question> questionList = new ArrayList<>();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         // 문제 1 채점
+
         Question question1 = new Question();
         question1.setNum(1);
-
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==2) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==2) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult));
+
+        List<Employee> employeeList = employeeRepository.findBySalaryGreaterThanEqual(5000);
+
+        int correctCount=0;
+        if(sqlResult!=null&&sqlResult.size()==2&&sqlResult.get(0).size()==8) {
+            for(int i=0;i<2;i++) {
+                if(employeeList.get(i).getId()==(int)sqlResult.get(i).get("ID"))correctCount++;
+            }
+        }
+        if(correctCount==2) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         questionList.add(question1);
@@ -512,19 +557,57 @@ public class GradingService {
 
         List<Question> questionList = new ArrayList<>();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==1) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==4) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult));
+
+        List<EducationCost> educationCostList1 = educationCostRepository.findBytotalcostLessThan(3000);
+        List<EducationCost> educationCostList2 = educationCostRepository.findByfirstgradeBetween(100, 500);
+
+        List<EducationCost> educationCostList = new ArrayList<>();
+
+        for(int i=0;i<educationCostList1.size();i++){
+            if(educationCostList2.contains(educationCostList1.get(i)))
+                educationCostList.add(educationCostList1.get(i));
+        }
+
+        int correctCount=0;
+        if(sqlResult!=null&&sqlResult.size()==5&&sqlResult.get(0).size()==6) {
+            for(int i=0;i<5;i++) {
+                if(educationCostList.get(i).getId() == (int)sqlResult.get(i).get("ID"))correctCount++;
+            }
+        }
+        if(correctCount==5) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         questionList.add(question1);
@@ -539,19 +622,61 @@ public class GradingService {
 
         List<Question> questionList = new ArrayList<>();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==5) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult));
+
+        List<CovidVaccinationCenter> covidVaccinationCenters = covidVaccinationCenterRepository.findAll();
+
+        int correctCount = 0;
+        int nullCount = 0;
+
+        if(sqlResult!=null&&sqlResult.size()==100&&sqlResult.get(0).size()==1) {
+            for(int i=0;i<100;i++) {
+                if(!sqlResult.get(i).containsKey("IFNULL(PHONE, 'NO PHONE')"))
+                    break;
+                if(covidVaccinationCenters.get(i).getPhone() == null) {
+                    nullCount++;
+                    if(sqlResult.get(i).get("IFNULL(PHONE, 'NO PHONE')").equals("NO PHONE")) nullCount--;
+                }
+                else{
+                    if(covidVaccinationCenters.get(i).getPhone().equals(sqlResult.get(i).get("IFNULL(PHONE, 'NO PHONE')").toString())) correctCount++;
+                }
+            }
+        }
+
+        if(correctCount == 99 && nullCount == 0) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         questionList.add(question1);
@@ -566,19 +691,52 @@ public class GradingService {
 
         List<Question> questionList = new ArrayList<>();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==3) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult));
+
+        List<RegionalRecoveryCostInfo> regionalRecoveryCostInfos = regionalRecoveryCostInfoRepository.findByRegionEndsWith("광역시");
+
+
+        int correctCount=0;
+        if(sqlResult!=null&&sqlResult.size()==6&&sqlResult.get(0).size()==7) {
+            for(int i=0;i<6;i++) {
+                if(regionalRecoveryCostInfos.get(i).getId() == (int)sqlResult.get(i).get("ID"))correctCount++;
+            }
+        }
+
+        if(correctCount==6) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         questionList.add(question1);

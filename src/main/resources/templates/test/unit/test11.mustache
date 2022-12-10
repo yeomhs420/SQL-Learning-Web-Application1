@@ -17,7 +17,7 @@
                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                 </svg>
             </div>
-            <div class="text-center fs-1 ms-2">JOIN 테스트</div>
+            <div class="text-center fs-1 ms-2">검색 조건</div>
         </header>
         <section>
             <div id="question-container" class="mb-4">
@@ -40,7 +40,16 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">JOIN과 함께 사용하여 두 테이블을 합치기 위한 기준을 명시하는 절은?</td>
+                                    <td class="initial-font">
+                                        다음 sql문의 결과로 매칭되는 값을 고르시오.<br><br>
+                                        <div style="border:2px solid gray; padding:5px; display: inline-block">
+                                            <strong>SELECT IF(2 > 1, 1, 0) IF1,<br>
+                                                IF('A' = 'a', 'SAME', 'NOT SAME') IF2,<br>
+                                                IF(1 = 2, 1, 'A') IF3;
+                                            </strong>
+                                        </div>
+                                        <p>
+                                    </td>
                                 </tr>
                             </div>
                             <div>
@@ -49,16 +58,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1_1" name="question1" value="1" checked>
-                                        <label for="1_1">AS</label><br>
-                                        <input type="radio" id="1_2" name="question1" value="2">
-                                        <label for="1_2">INNER</label><br>
-                                        <input type="radio" id="1_3" name="question1" value="3">
-                                        <label for="1_3">ON</label><br>
-                                        <input type="radio" id="1_4" name="question1" value="4">
-                                        <label for="1_4">NATURAL</label><br>
-                                        <input type="radio" id="1_5" name="question1" value="5">
-                                        <label for="1_5">FROM</label><br>
+                                        <input type="radio" id="1" name="question1" value="1" checked>
+                                        <label for="1">IF1 : 1 &nbsp IF2 : SAME &nbsp IF3 : B</label><br>
+                                        <input type="radio" id="2" name="question1" value="2">
+                                        <label for="2">IF1 : 0 &nbsp IF2 : SAME &nbsp IF3 : B<br></label><br>
+                                        <input type="radio" id="3" name="question1" value="3">
+                                        <label for="3">IF1 : 0 &nbsp IF2 : NOT SAME &nbsp IF3 : 1</label><br>
+                                        <input type="radio" id="4" name="question1" value="4">
+                                        <label for="4">IF1 : 1 &nbsp IF2 : SAME &nbsp IF3 : A</label><br>
+                                        <input type="radio" id="5" name="question1" value="5">
+                                        <label for="5">IF1 : 1 &nbsp IF2 : NOT SAME &nbsp IF3 : A</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -82,7 +91,7 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">JOIN 기준에 맞지 않는 부분도 NULL로 나타내서라도 모든 컬럼을 조회하는 JOIN의 종류는?</td>
+                                    <td class="initial-font">다음 중 NULL을 반환하는 SQL문은?</td>
                                 </tr>
                             </div>
                             <div>
@@ -91,16 +100,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="2_1" name="question2" value="1" checked>
-                                        <label for="2_1">INNER JOIN</label><br>
-                                        <input type="radio" id="2_2" name="question2" value="2">
-                                        <label for="2_2">OUTER JOIN</label><br>
-                                        <input type="radio" id="2_3" name="question2" value="3">
-                                        <label for="2_3">UNION</label><br>
-                                        <input type="radio" id="2_4" name="question2" value="4">
-                                        <label for="2_4">NATURAL JOIN</label><br>
-                                        <input type="radio" id="2_5" name="question2" value="5">
-                                        <label for="2_5">NULL JOIN</label><br>
+                                        <input type="radio" id="1" name="question2" value="1" checked>
+                                        <label for="1">SELECT IF(100 < 200, '100', 'NULL');</label><br>
+                                        <input type="radio" id="2" name="question2" value="2">
+                                        <label for="2">SELECT IFNULL(NULL, '널입니다');</label><br>
+                                        <input type="radio" id="3" name="question2" value="3">
+                                        <label for="3">SELECT IFNULL(100, '널입니다');<br></label><br>
+                                        <input type="radio" id="4" name="question2" value="4">
+                                        <label for="4">SELECT NULLIF(100, NULL);</label><br>
+                                        <input type="radio" id="5" name="question2" value="5">
+                                        <label for="5">SELECT NULLIF(100, 100)</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -125,30 +134,11 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        ASSIGNMENT 테이블과 LEISURE 테이블의 DDL을 참고하여 취미 생활을 하지 않는 직원이 담당하는 WORK들을 모두 조회하는 SQL문을 작성하세요.<br>
-                                        취미 생활을 하지 않는 직원은 LEISURE 테이블에 나타나지 않습니다.<br><br>
-
+                                        COVID_VACCINATION_CENTER 테이블에서 모든 ROW의 PHONE을 조회하는 SQL문을 작성하세요.<br><br>
                                         ▣ 조건<br>
-                                        - 컬럼 : WORK 컬럼 하나만 조회하도록 합니다.<br>
-                                        - 정렬 : WORK 오름차순으로 정렬합니다.<br><br>
-
-                                        [ASSIGNMENT]<br>
-                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
-                                            CREATE TABLE ASSIGNMENT (<br>
-                                            &emsp;WORK VARCHAR(255) NOT NULL,<br>
-                                            &emsp;EMPLOYEE_ID INTEGER NOT NULL,<br>
-                                            &emsp;PRIMARY KEY (WORK)<br>
-                                            )
-                                        </p><br>
-
-                                        [LEISURE]<br>
-                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
-                                            CREATE TABLE LEISURE (<br>
-                                            &emsp;EMPLOYEE_ID INTEGER NOT NULL,<br>
-                                            &emsp;HOBBY VARCHAR(255),<br>
-                                            &emsp;PRIMARY KEY (EMPLOYEE_ID)<br>
-                                            )
-                                        </p><br>
+                                        - 컬럼 : 별칭(AS) 사용 금지<br>
+                                        - 정렬 : ID 오름차순 (ORDER BY 절을 사용하지 않더라도 기본적으로 ID로 오름차순 정렬이 이루어집니다.)<br>
+                                        - PHONE이 null이라면 NO PHONE 대체<br><br>
                                     </td>
                                 </tr>
                             </div>
