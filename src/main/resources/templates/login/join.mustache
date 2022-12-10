@@ -1,0 +1,47 @@
+<head>
+    {{>part/common}}
+    <title>로그인</title>
+</head>
+
+{{>part/nav}}
+
+
+{{#msg}}
+    <script>
+        alert('{{msg}}')
+        window.location.href = '/join';
+    </script>
+{{/msg}}
+
+
+
+    <div class="container">
+        <div class="col-lg-4" style="padding:20px; text-align: center; margin: 0 auto;">
+            <form method = "post" action="join/action">
+                <h2 style="text-align:center;">회원가입</h2>
+                    <div class ="mb-3">
+                        <input class="form-control" type ="text" class="form-control" placeholder="아이디" name ="userID" maxlength='20'>
+                        <p style="text-align:left; color:red">{{#id_error}}{{DefaultMessage}}{{/id_error}}</p>
+                    </div>
+
+                    <div class = "mb-3">
+                        <input class="form-control" type ="password" class="form-control" placeholder="비밀번호" name ="userPassword" maxlength='20'>
+                        <p style="text-align:left; color:red">{{#password_error}}{{DefaultMessage}}{{/password_error}}</p>
+                    </div>
+
+                    <div class = "mb-3">
+                        <input class="form-control" type ="text" class="form-control" placeholder="이름" name ="userName" maxlength='20'>
+                    </div>
+
+                    <div class = "mb-3">
+                        <input class="form-control" type ="email" class="form-control" placeholder="이메일" name ="userEmail" maxlength='20'>
+                        <p style="text-align:left; color:red">{{#email_error}}{{DefaultMessage}}{{/email_error}}</p>
+                    </div>
+
+                    <input type="submit" class="btn btn-primary form-control" value="회원가입">
+                </form>
+
+            </div>
+        </div>
+    <div class="col-lg-4"></div>
+</div>
