@@ -4,6 +4,7 @@ import com.example.demo.entity.sampledata.MenteeMento;
 import com.example.demo.entity.sampledata.QMenteeMento;
 import com.example.demo.entity.sampledata.join.Employee;
 import com.example.demo.entity.sampledata.join.QAssignment;
+import com.example.demo.entity.sampledata.join.QEmployee;
 import com.example.demo.entity.sampledata.join.QLeisure;
 import com.example.demo.jpa.repository.sampledata.join.EmployeeRepository;
 import com.example.demo.validator.SQLValidator;
@@ -239,22 +240,46 @@ public class GradingService {
     public TestResult gradeUnit5(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
-
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==2) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==4) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
+        //showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+
+        if(!answer3.toUpperCase().contains("REPLACE")) question3.setErrorMsg("You should contain 'REPLACE' method!");
+        if(sqlResult!=null&&sqlResult.size()==1&&sqlResult.get(0).containsKey("'MySQL'")&&sqlResult.get(0).get("'MySQL'").toString().equals("MySQL")) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         questionList.add(question1);
         questionList.add(question2);
@@ -266,22 +291,42 @@ public class GradingService {
     public TestResult gradeUnit6(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        int answer3 = Integer.parseInt(userAnswer.get("question3").toString());
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
 
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==5) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==4) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
 
+        question3.setUserAnswer(String.valueOf(answer3));
+        if(answer3==3) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         questionList.add(question1);
         questionList.add(question2);
@@ -293,22 +338,45 @@ public class GradingService {
     public TestResult gradeUnit7(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
-
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
-
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==2) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
+        showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+
+        // 답 : SELECT DAYNAME('2023-01-01');
+
+        if(sqlResult!=null&&sqlResult.size()==1&&sqlResult.get(0).containsKey("'Sunday'")&&sqlResult.get(0).get("'Sunday'").toString().equals("Sunday")) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         questionList.add(question1);
         questionList.add(question2);
@@ -320,22 +388,52 @@ public class GradingService {
     public TestResult gradeUnit8(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
-
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==2) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
-
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==4) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
+        //showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+
+        // SELECT AVG(AGE) FROM EMPLOYEE;
+        JPAQueryFactory query = new JPAQueryFactory(em);
+        QEmployee qe = QEmployee.employee;
+        List<Double> resultList3 =
+                query.select(qe.age.avg())
+                        .from(qe)
+                        .fetch();
+        //System.out.println(resultList3.get(0));
+
+        if(sqlResult!=null&&sqlResult.size()==1&&sqlResult.get(0).containsKey("AVG(AGE)")&&Double.parseDouble(String.valueOf(sqlResult.get(0).get("AVG(AGE)")))==resultList3.get(0)) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         questionList.add(question1);
         questionList.add(question2);
