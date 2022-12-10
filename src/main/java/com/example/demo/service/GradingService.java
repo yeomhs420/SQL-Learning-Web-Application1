@@ -148,12 +148,6 @@ public class GradingService {
             testResult.setCorrectCount(testResult.getCorrectCount()+1);
         }
 
-        if(!answer3.toUpperCase().contains("REPLACE")) question3.setErrorMsg("You should contain 'REPLACE' method!");
-        if(sqlResult!=null&&sqlResult.size()==1&&sqlResult.get(0).containsKey("'MySQL'")&&sqlResult.get(0).get("'MySQL'").toString().equals("MySQL")) {
-            question3.setIsCorrect(true);
-            testResult.setCorrectCount(testResult.getCorrectCount()+1);
-        }
-
         questionList.add(question1);
         questionList.add(question2);
         questionList.add(question3);
@@ -441,7 +435,7 @@ public class GradingService {
         List<LinkedHashMap<String, Object>> sqlResult2 = validateAndGetSqlResult(answer2, sqlData, bindingResult, question2); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question2.setSqlResult(getSqlResultForShow(question2, sqlResult2)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
         //System.out.println(getSqlResultForShow(question2, sqlResult2));
-        //showSqlResult(question2.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+        showSqlResult(question2.getSqlResult()); // 유저가 생성한 sql 결과를 확인
 
         // SELECT MAX(SALARY) FROM EMPLOYEE;
         JPAQueryFactory query2 = new JPAQueryFactory(em);
@@ -718,7 +712,7 @@ public class GradingService {
         List<String> resultList = query.select(qa.work)
                 .from(qa).leftJoin(ql)
                 .on(qa.employeeId.eq(ql.employeeId))
-                .where(ql.hobby.isNotNull())
+                .where(ql.hobby.isNull())
                 .fetch();
 
         int correctCount=0;

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -19,7 +20,13 @@ public class TestController {
 
     @GetMapping
     public String list(Model model) {
+        List<String> stateList = new ArrayList<>();
+        for(int i=0;i<17;i++) {
+            if(i%2==0) stateList.add("[미해결]");
+            else stateList.add("[해결]");
+        }
         model.addAttribute("topicList", topicList);
+        model.addAttribute("stateList", stateList);
         return "test/testlist";
     }
 
