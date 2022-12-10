@@ -713,7 +713,7 @@ public class GradingService {
         List<String> resultList = query.select(qa.work)
                 .from(qa).leftJoin(ql)
                 .on(qa.employeeId.eq(ql.employeeId))
-                .where(ql.hobby.isNotNull())
+                .where(ql.hobby.isNull())
                 .fetch();
 
         int correctCount=0;
