@@ -37,8 +37,8 @@ public class SampleDataDBConfig {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
         properties.setProperty("hibernate.dialect","org.hibernate.dialect.MySQL5InnoDBDialect");
-        properties.setProperty("hibernate.show_sql","true");
-        properties.setProperty("hibernate.format_sql","true");
+        //properties.setProperty("hibernate.show_sql","true");
+        //properties.setProperty("hibernate.format_sql","true");
         properties.setProperty("hibernate.id.new_generator_mappings","true");
         properties.setProperty("hibernate.physical_naming_strategy","org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy");
         return properties;

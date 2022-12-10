@@ -12,4 +12,5 @@ public class Unit {
     private String difficulty;
     private String learningTime;
     private String describe;
+    private int question;
 }
