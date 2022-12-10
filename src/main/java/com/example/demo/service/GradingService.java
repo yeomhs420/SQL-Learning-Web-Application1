@@ -17,6 +17,7 @@ import com.example.demo.vo.TestResult;
 import com.querydsl.jpa.JPAExpressions;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
@@ -174,26 +175,39 @@ public class GradingService {
     public TestResult gradeUnit2(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==3) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
-        Question question3 = new Question();
-        question3.setNum(3);
+        /*Question question3 = new Question();
+        question3.setNum(3);*/
 
 
         questionList.add(question1);
         questionList.add(question2);
-        questionList.add(question3);
+        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -203,24 +217,38 @@ public class GradingService {
 
         List<Question> questionList = new ArrayList<>();
 
+
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==3) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
-        Question question3 = new Question();
-        question3.setNum(3);
+        /*Question question3 = new Question();
+        question3.setNum(3);*/
 
 
         questionList.add(question1);
         questionList.add(question2);
-        questionList.add(question3);
+        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -228,26 +256,39 @@ public class GradingService {
     public TestResult gradeUnit4(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==2) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==5) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
-        Question question3 = new Question();
-        question3.setNum(3);
+        /*Question question3 = new Question();
+        question3.setNum(3);*/
 
 
         questionList.add(question1);
         questionList.add(question2);
-        questionList.add(question3);
+        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
@@ -749,21 +790,53 @@ public class GradingService {
     public TestResult gradeUnit13(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        String answer3 = userAnswer.get("question3").toString();
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==4) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==3) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
+
+        List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
+        question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
+        showSqlResult(question3.getSqlResult()); // 유저가 생성한 sql 결과를 확인
+
+        List<Employee> employeeList = employeeRepository.findAll(Sort.by(Sort.Direction.DESC, "salary")); // 답안
+
+        int correctCount=0;
+        if(sqlResult!=null&&sqlResult.size()==5&&sqlResult.get(0).size()==8) {
+            for(int i=0;i<5;i++) {
+                if(employeeList.get(i).getId() == (int)sqlResult.get(i).get("ID")) correctCount++;
+            }
+        }
+        if(correctCount==5) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         questionList.add(question1);
@@ -776,21 +849,40 @@ public class GradingService {
     public TestResult gradeUnit14(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+        int answer3 = Integer.parseInt(userAnswer.get("question3").toString());
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==2) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==1) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(String.valueOf(answer3));
+        if(answer3==4) {
+            question3.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         questionList.add(question1);
@@ -803,26 +895,38 @@ public class GradingService {
     public TestResult gradeUnit15(Map<String, Object> userAnswer, SQLData sqlData, BindingResult bindingResult) {
         TestResult testResult = new TestResult();
 
+        int answer1 = Integer.parseInt(userAnswer.get("question1").toString());
+        int answer2 = Integer.parseInt(userAnswer.get("question2").toString());
+
         List<Question> questionList = new ArrayList<>();
 
         // 문제 1 채점
         Question question1 = new Question();
         question1.setNum(1);
+        question1.setUserAnswer(String.valueOf(answer1));
+        if(answer1==3) {
+            question1.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
 
         // 문제 2 채점
         Question question2 = new Question();
         question2.setNum(2);
-
+        question2.setUserAnswer(String.valueOf(answer2));
+        if(answer2==5) {
+            question2.setIsCorrect(true);
+            testResult.setCorrectCount(testResult.getCorrectCount()+1);
+        }
 
         // 문제 3 채점
-        Question question3 = new Question();
-        question3.setNum(3);
+        /*Question question3 = new Question();
+        question3.setNum(3);*/
 
 
         questionList.add(question1);
         questionList.add(question2);
-        questionList.add(question3);
+        //questionList.add(question3);
         testResult.setQuestionList(questionList);
         return testResult;
     }
