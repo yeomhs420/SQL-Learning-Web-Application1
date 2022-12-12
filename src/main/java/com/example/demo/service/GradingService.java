@@ -931,7 +931,7 @@ public class GradingService {
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
 
-        // 답 : SELECT A.WORK FROM ASSIGNMENT AS A LEFT JOIN LEISURE AS L ON A.EMPLOYEE_ID=L.EMPLOYEE_ID WHERE L.EMPLOYEE_ID IS NOT NULL;
+        // 답 : SELECT A.WORK FROM ASSIGNMENT AS A LEFT JOIN LEISURE AS L ON A.EMPLOYEE_ID=L.EMPLOYEE_ID WHERE L.EMPLOYEE_ID IS NULL;
         JPAQueryFactory query = new JPAQueryFactory(em);
         QAssignment qa = QAssignment.assignment;
         QLeisure ql = QLeisure.leisure;
