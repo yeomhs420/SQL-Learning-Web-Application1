@@ -30,8 +30,6 @@ public class User {
 
     private int learningStatus;
 
-    private int Point;
-
     @Column(name="progress")
     @ElementCollection(targetClass=Boolean.class)
     private List<Boolean> progress;
@@ -44,7 +42,6 @@ public class User {
                 userDto.getUserName(),
                 userDto.getUserEmail(),
                 userDto.getLearningStatus(),
-                userDto.getPoint(),
                 userDto.getProgress()
         );
     }

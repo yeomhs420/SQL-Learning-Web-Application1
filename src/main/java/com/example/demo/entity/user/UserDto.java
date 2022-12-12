@@ -29,8 +29,6 @@ public class UserDto {
 
     private int learningStatus;
 
-    private int Point;
-
     private List<Boolean> progress;
 
 }
