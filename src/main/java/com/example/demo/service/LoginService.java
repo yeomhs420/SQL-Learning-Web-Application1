@@ -74,11 +74,6 @@ public class LoginService {
     }
 
     public User getUser(){
-        String userID = (String) session.getAttribute("user");
-        User user = userRepository.findByUserId(userID).get(0);
-
-        return user;
+        return (User) session.getAttribute("user");
     }
-
-
 }
