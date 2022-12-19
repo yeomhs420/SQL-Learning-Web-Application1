@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class LoginService {
@@ -39,6 +41,9 @@ public class LoginService {
         else if(userRepository.findByUserId(user.getUserID()).isEmpty()){
 
             try{
+                List<Boolean> progress = new ArrayList<>();
+                for(int i=0;i<17;i++) progress.add(false);
+                user.setProgress(progress);
                 encryptPassword(user);
             }catch (Exception e){
                 e.printStackTrace();
@@ -69,11 +74,6 @@ public class LoginService {
     }
 
     public User getUser(){
-        String userID = (String) session.getAttribute("user");
-        User user = userRepository.findByUserId(userID).get(0);
-
-        return user;
+        return (User) session.getAttribute("user");
     }
-
-
 }
