@@ -22,7 +22,7 @@ public class LoginService {
     @Autowired
     UserRepository userRepository;
 
-    public void encryptPassword(User user){
+    public void encryptPassword(User user) {
         String enPw = passwordEncoder.encode(user.getUserPassword());
         user.setUserPassword(enPw);
 
@@ -33,39 +33,33 @@ public class LoginService {
 
         User user = User.createUser(userDto);  // @valid 를 거친 userDto 객체를 암호화를 위해 user 객체로 형변환
 
-        if(user.getUserID() == "" || user.getUserPassword() == "" || user.getUserName() == "" || user.getUserEmail() == "") {
+        if (user.getUserID() == "" || user.getUserPassword() == "" || user.getUserName() == "" || user.getUserEmail() == "") {
             model.addAttribute("msg", "입력이 안된 사항이 있습니다.");
             return true;
-        }
+        } else if (userRepository.findByUserId(user.getUserID()).isEmpty()) {
 
-        else if(userRepository.findByUserId(user.getUserID()).isEmpty()){
-
-            try{
+            try {
                 List<Boolean> progress = new ArrayList<>();
-                for(int i=0;i<17;i++) progress.add(false);
+                for (int i = 0; i < 17; i++) progress.add(false);
                 user.setProgress(progress);
                 encryptPassword(user);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return false;
-        }
-
-        else{
+        } else {
             model.addAttribute("msg", "이미 존재하는 ID입니다.");
             return true;
         }
     }
 
-    public boolean isUser(String id, String pw, Model model){   // 로그인 본인 확인 절차
+    public boolean isUser(String id, String pw, Model model) {   // 로그인 본인 확인 절차
 
-        if(userRepository.findByUserId(id).isEmpty() == true){
+        if (userRepository.findByUserId(id).isEmpty() == true) {
             model.addAttribute("msg", "존재하지 않는 ID입니다.");
             return false;
-        }
-
-        else{
-            if(passwordEncoder.matches(pw, userRepository.findByUserId(id).get(0).getUserPassword()))
+        } else {
+            if (passwordEncoder.matches(pw, userRepository.findByUserId(id).get(0).getUserPassword()))
                 return true;
 
             model.addAttribute("msg", "비밀번호가 일치하지 않습니다.");
@@ -73,7 +67,12 @@ public class LoginService {
         }
     }
 
-    public User getUser(){
-        return (User) session.getAttribute("user");
+    public User getUser(UserDto userDto, Model model) {
+        if (isUser(userDto.getUserID(), userDto.getUserPassword(), model))
+            return userRepository.findByUserId(userDto.getUserID()).get(0);
+        else
+            return null;
     }
+
+
 }

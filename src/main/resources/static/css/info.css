@@ -1,0 +1,37 @@
+.login_msg{
+    padding-left: 3px;
+    color: grey;
+    font-size:14px;
+}
+
+.sc_login{
+    float:right;
+    padding: 19px 19px 15px 19px;
+    background-color: #f7f9fa;
+    border: 1px solid #dae1e6;
+    margin-right:100px;
+}
+
+.log_off{
+    display: block;
+    padding: 15px 0;
+    margin-top: 11px;
+    background-color: #19ce60;
+    border: 1px solid #15c654;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    font-size: 13px;
+    color: #fff;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    width:320px;
+}
+
+.link_join{
+    float:right;
+    color: #505050;
+    text-decoration-line: none;
+    margin-top:10px;
+    font-size:14px;
+}
