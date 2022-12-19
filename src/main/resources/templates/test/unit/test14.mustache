@@ -17,7 +17,7 @@
                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                 </svg>
             </div>
-            <div class="text-center fs-1 ms-2">JOIN 테스트</div>
+            <div class="text-center fs-1 ms-2">GROUP BY 문법 테스트</div>
         </header>
         <section>
             <div id="question-container" class="mb-4">
@@ -40,7 +40,7 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">JOIN과 함께 사용하여 두 테이블을 합치기 위한 기준을 명시하는 절은?</td>
+                                    <td class="initial-font">다음 중 GROUP BY 절에 대한 설명으로 알맞은 것을 고르시오</td>
                                 </tr>
                             </div>
                             <div>
@@ -49,16 +49,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1_1" name="question1" value="1" checked>
-                                        <label for="1_1">AS</label><br>
-                                        <input type="radio" id="1_2" name="question1" value="2">
-                                        <label for="1_2">INNER</label><br>
-                                        <input type="radio" id="1_3" name="question1" value="3">
-                                        <label for="1_3">ON</label><br>
-                                        <input type="radio" id="1_4" name="question1" value="4">
-                                        <label for="1_4">NATURAL</label><br>
-                                        <input type="radio" id="1_5" name="question1" value="5">
-                                        <label for="1_5">FROM</label><br>
+                                        <input type="radio" id="1" name="question1" value="1" checked>
+                                        <label for="1_1">신지 : 레코드의 집합을 그룹화 하는데 사용해요</label><br>
+                                        <input type="radio" id="2" name="question1" value="2">
+                                        <label for="1_2">종민 : 하나의 그룹을 하나의 레코드로 반환하므로 결과 집합의 크기를 크게 할 수 있어요</label><br>
+                                        <input type="radio" id="3" name="question1" value="3">
+                                        <label for="1_3">강민 : SUM() 함수로 선택된 필드의 저장된 값의 총합을 알 수 있습니다</label><br>
+                                        <input type="radio" id="4" name="question1" value="4">
+                                        <label for="1_4">우주 : COUNT() 함수로 특정 조건을 만족하는 레코드 개수를 알 수 있습니다</label><br>
+                                        <input type="radio" id="5" name="question1" value="5">
+                                        <label for="1_5">창민 : 문법상 ORDER BY 절 앞에 위치해야 합니다</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -82,7 +82,12 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">JOIN 기준에 맞지 않는 부분도 NULL로 나타내서라도 모든 컬럼을 조회하는 JOIN의 종류는?</td>
+                                    <td class="initial-font">
+                                        각 부서의 인원 수를 그룹화 하고자 할 때<br>
+                                        다음 SQL문 중 문법 상 올바른 SQL 문을 고르시오<br>
+
+                                        <img class="m-2" src="/static/img/JMImages/test2-1.png" width="40%">
+                                    </td>
                                 </tr>
                             </div>
                             <div>
@@ -91,16 +96,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="2_1" name="question2" value="1" checked>
-                                        <label for="2_1">INNER JOIN</label><br>
-                                        <input type="radio" id="2_2" name="question2" value="2">
-                                        <label for="2_2">OUTER JOIN</label><br>
-                                        <input type="radio" id="2_3" name="question2" value="3">
-                                        <label for="2_3">UNION</label><br>
-                                        <input type="radio" id="2_4" name="question2" value="4">
-                                        <label for="2_4">NATURAL JOIN</label><br>
-                                        <input type="radio" id="2_5" name="question2" value="5">
-                                        <label for="2_5">NULL JOIN</label><br>
+                                        <input type="radio" id="1" name="question2" value="1" checked>
+                                        <label for="2_1">SELECT DEPARTMENT, COUNT(*) FROM EMPLOYEE GROUP BY DEPARTMENT</label><br>
+                                        <input type="radio" id="2" name="question2" value="2">
+                                        <label for="2_2">FROM EMPLOYEE GROUP BY DEPARTMENT SELECT DEPARTMENT, COUNT(*)</label><br>
+                                        <input type="radio" id="3" name="question2" value="3">
+                                        <label for="2_3">SELECT DEPARTMENT, COUNT(*) GROUP BY DEPARTMENT FROM EMPLOYEE</label><br>
+                                        <input type="radio" id="4" name="question2" value="4">
+                                        <label for="2_4">GROUP BY DEPARTMENT SELECT DEPARTMENT, COUNT(*) FROM EMPLOYEE </label><br>
+                                        <input type="radio" id="5" name="question2" value="5">
+                                        <label for="2_5">COUNT(*) FROM EMPLOYEE SELECT DEPARTMENT GROUP BY DEPARTMENT</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -125,30 +130,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        ASSIGNMENT 테이블과 LEISURE 테이블의 DDL을 참고하여 취미 생활을 하지 않는 직원이 담당하는 WORK들을 모두 조회하는 SQL문을 작성하세요.<br>
-                                        취미 생활을 하지 않는 직원은 LEISURE 테이블에 나타나지 않습니다.<br><br>
+                                        각 부서별로 그룹화하여 평균 SALARY를 구하는 SQL문으로 올바른 것을 구하시오<br><br>
+
 
                                         ▣ 조건<br>
-                                        - 컬럼 : WORK 컬럼 하나만 조회하도록 합니다.<br>
-                                        - 정렬 : WORK 오름차순으로 정렬합니다.<br><br>
+                                        - 결과 : DEPARTMENT와 평균 SALARY를 포함해야 함<br>
+                                        - 컬럼 : 별칭(AS) 사용 금지, COUNT()에서 * 사용 금지<br>
+                                        - 문법 : ORDER BY 사용 금지<br><br>
 
-                                        [ASSIGNMENT]<br>
-                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
-                                            CREATE TABLE ASSIGNMENT (<br>
-                                            &emsp;WORK VARCHAR(255) NOT NULL,<br>
-                                            &emsp;EMPLOYEE_ID INTEGER NOT NULL,<br>
-                                            &emsp;PRIMARY KEY (WORK)<br>
-                                            )
-                                        </p><br>
+                                        <img class="m-2" src="/static/img/JMImages/test2-1.png" width="40%"><br><br>
 
-                                        [LEISURE]<br>
-                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
-                                            CREATE TABLE LEISURE (<br>
-                                            &emsp;EMPLOYEE_ID INTEGER NOT NULL,<br>
-                                            &emsp;HOBBY VARCHAR(255),<br>
-                                            &emsp;PRIMARY KEY (EMPLOYEE_ID)<br>
-                                            )
-                                        </p><br>
                                     </td>
                                 </tr>
                             </div>
@@ -158,7 +149,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question3" name="question3" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="1" name="question3" value="1" checked>
+                                        <label for="3_1">SELECT * FROM SALARY DESC ORDER BY</label><br>
+                                        <input type="radio" id="2" name="question3" value="2">
+                                        <label for="3_2">SELECT * FROM EMPLOYEE WHERE POSITION GROUP BY SALARY</label><br>
+                                        <input type="radio" id="3" name="question3" value="3">
+                                        <label for="3_3">SELECT DEPARTMENT, AGE FROM EMPLOYEE HAVING POSITION DESC</label><br>
+                                        <input type="radio" id="4" name="question3" value="4">
+                                        <label for="3_4">SELECT DEPARTMENT, AVG(SALARY) FROM EMPLOYEE GROUP BY SALARY</label><br>
+                                        <input type="radio" id="5" name="question3" value="5">
+                                        <label for="3_5">SELECT DEPARTMENT, AVG(AGE) FROM EMPLOYEE GROUP BY AGE</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -186,12 +186,12 @@
                     </div>
                     <table class="table table-bordered">
                         <tbody>
-                        <tr>
-                            <th class="table-secondary" colspan="2" >제출한 답</th>
-                        </tr>
-                        <tr>
-                            <td id="userDto-answer-1" class="initial-font" align="center"></td>
-                        </tr>
+                            <tr>
+                                <th class="table-secondary" colspan="2" >제출한 답</th>
+                            </tr>
+                            <tr>
+                                <td id="user-answer-1" class="initial-font" align="center"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -216,7 +216,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-2" class="initial-font" align="center"></td>
+                                <td id="user-answer-2" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         </tbody>
@@ -244,20 +244,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-3" class="initial-font" align="center"></td>
-                            </tr>
-                        </div>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
+                                <td id="user-answer-3" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         </tbody>

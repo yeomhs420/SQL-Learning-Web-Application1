@@ -17,7 +17,7 @@
                     <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                 </svg>
             </div>
-            <div class="text-center fs-1 ms-2">JOIN 테스트</div>
+            <div class="text-center fs-1 ms-2">수학 함수 테스트</div>
         </header>
         <section>
             <div id="question-container" class="mb-4">
@@ -40,7 +40,7 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">JOIN과 함께 사용하여 두 테이블을 합치기 위한 기준을 명시하는 절은?</td>
+                                    <td class="initial-font">다음 중 실행 결과가 다른 SQL문은?</td>
                                 </tr>
                             </div>
                             <div>
@@ -50,15 +50,15 @@
                                 <tr>
                                     <td class="initial-font">
                                         <input type="radio" id="1_1" name="question1" value="1" checked>
-                                        <label for="1_1">AS</label><br>
+                                        <label for="1_1">SELECT FLOOR(0.4);</label><br>
                                         <input type="radio" id="1_2" name="question1" value="2">
-                                        <label for="1_2">INNER</label><br>
+                                        <label for="1_2">SELECT CEIL(-0.4);</label><br>
                                         <input type="radio" id="1_3" name="question1" value="3">
-                                        <label for="1_3">ON</label><br>
+                                        <label for="1_3">SELECT ROUND(0.4);</label><br>
                                         <input type="radio" id="1_4" name="question1" value="4">
-                                        <label for="1_4">NATURAL</label><br>
+                                        <label for="1_4">SELECT SIGN(0.0);</label><br>
                                         <input type="radio" id="1_5" name="question1" value="5">
-                                        <label for="1_5">FROM</label><br>
+                                        <label for="1_5">SELECT COS(PI()/2);</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -82,7 +82,7 @@
                                     <th class="table-secondary" colspan="2" >문제</th>
                                 </tr>
                                 <tr>
-                                    <td class="initial-font">JOIN 기준에 맞지 않는 부분도 NULL로 나타내서라도 모든 컬럼을 조회하는 JOIN의 종류는?</td>
+                                    <td class="initial-font">다음 중 실행 결과가 틀린 SQL문은?</td>
                                 </tr>
                             </div>
                             <div>
@@ -92,22 +92,20 @@
                                 <tr>
                                     <td class="initial-font">
                                         <input type="radio" id="2_1" name="question2" value="1" checked>
-                                        <label for="2_1">INNER JOIN</label><br>
+                                        <label for="2_1">SELECT BIN(16);   답:10000</label><br>
                                         <input type="radio" id="2_2" name="question2" value="2">
-                                        <label for="2_2">OUTER JOIN</label><br>
+                                        <label for="2_2">SELECT OCT(16);   답:20</label><br>
                                         <input type="radio" id="2_3" name="question2" value="3">
-                                        <label for="2_3">UNION</label><br>
+                                        <label for="2_3">SELECT HEX(16);   답:10</label><br>
                                         <input type="radio" id="2_4" name="question2" value="4">
-                                        <label for="2_4">NATURAL JOIN</label><br>
-                                        <input type="radio" id="2_5" name="question2" value="5">
-                                        <label for="2_5">NULL JOIN</label><br>
+                                        <label for="2_4">SELECT CONV(16, 16, 10);   답:1</label><br>
                                     </td>
                                 </tr>
                             </div>
                             </tbody>
                         </table>
                     </div>
-                    <div id="question3" class="learn-part mb-2">
+                    <div id="question3" class="learn-part mb-4">
                         <div class="d-flex mb-2">
                             <div class="d-flex align-items-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
@@ -125,30 +123,7 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        ASSIGNMENT 테이블과 LEISURE 테이블의 DDL을 참고하여 취미 생활을 하지 않는 직원이 담당하는 WORK들을 모두 조회하는 SQL문을 작성하세요.<br>
-                                        취미 생활을 하지 않는 직원은 LEISURE 테이블에 나타나지 않습니다.<br><br>
-
-                                        ▣ 조건<br>
-                                        - 컬럼 : WORK 컬럼 하나만 조회하도록 합니다.<br>
-                                        - 정렬 : WORK 오름차순으로 정렬합니다.<br><br>
-
-                                        [ASSIGNMENT]<br>
-                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
-                                            CREATE TABLE ASSIGNMENT (<br>
-                                            &emsp;WORK VARCHAR(255) NOT NULL,<br>
-                                            &emsp;EMPLOYEE_ID INTEGER NOT NULL,<br>
-                                            &emsp;PRIMARY KEY (WORK)<br>
-                                            )
-                                        </p><br>
-
-                                        [LEISURE]<br>
-                                        <p class="border border-dark border-2 rounded d-inline-block p-2 m-2">
-                                            CREATE TABLE LEISURE (<br>
-                                            &emsp;EMPLOYEE_ID INTEGER NOT NULL,<br>
-                                            &emsp;HOBBY VARCHAR(255),<br>
-                                            &emsp;PRIMARY KEY (EMPLOYEE_ID)<br>
-                                            )
-                                        </p><br>
+                                        'SELECT MOD(7, 4);'에 대한 출력값으로 옳은 것은?<br>
                                     </td>
                                 </tr>
                             </div>
@@ -158,7 +133,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <textarea id="question3" name="question3" class="w100" rows="7" placeholder="Write Your SQL Answer"></textarea>
+                                        <input type="radio" id="1" name="question3" value="1" checked>
+                                        <label for="1">1</label><br>
+                                        <input type="radio" id="2" name="question3" value="2">
+                                        <label for="2">2</label><br>
+                                        <input type="radio" id="3" name="question3" value="3">
+                                        <label for="3">3</label><br>
+                                        <input type="radio" id="4" name="question3" value="4">
+                                        <label for="4">4</label><br>
+                                        <input type="radio" id="5" name="question3" value="5">
+                                        <label for="4">5</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -190,7 +174,7 @@
                             <th class="table-secondary" colspan="2" >제출한 답</th>
                         </tr>
                         <tr>
-                            <td id="userDto-answer-1" class="initial-font" align="center"></td>
+                            <td id="user-answer-1" class="initial-font" align="center"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -216,7 +200,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-2" class="initial-font" align="center"></td>
+                                <td id="user-answer-2" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         </tbody>
@@ -244,20 +228,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-3" class="initial-font" align="center"></td>
-                            </tr>
-                        </div>
-                        <div>
-                            <tr>
-                                <th class="table-secondary" colspan="2" >SQL 실행 결과</th>
-                            </tr>
-                            <tr>
-                                <td class="d-flex justify-content-center initial-font">
-                                    <div class="error-msg"></div>
-                                    <table class="result-table m-1 initial-font w70">
-                                        <tbody></tbody>
-                                    </table>
-                                </td>
+                                <td id="user-answer-3" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         </tbody>

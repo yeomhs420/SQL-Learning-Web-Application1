@@ -20,99 +20,47 @@
         </header>
         <section>
             <div class="topic-container border p-4"><div><div><div></div></div></div>
-                <div class="topic mb-4">
-                    <div class="topic-header forum mb-2 fclear">
-                        <div id="topic-title" class="d-flex fl">
-                            <div class="d-flex align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
-                                    <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
-                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                </svg>
+                {{#topicList}}
+                    <div class="topic mb-4">
+                        <div class="topic-header forum mb-2 fclear">
+                            <div id="topic-title" class="d-flex fl">
+                                <div class="d-flex align-items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
+                                        <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
+                                        <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
+                                    </svg>
+                                </div>
+                                <div class="text-center fs-3 ms-2">{{name}}</div>
                             </div>
-                            <div class="text-center fs-3 ms-2">MySQL 기초</div>
+                        </div>
+                        <div class="unit-box-{{id}}">
+                            <ul class="unit-list ps-0">
+                                {{#unitList}}
+                                    <a href="/test/unit/{{id}}">
+                                        <li class="unit-body-{{parentId}} m-2">
+                                            <div class="comment-header fclear mt-1 mb-1">
+                                                <div class="comment-info fl ms-2">Unit {{id}} Test&nbsp;-&nbsp;{{name}} [총 {{question}}문항]</div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                {{/unitList}}
+                            </ul>
                         </div>
                     </div>
-                    <div class="unit-box-1">
-                        <ul class="unit-list ps-0">
-                            <a href="/test/unit/1">
-                                <li class="unit-body-1 m-2">
-                                    <div class="comment-header fclear mt-1 mb-1">
-                                        <div class="comment-info fl ms-2">Unit 1 Test&nbsp;-&nbsp;기본 문법 [총 3문항]</div>
-                                        <div class="comment-info fr me-2">[미해결]</div>
-                                    </div>
-                                </li>
-                            </a>
-                        </ul>
-                    </div>
+                    <br>
+                {{/topicList}}
+                <div id="test-status">
+                    {{#stateList}}
+                        <div class="comment-info fr me-2">{{.}}</div>
+                    {{/stateList}}
                 </div>
-
-
-
-                <div class="topic mb-4">
-                    <div class="topic-header forum mb-2 fclear">
-                        <div id="topic-title" class="d-flex fl">
-                            <div class="d-flex align-items-center">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bookmark-star" viewBox="0 0 16 16">
-                                    <path d="M7.84 4.1a.178.178 0 0 1 .32 0l.634 1.285a.178.178 0 0 0 .134.098l1.42.206c.145.021.204.2.098.303L9.42 6.993a.178.178 0 0 0-.051.158l.242 1.414a.178.178 0 0 1-.258.187l-1.27-.668a.178.178 0 0 0-.165 0l-1.27.668a.178.178 0 0 1-.257-.187l.242-1.414a.178.178 0 0 0-.05-.158l-1.03-1.001a.178.178 0 0 1 .098-.303l1.42-.206a.178.178 0 0 0 .134-.098L7.84 4.1z"/>
-                                    <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
-                                </svg>
-                            </div>
-                            <div class="text-center fs-3 ms-2">검색 조건</div>
-                        </div>
-                    </div>
-                    <div class="unit-box-2">
-                        <ul class="unit-list ps-0">
-                            <a href="/test/unit/9">
-                                <li class="unit-body-1 m-2">
-                                    <div class="comment-header fclear mt-1 mb-1">
-                                        <div class="comment-info fl ms-2">Unit 9 Test&nbsp;-&nbsp;비교 연산자 [총 3문항]</div>
-                                        <div class="comment-info fr me-2">[미해결]</div>
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="/test/unit/10">
-                                <li class="unit-body-1 m-2">
-                                    <div class="comment-header fclear mt-1 mb-1">
-                                        <div class="comment-info fl ms-2">Unit 10 Test&nbsp;-&nbsp;논리 연산자 [총 3문항]</div>
-                                        <div class="comment-info fr me-2">[미해결]</div>
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="/test/unit/11">
-                                <li class="unit-body-1 m-2">
-                                    <div class="comment-header fclear mt-1 mb-1">
-                                        <div class="comment-info fl ms-2">Unit 11 Test&nbsp;- 흐름 제어 [총 3문항]</div>
-                                        <div class="comment-info fr me-2">[미해결]</div>
-                                    </div>
-                                </li>
-                            </a>
-
-                            <a href="/test/unit/12">
-                                <li class="unit-body-1 m-2">
-                                    <div class="comment-header fclear mt-1 mb-1">
-                                        <div class="comment-info fl ms-2">Unit 12 Test&nbsp;- LIKE [총 3문항]</div>
-                                        <div class="comment-info fr me-2">[미해결]</div>
-                                    </div>
-                                </li>
-                            </a>
-
-
-                        </ul>
-
-                    </div>
-
-                </div>
-
-
-                <br>
-            </div><div><div><div></div></div></div>
+            </div>
         </section>
         <footer>
 
         </footer>
     </div>
 </div>
+<script src="/static/js/test.js"></script>
 </body>
 </html>

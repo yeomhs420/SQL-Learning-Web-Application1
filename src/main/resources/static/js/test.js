@@ -90,4 +90,5 @@ $(document).ready(function() {
     $('#result-container').hide();
     $('.correct').hide();
     $('.incorrect').hide();
+    for(var i=0;i<17;i++) $("#test-status>div:first").appendTo(".comment-header:eq("+i+")");
 });

@@ -27,14 +27,12 @@ public class SaveDBService {
     @Autowired MenteeMentoService menteeMentoService;
 
     @Autowired CovidInfectionStatusRepository covidInfectionStatusRepository;
-    @Autowired
-    CovidVaccinationCenterRepository covidVaccinationCenterRepository;
-    @Autowired
-    EducationCostRepository educationCostRepository;
-    @Autowired
-    RegionalRecoveryCostInfoRepository regionalRecoveryCostInfoRepository;
-    @Autowired
-    TestStatusByEventRepository testStatusByEventRepository;
+
+    @Autowired CovidVaccinationCenterRepository covidVaccinationCenterRepository;
+    @Autowired EducationCostRepository educationCostRepository;
+    @Autowired RegionalRecoveryCostInfoRepository regionalRecoveryCostInfoRepository;
+    @Autowired TestStatusByEventRepository testStatusByEventRepository;
+
     @Autowired
     EmployeeRepository employeeRepository;
     @Autowired
