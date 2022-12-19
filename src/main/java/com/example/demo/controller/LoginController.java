@@ -31,7 +31,7 @@ public class LoginController {
         if(loginService.isUser(userDto.getUserID(), userDto.getUserPassword(), model) == false)
             return "login/login";
 
-        User user = User.createUser(userDto);
+        User user = loginService.getUser(userDto, model);
 
         session.setAttribute("user", user);
 
