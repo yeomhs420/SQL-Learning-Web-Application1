@@ -55,6 +55,7 @@ public class SampleTests {
 						.content(body)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
+				.andExpect(jsonPath("$.questionList").isArray())
 				.andExpect(jsonPath("$.questionList[0].isCorrect").value(true))
 				.andExpect(jsonPath("$.questionList[1].isCorrect").value(true))
 				.andExpect(jsonPath("$.questionList[2].isCorrect").value(true))
