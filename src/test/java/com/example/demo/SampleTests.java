@@ -32,14 +32,14 @@ public class SampleTests {
 
 	@Test
 	public void Home_테스트() throws Exception {
-		mockMvc.perform(get("/home"))
+		mockMvc.perform(get("/home")) // "/home" 요청을 받는 핸들러가 있음
 				.andExpect(status().isOk())
 				.andDo(print());
 	}
 
 	@Test
 	public void 존재하지_않는_페이지_테스트() throws Exception {
-		mockMvc.perform(get("/fakepage"))
+		mockMvc.perform(get("/fakepage")) // "/fakepage" 요청을 받는 핸들러가 없음
 				.andExpect(status().isNotFound())
 				.andDo(print());
 	}
