@@ -2,6 +2,7 @@
     padding-left: 3px;
     color: grey;
     font-size:14px;
+
 }
 
 .sc_login{
@@ -9,7 +10,6 @@
     top:25%;
     left:87%;
 
-    float:right;
     padding: 19px 25px 15px 19px;
     background-color: #f7f9fa;
     border: 1px solid #dae1e6;
