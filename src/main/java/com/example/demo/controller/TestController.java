@@ -38,6 +38,7 @@ public class TestController {
             re.addFlashAttribute("msg", "로그인이 필요합니다.");
             return "redirect:/login";
         }
+
         user = userRepository.findByUserId(user.getUserID()).get(0);
         System.out.println("-----");
         System.out.println(user);
