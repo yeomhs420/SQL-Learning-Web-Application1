@@ -2,18 +2,13 @@
     padding-left: 3px;
     color: grey;
     font-size:14px;
-
 }
 
 .sc_login{
-    position:absolute;
-    top:25%;
-    left:87%;
-
+    margin-top:200px;
     padding: 19px 25px 15px 19px;
     background-color: #f7f9fa;
     border: 1px solid #dae1e6;
-
 }
 
 .log_off{
@@ -29,7 +24,7 @@
     font-weight: 700;
     text-align: center;
     text-decoration: none;
-    width:320px;
+    width:100%;
 }
 
 .link_join{
@@ -40,10 +35,8 @@
     font-size:14px;
 }
 
-
 .info_box{
-    margin-left:20px;
-    float:right
+
 }
 
 .btn_logout {
@@ -53,5 +46,5 @@
     font-size: 11px;
     color: #fff;
     text-decoration: none;
-    margin-left:40px;
+    margin-left:10px;
 }
