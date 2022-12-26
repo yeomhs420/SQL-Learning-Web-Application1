@@ -40,25 +40,9 @@ public class TestController {
         }
 
         user = userRepository.findByUserId(user.getUserID()).get(0);
-        System.out.println("-----");
-        System.out.println(user);
-        System.out.println(user.getProgress());
-//        System.out.println(user.getProgress().getClass().getName());
-        System.out.println("-----");
-
-        for(int i=0;i<17;i++) {
-            user.getProgress().add(i, (user.getProgress().get(i) == null) ? false : false);
-        }
-
-        for(int i=0;i<17;i++) {
-            if(user.getProgress().get(i)==false){
-                stateList.add("[미해결]");
-            }
-            else{
-                stateList.add("[해결]");
-//                if(user.getProgress().get(i)==true) stateList.add("[해결]");
-//                else stateList.add("[미해결]");
-            }
+        for(int i=0;i<user.getProgress().size();i++) {
+            if(user.getProgress().get(i)==false) stateList.add("[미해결]");
+            else stateList.add("[해결]");
         }
 
         model.addAttribute("topicList", topicList);
