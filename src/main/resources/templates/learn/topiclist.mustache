@@ -8,6 +8,8 @@
 <body>
 <div id="main-container" class="quicksand nskr">
     {{>part/nav}}
+    {{>part/accountinfo}}
+
     <div id="learn-container" class="mt-4 mb-4">
         <header class="d-flex justify-content-center mb-4">
             <div class="d-flex align-items-center">
@@ -17,6 +19,7 @@
             </div>
             <div class="text-center fs-1 ms-3">SQL Topics</div>
         </header>
+
         <section>
             <div class="topic-container border p-4">
                 {{#topicList}}
