@@ -1,8 +1,7 @@
-package com.example.demo.entity.user;
+package com.example.demo.vo;
 
 import lombok.*;
 
-import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -12,8 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @ToString(callSuper = true)
 public class UserDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본 키 생성을 데이터베이스에 위임
+
     private long id;
 
     @Size(min = 5, max = 20, message = "아이디는 5~20 자리로 입력해주세요.")

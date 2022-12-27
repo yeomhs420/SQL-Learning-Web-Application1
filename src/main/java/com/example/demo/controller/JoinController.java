@@ -1,12 +1,11 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.user.User;
-import com.example.demo.entity.user.UserDto;
+import com.example.demo.vo.UserDto;
 import com.example.demo.jpa.repository.user.UserRepository;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +19,6 @@ import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
-@Transactional("userTransactionManager")
 @RequestMapping("/join")
 public class JoinController {
 
