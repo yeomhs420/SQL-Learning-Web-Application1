@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.user.User;
-import com.example.demo.entity.user.UserDto;
+import com.example.demo.vo.UserDto;
 import com.example.demo.jpa.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +16,7 @@ import java.util.List;
 public class LoginService {
     @Autowired
     PasswordEncoder passwordEncoder;
-    @Autowired
-    HttpSession session;
+
     @Autowired
     UserRepository userRepository;
 

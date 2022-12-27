@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@Transactional("userTransactionManager")
 @RequestMapping("/test")
 public class TestController {
 
@@ -30,7 +29,9 @@ public class TestController {
     @Autowired
     UserRepository userRepository;
 
+
     @GetMapping
+    @Transactional("userTransactionManager")
     public String list(Model model, RedirectAttributes re) {
         List<String> stateList = new ArrayList<>();
         User user = (User)session.getAttribute("user");
