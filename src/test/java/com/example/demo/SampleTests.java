@@ -1,8 +1,11 @@
 package com.example.demo;
 
 import com.example.demo.entity.sampledata.CovidVaccinationCenter;
+import com.example.demo.entity.user.User;
+import com.example.demo.jpa.repository.user.UserRepository;
 import com.example.demo.service.sampledata.CovidVaccinationCenterService;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,6 +31,9 @@ public class SampleTests {
 
 	@Autowired
 	CovidVaccinationCenterService covidVaccinationCenterService;
+
+	@Autowired
+	UserRepository userRepository;
 
 
 	@Test
@@ -74,4 +80,32 @@ public class SampleTests {
 		int len = str.length();
 	}
 
+	@Test
+	public void Testlist_테스트() throws Exception {
+		User user = new User();
+		user.setUserID("1");
+		user.setUserPassword("!wndur0703");
+		user.setUserName("김주역");
+		user.setUserEmail("jooyeok42@naver.com");
+		userRepository.save(user);
+
+		mockMvc.perform(get("/test") // 로그인 상태
+						.sessionAttr("user", user))
+				.andExpect(status().isOk())
+				.andExpect(view().name("test/testlist"))
+				.andDo(print());
+
+		mockMvc.perform(get("/test")) // 비로그인 상태
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/login"))
+				.andDo(print());
+		userRepository.delete(user);
+	}
+
+	@Test
+	@AfterAll
+	public void userRepository_롤백테스트() throws Exception {
+		List<User> userList = userRepository.findAll();
+		assertEquals(userList.size(), 0);
+	}
 }

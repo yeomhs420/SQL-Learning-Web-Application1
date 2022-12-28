@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.user.User;
-import com.example.demo.entity.user.UserDto;
+import com.example.demo.vo.UserDto;
 import com.example.demo.service.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

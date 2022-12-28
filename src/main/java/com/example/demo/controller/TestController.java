@@ -1,11 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.user.User;
-import com.example.demo.jpa.repository.user.UserRepository;
+import com.example.demo.service.EagerService;
 import com.example.demo.vo.Topic;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@Transactional("userTransactionManager")
 @RequestMapping("/test")
 public class TestController {
 
@@ -28,7 +26,8 @@ public class TestController {
     HttpSession session;
 
     @Autowired
-    UserRepository userRepository;
+    EagerService eagerService;
+
 
     @GetMapping
     public String list(Model model, RedirectAttributes re) {
@@ -39,7 +38,7 @@ public class TestController {
             return "redirect:/login";
         }
 
-        user = userRepository.findByUserId(user.getUserID()).get(0);
+        user = eagerService.getUserWithEagerProgress(user.getUserID());
         for(int i=0;i<user.getProgress().size();i++) {
             if(user.getProgress().get(i)==false) stateList.add("[미해결]");
             else stateList.add("[해결]");

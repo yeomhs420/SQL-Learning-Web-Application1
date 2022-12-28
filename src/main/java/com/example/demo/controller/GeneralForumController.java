@@ -4,6 +4,7 @@ import com.example.demo.entity.user.Bbs;
 import com.example.demo.entity.user.Comment;
 import com.example.demo.entity.user.User;
 import com.example.demo.service.BbsService;
+import com.example.demo.service.EagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,9 @@ public class GeneralForumController {
     private BbsService bbsService;
     @Autowired
     private HttpSession session;
+
+    @Autowired
+    private EagerService eagerService;
 
 
     @RequestMapping({"/", ""})
@@ -79,7 +83,7 @@ public class GeneralForumController {
 
         Long bbsId = Long.parseLong(request.getParameter("bbs_id"));
 
-        Bbs bbs = bbsService.getBbs(bbsId);
+        Bbs bbs = eagerService.getBbsWithEagerComments(bbsId);
 
         List<Comment> comments = bbsService.getComments(bbsId);
 
