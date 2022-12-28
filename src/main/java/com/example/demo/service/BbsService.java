@@ -30,6 +30,8 @@ public class BbsService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    EagerService eagerService;
 
     public Bbs getBbs(Long id){
         Bbs bbs = bbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
@@ -55,29 +57,16 @@ public class BbsService {
 
         Page<Bbs> Bbs;
 
+        PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
+
         if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
             String name = request.getParameter("name");
             String keyword = request.getParameter("keyword");
 
-            PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
 
-            if(name.equals("Title")){   // Title 로 검색할 경우
-                List<Bbs> bbsList = bbsRepository.findAll().stream().filter(x -> x.getTitle().contains(keyword)).collect(Collectors.toList());
+            List<Bbs> bbsList = eagerService.getBbsListWithEagerComments(name, keyword);
 
-                Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
-            }
-
-            else if (name.equals("Writer")) {
-                List<Bbs> bbsList = bbsRepository.findAll().stream().filter(x -> x.getUser().getUserName().contains(keyword)).collect(Collectors.toList());
-
-                Bbs = listToPage(bbsList, pageable);
-            }
-
-            else{
-                List<Bbs> bbsList = bbsRepository.findAll().stream().filter(x -> x.getContent().contains(keyword)).collect(Collectors.toList());
-
-                Bbs = listToPage(bbsList, pageable);
-            }
+            Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
 
             for(Bbs bbs : Bbs){
                 bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));
@@ -87,7 +76,7 @@ public class BbsService {
 
         }
 
-        Bbs = bbsRepository.findAll(PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id")));
+        Bbs = eagerService.getPagedBbsWithEagerComments(pageable);
 
         for(com.example.demo.entity.user.Bbs bbs : Bbs){
             bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));

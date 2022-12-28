@@ -5,6 +5,7 @@ import com.example.demo.entity.user.BugBbs;
 import com.example.demo.entity.user.BugComment;
 import com.example.demo.entity.user.User;
 import com.example.demo.service.BugBbsService;
+import com.example.demo.service.EagerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +27,9 @@ public class BugForumController {
 
     @Autowired
     HttpSession session;
+
+    @Autowired
+    EagerService eagerService;
 
     @RequestMapping({"/", ""})
     public String bugforum(Model model, HttpServletRequest request){
@@ -80,7 +84,7 @@ public class BugForumController {
 
         Long bbsId = Long.parseLong(request.getParameter("bbs_id"));
 
-        BugBbs bbs = bugBbsService.getBbs(bbsId);
+        BugBbs bbs = eagerService.getBugBbsWithEagerComments(bbsId);
 
         List<BugComment> comments = bugBbsService.getComments(bbsId);
 
