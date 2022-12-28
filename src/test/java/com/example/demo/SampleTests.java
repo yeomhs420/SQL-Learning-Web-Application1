@@ -35,7 +35,6 @@ public class SampleTests {
 	@Autowired
 	UserRepository userRepository;
 
-
 	@Test
 	public void Home_테스트() throws Exception {
 		mockMvc.perform(get("/home")) // "/home" 요청을 받는 핸들러가 있음
@@ -83,7 +82,8 @@ public class SampleTests {
 	@Test
 	public void Testlist_테스트() throws Exception {
 		User user = new User();
-		user.setUserID("1");
+		user.setId(1000);
+		user.setUserID("jooyeok");
 		user.setUserPassword("!wndur0703");
 		user.setUserName("김주역");
 		user.setUserEmail("jooyeok42@naver.com");
@@ -99,7 +99,7 @@ public class SampleTests {
 				.andExpect(status().is3xxRedirection())
 				.andExpect(redirectedUrl("/login"))
 				.andDo(print());
-		userRepository.delete(user);
+		userRepository.deleteAll();
 	}
 
 	@Test

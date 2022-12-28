@@ -2,10 +2,10 @@ package com.example.demo;
 
 import com.example.demo.entity.user.Bbs;
 import com.example.demo.entity.user.User;
-import com.example.demo.entity.user.UserDto;
 import com.example.demo.jpa.repository.user.BbsRepository;
 import com.example.demo.jpa.repository.user.UserRepository;
 import com.example.demo.service.BbsService;
+import com.example.demo.vo.UserDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +59,7 @@ public class YeomTests {
     }
 
     @Test
-    @Transactional
+    @Transactional("userTransactionManager")
     public void 게시판_테스트() throws Exception{
 
         String userID = "yeomhs420";

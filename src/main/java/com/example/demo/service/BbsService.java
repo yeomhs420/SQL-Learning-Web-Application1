@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@Transactional
 public class BbsService {
     @Autowired
     BbsRepository bbsRepository;
@@ -91,7 +90,7 @@ public class BbsService {
             return false;
 
         else {
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
 
             Bbs bbs = new Bbs();
             bbs.setUser(user);
@@ -125,7 +124,7 @@ public class BbsService {
             String content = request.getParameter("Content");
 
             String userID = bbsRepository.findById(bbsID).get().getUser().getUserID();
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
 
             Bbs bbs = bbsRepository.findById(bbsID).orElseThrow(() -> new IllegalArgumentException("게시글 수정 실패: 해당 게시글이 존재하지 않습니다."));
             Bbs updatedBbs = new Bbs(bbsID, title, user, content, null, commentRepository.findByBbsId(bbsID));
@@ -173,7 +172,7 @@ public class BbsService {
             return false;
 
         else{
-            User User = userRepository.findByUserId(user.getUserID()).get(0);
+            User User = userRepository.findByUserID(user.getUserID()).get(0);
             Bbs bbs = bbsRepository.findById(Long.parseLong(request.getParameter("bbs_id"))).orElseThrow(() -> 
                     new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."));
             Comment comment = new Comment(null, bbs, User, User.getUserName(), request.getParameter("body"), null);

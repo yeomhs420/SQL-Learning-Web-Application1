@@ -29,7 +29,7 @@ public class EagerService {
     BugBbsRepository bugBbsRepository;
 
     public User getUserWithEagerProgress(String userId) {
-        User user = userRepository.findByUserId(userId).get(0);
+        User user = userRepository.findByUserID(userId).get(0);
         Hibernate.initialize(user.getProgress());
         return user;
     }
