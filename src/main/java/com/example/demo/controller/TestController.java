@@ -50,7 +50,12 @@ public class TestController {
     }
 
     @RequestMapping("/unit/{test_num}")
-    public String unit(@PathVariable("test_num") String test_num, Model model) {
+    public String unit(@PathVariable("test_num") String test_num, Model model, RedirectAttributes re) {
+        User user = (User)session.getAttribute("user");
+        if(user == null) {
+            re.addFlashAttribute("msg", "로그인이 필요합니다.");
+            return "redirect:/login";
+        }
         model.addAttribute("test_num", test_num);
         return "test/unit/test"+test_num;
     }
