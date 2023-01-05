@@ -1,9 +1,9 @@
 package com.example.demo.config.aop;
 
+import com.example.demo.vo.TestResult;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.context.annotation.Configuration;
 
@@ -29,4 +29,13 @@ public class AdvisorConfig {
         }
         return returnList;
     }
+
+    @Pointcut("execution(* com.example.demo.service.GradingService..gradeUnit*(..))")
+    public void gradepointcut(){}
+
+    @AfterReturning(value = "gradepointcut()", returning = "testResult")
+    public void changeStatus(JoinPoint joinPoint, Object testResult) throws Throwable {
+
+    }
+
 }

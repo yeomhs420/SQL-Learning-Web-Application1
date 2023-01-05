@@ -21,4 +21,8 @@ public class TestService {
         catch (Exception e) { return null; }
         return testMapper.getResult(sql);
     }
+
+    public int setStatus(){
+        getUserEagerProgress()
+    }
 }

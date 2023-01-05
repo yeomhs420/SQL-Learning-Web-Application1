@@ -28,7 +28,7 @@ import java.util.*;
 
 @Service
 @Transactional
-public class GradingService {
+public class    GradingService {
 
     @PersistenceContext EntityManager em;
     @Autowired SQLValidator sqlValidator;
