@@ -34,8 +34,18 @@ public class AdvisorConfig {
     public void gradepointcut(){}
 
     @AfterReturning(value = "gradepointcut()", returning = "testResult")
-    public void changeStatus(JoinPoint joinPoint, Object testResult) throws Throwable {
+    public void changeStatus(JoinPoint joinPoint, TestResult testResult) throws Throwable {
 
+
+        try{
+            if(testResult.getCorrectCount() == testResult.getQuestionList().size()){
+
+            }
+        }
+
+        catch (Throwable throwable){
+            throw throwable;
+        }
     }
 
 }
