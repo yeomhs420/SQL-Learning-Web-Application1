@@ -43,6 +43,9 @@ public class TestService {
         user.setLearningStatus(user.getLearningStatus()+1);
 
         user.getProgress().set(unit -1,true);
+
+        System.out.println("AOP동작확인");
+
         userRepository.save(user);
     }
 }
