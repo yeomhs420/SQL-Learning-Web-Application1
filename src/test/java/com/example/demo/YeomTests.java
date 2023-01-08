@@ -60,7 +60,7 @@ public class YeomTests {
     }
 
     @Test
-    @Transactional
+    @Transactional("userTransactionManager")
     public void 게시판_테스트() throws Exception{
 
         String userID = "yeomhs420";

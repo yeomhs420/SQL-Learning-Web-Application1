@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {{>part/common}}
+    <link href="/static/css/reference.css" rel="stylesheet">
+    <title>Learn</title>
+</head>
+<body>
+{{>part/nav}}
+<div id="main-container" class="d-flex justify-content-center quicksand nskr">
+    <div id="reference-container" class="mt-4 mb-4">
+        <header class="d-flex justify-content-center mb-4">
+            <div class="d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-seam me-2" viewBox="0 0 16 16">
+                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                </svg>
+            </div>
+            <div class="text-center fs-1 ms-2">참고할 만한 자료</div>
+        </header>
+        <section>
+            <div id="sub-reference-container">
+                <div id="ref1" class="reference-part">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">DB 쿼리 변환 사이트</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">링크</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font"><a href="http://www.sqlines.com/online">http://www.sqlines.com/online</a></td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">설명</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font">
+                                    <p><strong>DB 쿼리를 다른 종류의 쿼리로 변환해주는 사이트입니다. Source에 변경 전 DBMS를 지정해주고, Target에 변경 후 DBMS를 지정해주면 됩니다.</strong></p><br>
+                                    <p>[변경 전 - MySQL]</p>
+                                    <img src="/static/img/reference/1-1.png" style="margin-bottom:35px" width="70%">
+                                    <p>[변경 후 - Oracle]</p>
+                                    <img src="/static/img/reference/1-2.png" width="70%">
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="ref2" class="reference-part">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">프로그래머스 - SQL 고득점 Kit</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">링크</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font"><a href="https://school.programmers.co.kr/learn/challenges?tab=sql_practice_kit">https://school.programmers.co.kr/learn/challenges?tab=sql_practice_kit</a></td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">설명</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font">
+                                    <p><strong>기초적인 SELECT문부터 어려운 JOIN문까지 다양한 SQL 문제들을 풀어볼 수 있는 사이트입니다.</strong></p><br>
+                                    <img src="/static/img/reference/2-1.png" width="70%">
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="ref3" class="reference-part">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">TCP School - MySQL</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">링크</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font"><a href="http://www.tcpschool.com/mysql/intro">http://www.tcpschool.com/mysql/intro</a></td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">설명</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font">
+                                    <p><strong>MySQL의 다양한 문법을 학습할 수 있는 사이트입니다. SQL 교육 사이트에서 배우지 않은 DDL은 이 곳에서 학습하면 됩니다.</strong></p><br>
+                                    <img src="/static/img/reference/3-1.png" width="70%">
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="ref4" class="reference-part">
+                    <div class="d-flex mb-2">
+                        <div class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-info-circle" viewBox="0 0 16 16">
+                                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                            </svg>
+                        </div>
+                        <div class="text-center fs-3 ms-2">SQL Joins Visualizer</div>
+                    </div>
+                    <table class="table table-bordered">
+                        <tbody>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">링크</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font"><a href="https://sql-joins.leopard.in.ua/">https://sql-joins.leopard.in.ua/</a></td>
+                            </tr>
+                        </div>
+                        <div>
+                            <tr>
+                                <th class="table-secondary">설명</th>
+                            </tr>
+                            <tr>
+                                <td class="initial-font">
+                                    <p><strong>	JOIN 케이스별 SQL를 확인할 수 있는 사이트입니다. 사이트에 들어간 뒤 벤다이어그램에서 원하는 영역을 클릭하면 해당 SQL문이 자동으로 출력됩니다.</strong></p><br>
+                                    <img src="/static/img/reference/4-1.png" width="70%">
+                                </td>
+                            </tr>
+                        </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </section>
+        <footer>
+
+        </footer>
+    </div>
+    {{>part/accountinfo}}
+</div>
+</body>
+</html>

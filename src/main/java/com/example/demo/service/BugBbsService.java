@@ -89,7 +89,7 @@ public class BugBbsService {
             return false;
 
         else {
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
             BugBbs bbs = new BugBbs();
 
             bbs.setUser(user);
@@ -124,7 +124,7 @@ public class BugBbsService {
             String content = request.getParameter("Content");
 
             String userID = bugBbsRepository.findById(bbsID).get().getUser().getUserID();
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
 
             BugBbs bbs = bugBbsRepository.findById(bbsID).orElse(null);
             BugBbs updatedBbs = new BugBbs(bbsID, title, user, content, null, bugCommentRepository.findByBbsId(bbsID));
@@ -172,7 +172,7 @@ public class BugBbsService {
             return false;
 
         else{
-            User User = userRepository.findByUserId(user.getUserID()).get(0);
+            User User = userRepository.findByUserID(user.getUserID()).get(0);
             BugBbs bbs = bugBbsRepository.findById(Long.parseLong(request.getParameter("bbs_id"))).get();
             BugComment comment = new BugComment(null, bbs, User, User.getUserName(), request.getParameter("body"), null);
 

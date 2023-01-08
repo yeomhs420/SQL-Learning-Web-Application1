@@ -62,7 +62,7 @@ public class JoinController {
             return "login/join";
         }
 
-        User user = userRepository.findByUserId(userDto.getUserID()).get(0);
+        User user = userRepository.findByUserID(userDto.getUserID()).get(0);
 
         session.setAttribute("user", user);
 
