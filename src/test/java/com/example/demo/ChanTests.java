@@ -2,7 +2,6 @@ package com.example.demo;
 
 import com.example.demo.entity.user.User;
 import com.example.demo.jpa.repository.user.UserRepository;
-import com.example.demo.service.sampledata.CovidVaccinationCenterService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +12,6 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import javax.servlet.http.HttpSession;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -26,11 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 public class ChanTests {
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    UserRepository userRepository;
+    @Autowired MockMvc mockMvc;
+    @Autowired UserRepository userRepository;
+    @Autowired User mockUser;
 
     @Test
     public void TestController_list() throws Exception {
@@ -55,26 +47,18 @@ public class ChanTests {
         int question3 = 3;
         String body = "{\"unit\":"+unit+", \"question1\": "+question1+", \"question2\": "+question2+", \"question3\": \""+question3+"\"}";
 
-        User user = new User();
-        user.setId(1000);
-        user.setUserID("jooyeok");
-        user.setUserPassword("!wndur0703");
-        user.setUserName("김주역");
-        user.setUserEmail("jooyeok42@naver.com");
-        List<Boolean> progress = new ArrayList<>();
-        for (int i = 0; i < 17; i++) progress.add(false);
-        user.setProgress(progress);
-        userRepository.save(user);
+        userRepository.save(mockUser);
 
         mockMvc.perform(post("/test/grading")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .sessionAttr("user", user))
+                        .sessionAttr("user", mockUser))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.questionList[0].isCorrect").value(true))
                 .andExpect(jsonPath("$.questionList[1].isCorrect").value(true))
                 .andExpect(jsonPath("$.questionList[2].isCorrect").value(true))
                 .andDo(print());
+        userRepository.deleteAll();
     }
 
 }
