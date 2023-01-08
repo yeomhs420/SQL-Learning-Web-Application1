@@ -25,12 +25,11 @@ public class ChanTests {
     @Autowired
     MockMvc mockMvc;
 
-    protected MockHttpSession session;
-
     @Test
     public void TestController_list() throws Exception {
-        mockMvc.perform(post("/testlist").session(session))
-                .andExpect(status().isOk())
+        MockHttpSession session = new MockHttpSession();
+        mockMvc.perform(get("/test").session(session))
+                .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/login"))
                 .andDo(print());
     }
