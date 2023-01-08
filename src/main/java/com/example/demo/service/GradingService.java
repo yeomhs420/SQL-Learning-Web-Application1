@@ -28,7 +28,7 @@ import java.util.*;
 
 @Service
 @Transactional
-public class GradingService {
+public class    GradingService {
 
     @PersistenceContext EntityManager em;
     @Autowired SQLValidator sqlValidator;
@@ -968,7 +968,7 @@ public class GradingService {
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult)); // 사용자에게 보여줄 sql 결과를 List<List<String>> 타입으로 생성 후 저장
 
-        // SELECT * FROM MENTEE_MENTO WHERE MENTO_ID IN(SELECT MENTO_ID FROM MENTEE_MENTO GROUP BY MENTO_ID HAVING COUNT(MENTO_ID)>=3);
+        // SELECT STUDENT_ID, STUDENT_NAME FROM MENTEE_MENTO WHERE MENTO_ID IN(SELECT MENTO_ID FROM MENTEE_MENTO GROUP BY MENTO_ID HAVING COUNT(MENTO_ID)>=3);
         JPAQueryFactory query = new JPAQueryFactory(em);
         QMenteeMento qe = QMenteeMento.menteeMento;
         List<MenteeMento> resultList = query.selectFrom(qe)

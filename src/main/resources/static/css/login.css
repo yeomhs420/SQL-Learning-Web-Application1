@@ -7,6 +7,7 @@
 body {
   margin: 0;
 }
+
 .logo {
     margin-top: 0px;
     margin-bottom: 20px;
@@ -21,7 +22,6 @@ body {
     padding: 20px;
     text-align: center;
     border: none;
-
 }
 
 .text-field {
@@ -39,8 +39,19 @@ body {
   padding: 10px;
   width: 260px;
   background-color: #1BBC9B;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.join-btn {
+  font-size: 14px;
+  border: none;
+  padding: 10px;
+  width: 260px;
+  background-color: #f0c91d;
   margin-bottom: 30px;
   color: white;
+  border-radius: 5px;
 }
 
 .links {

@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import com.example.demo.entity.user.User;
 import com.example.demo.vo.Topic;
 import com.example.demo.vo.Unit;
 import org.springframework.context.annotation.Bean;
@@ -48,5 +49,19 @@ public class MyConfig {
         topicList.add(new Topic(5, "다중 테이블", fifthUnitList));
 
         return topicList;
+    }
+
+    @Bean
+    public User mockUser() {
+        User user = new User();
+        user.setId(919191);
+        user.setUserID("jooyeok");
+        user.setUserPassword("!wndur0703");
+        user.setUserName("김주역");
+        user.setUserEmail("jooyeok42@naver.com");
+        List<Boolean> progress = new ArrayList<>();
+        for (int i = 0; i < 17; i++) progress.add(false);
+        user.setProgress(progress);
+        return user;
     }
 }
