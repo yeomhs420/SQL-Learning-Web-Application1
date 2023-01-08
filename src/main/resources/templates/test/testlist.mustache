@@ -6,9 +6,9 @@
     <title>Learn</title>
 </head>
 <body>
-<div id="main-container" class="quicksand nskr">
-    {{>part/nav}}
-    <div id="learn-container" class="mt-4 mb-4">
+{{>part/nav}}
+<div id="main-container" class="d-flex justify-content-center quicksand nskr">
+    <div id="topic-list-container" class="mt-4 mb-4">
         <header class="d-flex justify-content-center mb-4">
             <div class="d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-check-square" viewBox="0 0 16 16">
@@ -60,6 +60,7 @@
 
         </footer>
     </div>
+    {{>part/accountinfo}}
 </div>
 <script src="/static/js/test.js"></script>
 </body>

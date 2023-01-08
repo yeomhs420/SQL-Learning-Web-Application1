@@ -1,0 +1,13 @@
+th {
+    text-align: center !important;
+    vertical-align : middle;
+}
+
+.reference-part{
+    overflow:hidden;
+    margin-bottom:100px;
+}
+
+#reference-container {
+    width:65%;
+}

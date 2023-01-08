@@ -38,7 +38,11 @@ nav a{color: rgba(0,0,0,.7) !important;}
 
 .f13{font-size: 13px}
 
+.w15{margin: 0 auto; width:15%;}
+.w20{margin: 0 auto; width:20%;}
+.w30{margin: 0 auto; width:30%;}
 .w45{margin: 0 auto; width:45%;}
+.w50{margin: 0 auto; width:50%;}
 .w70{margin: 0 auto; width:70%;}
 .w90{margin: 0 auto; width:90%;}
 .w100{margin: 0 auto; width:100%;}

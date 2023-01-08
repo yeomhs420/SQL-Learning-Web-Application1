@@ -9,6 +9,8 @@ import com.example.demo.jpa.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -26,6 +28,9 @@ public class BbsService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    EagerService eagerService;
 
     public Bbs getBbs(Long id){
         Bbs bbs = bbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
@@ -51,29 +56,16 @@ public class BbsService {
 
         Page<Bbs> Bbs;
 
+        PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
+
         if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
             String name = request.getParameter("name");
             String keyword = request.getParameter("keyword");
 
-            PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
 
-            if(name.equals("Title")){   // Title 로 검색할 경우
-                List<Bbs> bbsList = bbsRepository.findAll().stream().filter(x -> x.getTitle().contains(keyword)).collect(Collectors.toList());
+            List<Bbs> bbsList = eagerService.getBbsListWithEagerComments(name, keyword);
 
-                Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
-            }
-
-            else if (name.equals("Writer")) {
-                List<Bbs> bbsList = bbsRepository.findAll().stream().filter(x -> x.getUser().getUserName().contains(keyword)).collect(Collectors.toList());
-
-                Bbs = listToPage(bbsList, pageable);
-            }
-
-            else{
-                List<Bbs> bbsList = bbsRepository.findAll().stream().filter(x -> x.getContent().contains(keyword)).collect(Collectors.toList());
-
-                Bbs = listToPage(bbsList, pageable);
-            }
+            Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
 
             for(Bbs bbs : Bbs){
                 bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));
@@ -83,7 +75,7 @@ public class BbsService {
 
         }
 
-        Bbs = bbsRepository.findAll(PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id")));
+        Bbs = eagerService.getPagedBbsWithEagerComments(pageable);
 
         for(com.example.demo.entity.user.Bbs bbs : Bbs){
             bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));
@@ -98,7 +90,7 @@ public class BbsService {
             return false;
 
         else {
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
 
             Bbs bbs = new Bbs();
             bbs.setUser(user);
@@ -132,7 +124,7 @@ public class BbsService {
             String content = request.getParameter("Content");
 
             String userID = bbsRepository.findById(bbsID).get().getUser().getUserID();
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
 
             Bbs bbs = bbsRepository.findById(bbsID).orElseThrow(() -> new IllegalArgumentException("게시글 수정 실패: 해당 게시글이 존재하지 않습니다."));
             Bbs updatedBbs = new Bbs(bbsID, title, user, content, null, commentRepository.findByBbsId(bbsID));
@@ -180,7 +172,7 @@ public class BbsService {
             return false;
 
         else{
-            User User = userRepository.findByUserId(user.getUserID()).get(0);
+            User User = userRepository.findByUserID(user.getUserID()).get(0);
             Bbs bbs = bbsRepository.findById(Long.parseLong(request.getParameter("bbs_id"))).orElseThrow(() -> 
                     new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."));
             Comment comment = new Comment(null, bbs, User, User.getUserName(), request.getParameter("body"), null);

@@ -28,6 +28,9 @@ public class BugBbsService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    EagerService eagerService;
+
     public BugBbs getBbs(Long id){
         BugBbs bbs = bugBbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
@@ -52,31 +55,18 @@ public class BugBbsService {
 
         Page<BugBbs> Bbs;
 
+        PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
+
         if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
             String name = request.getParameter("name");
             String keyword = request.getParameter("keyword");
 
-            PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
 
-            if(name.equals("Title")){   // Title 로 검색할 경우
-                List<BugBbs> bbsList = bugBbsRepository.findAll().stream().filter(x -> x.getTitle().contains(keyword)).collect(Collectors.toList());
+            List<BugBbs> bbsList = eagerService.getBugBbsListWithEagerComments(name, keyword);
 
-                Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
-            }
+            Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
 
-            else if (name.equals("Writer")) {
-                List<BugBbs> bbsList = bugBbsRepository.findAll().stream().filter(x -> x.getUser().getUserName().contains(keyword)).collect(Collectors.toList());
-
-                Bbs = listToPage(bbsList, pageable);
-            }
-
-            else{
-                List<BugBbs> bbsList = bugBbsRepository.findAll().stream().filter(x -> x.getContent().contains(keyword)).collect(Collectors.toList());
-
-                Bbs = listToPage(bbsList, pageable);
-            }
-
-            for(BugBbs bbs: Bbs){
+            for(BugBbs bbs : Bbs){
                 bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));
             }
 
@@ -84,7 +74,7 @@ public class BugBbsService {
 
         }
 
-        Bbs = bugBbsRepository.findAll(PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id")));
+        Bbs = eagerService.getPagedBugBbsWithEagerComments(pageable);
 
         for(BugBbs bbs: Bbs){
             bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));
@@ -99,7 +89,7 @@ public class BugBbsService {
             return false;
 
         else {
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
             BugBbs bbs = new BugBbs();
 
             bbs.setUser(user);
@@ -134,7 +124,7 @@ public class BugBbsService {
             String content = request.getParameter("Content");
 
             String userID = bugBbsRepository.findById(bbsID).get().getUser().getUserID();
-            User user = userRepository.findByUserId(userID).get(0);
+            User user = userRepository.findByUserID(userID).get(0);
 
             BugBbs bbs = bugBbsRepository.findById(bbsID).orElse(null);
             BugBbs updatedBbs = new BugBbs(bbsID, title, user, content, null, bugCommentRepository.findByBbsId(bbsID));
@@ -182,7 +172,7 @@ public class BugBbsService {
             return false;
 
         else{
-            User User = userRepository.findByUserId(user.getUserID()).get(0);
+            User User = userRepository.findByUserID(user.getUserID()).get(0);
             BugBbs bbs = bugBbsRepository.findById(Long.parseLong(request.getParameter("bbs_id"))).get();
             BugComment comment = new BugComment(null, bbs, User, User.getUserName(), request.getParameter("body"), null);
 
