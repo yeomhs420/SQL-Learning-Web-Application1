@@ -28,7 +28,7 @@ public class BugBbs extends BaseEntity{
 
     private String Datetime;    // 자동생성된 datetime 'T' 제거를 위한 필드
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "bugBbs_id")    // 양방향 매핑 (지연 로딩 문제)
     @ToString.Exclude
     private List<BugComment> comments = new ArrayList<>();

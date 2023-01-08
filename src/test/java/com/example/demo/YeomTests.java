@@ -2,6 +2,7 @@ package com.example.demo;
 
 import com.example.demo.entity.user.Bbs;
 import com.example.demo.entity.user.User;
+import com.example.demo.vo.UserDto;
 import com.example.demo.jpa.repository.user.BbsRepository;
 import com.example.demo.jpa.repository.user.UserRepository;
 import com.example.demo.service.BbsService;
@@ -58,7 +59,7 @@ public class YeomTests {
         String userID = "yeomhs420";
         String userPassword = "1234";
 
-        User user = new User(1L, userID, userPassword, null, null, 0, null);
+        User user = new User(1L, userID, userPassword, "hello", null, 0, null);
 
         Bbs bbs = new Bbs(1L, "ha", user, "ha", null, null);
 

@@ -9,5 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
+
     List<User> findByUserID(String userid);
+
 }
+
+
+
