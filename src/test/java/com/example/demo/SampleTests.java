@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -27,14 +26,10 @@ import static org.junit.Assert.*;
 @AutoConfigureMockMvc
 public class SampleTests {
 
-	@Autowired
-	MockMvc mockMvc;
-
-	@Autowired
-	CovidVaccinationCenterService covidVaccinationCenterService;
-
-	@Autowired
-	UserRepository userRepository;
+	@Autowired MockMvc mockMvc;
+	@Autowired CovidVaccinationCenterService covidVaccinationCenterService;
+	@Autowired UserRepository userRepository;
+	@Autowired User mockUser;
 
 	@Test
 	public void Home_테스트() throws Exception {
@@ -58,21 +53,12 @@ public class SampleTests {
 		String question3 = "SELECT NAME, POSITION, SALARY FROM EMPLOYEE";
 		String body = "{\"unit\":"+unit+", \"question1\": "+question1+", \"question2\": "+question2+", \"question3\": \""+question3+"\"}";
 
-		User user = new User();
-		user.setId(1000);
-		user.setUserID("jooyeok");
-		user.setUserPassword("!wndur0703");
-		user.setUserName("김주역");
-		user.setUserEmail("jooyeok42@naver.com");
-		List<Boolean> progress = new ArrayList<>();
-		for (int i = 0; i < 17; i++) progress.add(false);
-		user.setProgress(progress);
-		userRepository.save(user);
+		userRepository.save(mockUser);
 
 		mockMvc.perform(post("/test/grading")
 						.content(body)
 						.contentType(MediaType.APPLICATION_JSON)
-						.sessionAttr("user",user))
+						.sessionAttr("user",mockUser))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.questionList").isArray())
 				.andExpect(jsonPath("$.questionList[0].isCorrect").value(true))
@@ -96,16 +82,10 @@ public class SampleTests {
 
 	@Test
 	public void Testlist_테스트() throws Exception {
-		User user = new User();
-		user.setId(1000);
-		user.setUserID("jooyeok");
-		user.setUserPassword("!wndur0703");
-		user.setUserName("김주역");
-		user.setUserEmail("jooyeok42@naver.com");
-		userRepository.save(user);
+		userRepository.save(mockUser);
 
 		mockMvc.perform(get("/test") // 로그인 상태
-						.sessionAttr("user", user))
+						.sessionAttr("user", mockUser))
 				.andExpect(status().isOk())
 				.andExpect(view().name("test/testlist"))
 				.andDo(print());

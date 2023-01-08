@@ -26,17 +26,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class YeomTests {
 
-    @Autowired
-    MockMvc mockMvc;
-
-    @Autowired
-    BbsService bbsService;
-
-    @Autowired
-    BbsRepository bbsRepository;
-
-    @Autowired
-    UserRepository userRepository;
+    @Autowired MockMvc mockMvc;
+    @Autowired BbsService bbsService;
+    @Autowired BbsRepository bbsRepository;
+    @Autowired UserRepository userRepository;
 
     @Test
     public void Join_테스트() throws Exception{
