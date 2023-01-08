@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -56,15 +57,29 @@ public class SampleTests {
 		int question2 = 2;
 		String question3 = "SELECT NAME, POSITION, SALARY FROM EMPLOYEE";
 		String body = "{\"unit\":"+unit+", \"question1\": "+question1+", \"question2\": "+question2+", \"question3\": \""+question3+"\"}";
+
+		User user = new User();
+		user.setId(1000);
+		user.setUserID("jooyeok");
+		user.setUserPassword("!wndur0703");
+		user.setUserName("김주역");
+		user.setUserEmail("jooyeok42@naver.com");
+		List<Boolean> progress = new ArrayList<>();
+		for (int i = 0; i < 17; i++) progress.add(false);
+		user.setProgress(progress);
+		userRepository.save(user);
+
 		mockMvc.perform(post("/test/grading")
 						.content(body)
-						.contentType(MediaType.APPLICATION_JSON))
+						.contentType(MediaType.APPLICATION_JSON)
+						.sessionAttr("user",user))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.questionList").isArray())
 				.andExpect(jsonPath("$.questionList[0].isCorrect").value(true))
 				.andExpect(jsonPath("$.questionList[1].isCorrect").value(true))
 				.andExpect(jsonPath("$.questionList[2].isCorrect").value(true))
 				.andDo(print());
+		userRepository.deleteAll();
 	}
 
 	@Test

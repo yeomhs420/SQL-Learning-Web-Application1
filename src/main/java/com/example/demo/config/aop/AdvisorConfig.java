@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Map;
 
 @Configuration
 @Aspect
@@ -42,26 +43,19 @@ public class AdvisorConfig {
         return returnList;
     }
 
-    @Pointcut("execution(* com.example.demo.service.GradingService.gradeUnit*(..))")
+    @Pointcut("execution(* com.example.demo.service.GradingService.grade(..))")
     public void gradepointcut() {
     }
 
 
     @AfterReturning(value = "gradepointcut()", returning = "testResult")
-    public void changeStatus(JoinPoint joinPoint, TestResult testResult) throws Throwable {
+    public void changeStatus(JoinPoint joinPoint, TestResult testResult) {
+        Map<String, Object> userAnswer = (Map<String, Object>)joinPoint.getArgs()[0];
+        int unit_Num = Integer.parseInt(userAnswer.get("unit").toString());
         MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
         Method method = methodSignature.getMethod();
 
-        int unit_Num;
+        if (testResult.getCorrectCount() == testResult.getQuestionList().size()) testService.setStatus(unit_Num);
 
-        try {
-            if (testResult.getCorrectCount() == testResult.getQuestionList().size()) {
-                unit_Num = Integer.parseInt(method.getName().replaceAll("[^0-9]", ""));
-                testService.setStatus(unit_Num);
-                System.out.println("AOP동작확인");
-            }
-        } catch (Throwable throwable) {
-            throw throwable;
-        }
     }
 }

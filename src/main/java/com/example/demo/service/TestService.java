@@ -41,11 +41,11 @@ public class TestService {
         if(user.getProgress().get(unit - 1).equals(true)) return;
 
         user.setLearningStatus(user.getLearningStatus()+1);
-
         user.getProgress().set(unit -1,true);
 
-        System.out.println("AOP동작확인");
-
         userRepository.save(user);
+        session.setAttribute("user", user);
+        session.setMaxInactiveInterval(7200);
+
     }
 }
