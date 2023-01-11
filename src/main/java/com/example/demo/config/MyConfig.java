@@ -54,7 +54,6 @@ public class MyConfig {
     @Bean
     public User mockUser() {
         User user = new User();
-        user.setId(919191);
         user.setUserID("jooyeok");
         user.setUserPassword("!wndur0703");
         user.setUserName("김주역");
