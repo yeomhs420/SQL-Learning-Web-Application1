@@ -52,7 +52,7 @@ public class YeomTests {
                 .andDo(print());
     }
 
-    @Test
+    @Test // 단위 테스트로 실행할 것
     @Transactional("userTransactionManager")
     public void 게시판_테스트() throws Exception{
 
