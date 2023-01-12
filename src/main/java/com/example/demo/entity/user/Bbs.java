@@ -31,7 +31,7 @@ public class Bbs extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "bbs_id")    // 양방향 매핑 (지연 로딩 문제)
-    @ToString.Exclude
+    @ToString.Exclude   // toString() 결과에서 제외
     private List<Comment> comments = new ArrayList<>();
 
 }
