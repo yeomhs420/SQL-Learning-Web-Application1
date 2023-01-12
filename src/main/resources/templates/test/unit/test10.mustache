@@ -52,17 +52,17 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1" name="question1" value="1" checked>
-                                        <label for="1">SELECT * FROM SQL_TABLE WHERE 1=1 AND CODE IN('A','B') AND COL1 BETWEEN 200 AND 400;</label><br>
-                                        <input type="radio" id="2" name="question1" value="2">
-                                        <label for="2"> SELECT * FROM SQL_TABLE WHERE 1=1 AND (CODE='A' AND 200 BETWEEN COL1 AND COL2)<br></label>
+                                        <input type="radio" id="1_1" name="question1" value="1" checked>
+                                        <label for="1_1">SELECT * FROM SQL_TABLE WHERE 1=1 AND CODE IN('A','B') AND COL1 BETWEEN 200 AND 400;</label><br>
+                                        <input type="radio" id="1_2" name="question1" value="2">
+                                        <label for="1_2"> SELECT * FROM SQL_TABLE WHERE 1=1 AND (CODE='A' AND 200 BETWEEN COL1 AND COL2)<br></label>
                                             <label>OR (CODE='B' AND 200 BETWEEN COL1 AND COL2);</label><br>
-                                        <input type="radio" id="3" name="question1" value="3">
-                                        <label for="3">SELECT * FROM SQL_TABLE WHERE 1=1 AND 200 BETWEEN COL1 AND COL2;</label><br>
-                                        <input type="radio" id="4" name="question1" value="4">
-                                        <label for="4">SELECT * FROM SQL_TABLE WHERE 1=1 AND COL1 <= 200 AND COL2 >= 200;</label><br>
-                                        <input type="radio" id="5" name="question1" value="5">
-                                        <label for="5">SELECT * FROM SQL_TABLE COL1 <= 200 && COL2 >= 200; </label><br>
+                                        <input type="radio" id="1_3" name="question1" value="3">
+                                        <label for="1_3">SELECT * FROM SQL_TABLE WHERE 1=1 AND 200 BETWEEN COL1 AND COL2;</label><br>
+                                        <input type="radio" id="1_4" name="question1" value="4">
+                                        <label for="1_4">SELECT * FROM SQL_TABLE WHERE 1=1 AND COL1 <= 200 AND COL2 >= 200;</label><br>
+                                        <input type="radio" id="1_5" name="question1" value="5">
+                                        <label for="1_5">SELECT * FROM SQL_TABLE COL1 <= 200 && COL2 >= 200; </label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -95,16 +95,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1" name="question2" value="1" checked>
-                                        <label for="1">SELECT TRUE || FALSE</label><br>
-                                        <input type="radio" id="2" name="question2" value="2">
-                                        <label for="2">SELECT 1 AND TRUE</label><br>
-                                        <input type="radio" id="3" name="question2" value="3">
-                                        <label for="3">SELECT 1 XOR 0<br></label><br>
-                                        <input type="radio" id="4" name="question2" value="4">
-                                        <label for="4">SELECT 0 OR 0</label><br>
-                                        <input type="radio" id="5" name="question2" value="5">
-                                        <label for="5">SELECT NOT 0</label><br>
+                                        <input type="radio" id="2_1" name="question2" value="1" checked>
+                                        <label for="2_1">SELECT TRUE || FALSE</label><br>
+                                        <input type="radio" id="2_2" name="question2" value="2">
+                                        <label for="2_2">SELECT 1 AND TRUE</label><br>
+                                        <input type="radio" id="2_3" name="question2" value="3">
+                                        <label for="2_3">SELECT 1 XOR 0<br></label><br>
+                                        <input type="radio" id="2_4" name="question2" value="4">
+                                        <label for="2_4">SELECT 0 OR 0</label><br>
+                                        <input type="radio" id="2_5" name="question2" value="5">
+                                        <label for="2_5">SELECT NOT 0</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -175,7 +175,7 @@
                             <th class="table-secondary" colspan="2" >제출한 답</th>
                         </tr>
                         <tr>
-                            <td id="userDto-answer-1" class="initial-font" align="center"></td>
+                            <td id="user-answer-1" class="initial-font" align="center"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -201,7 +201,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-2" class="initial-font" align="center"></td>
+                                <td id="user-answer-2" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         </tbody>
@@ -229,7 +229,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-3" class="initial-font" align="center"></td>
+                                <td id="user-answer-3" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         <div>
