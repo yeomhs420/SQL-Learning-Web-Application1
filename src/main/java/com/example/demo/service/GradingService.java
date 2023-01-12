@@ -509,6 +509,7 @@ public class    GradingService {
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult));
@@ -566,6 +567,7 @@ public class    GradingService {
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
         question3.setSqlResult(getSqlResultForShow(question3, sqlResult));
@@ -631,6 +633,7 @@ public class    GradingService {
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
 
@@ -700,6 +703,7 @@ public class    GradingService {
         // 문제 3 채점
         Question question3 = new Question();
         question3.setNum(3);
+        question3.setUserAnswer(answer3);
 
         List<LinkedHashMap<String, Object>> sqlResult = validateAndGetSqlResult(answer3, sqlData, bindingResult, question3); // 사용자의 답안을 검증하고 sql 결과를 가져온다.
 

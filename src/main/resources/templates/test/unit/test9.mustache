@@ -52,16 +52,16 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1" name="question1" value="1" checked>
-                                        <label for="1">SELECT * FROM T1 WHERE COL1 <= :A AND COL1 >= :B;</label><br>
-                                        <input type="radio" id="2" name="question1" value="2">
-                                        <label for="2">SELECT * FROM T1 WHERE COL1 >= :A AND COL1 <= :B;</label><br>
-                                        <input type="radio" id="3" name="question1" value="3">
-                                        <label for="3">SELECT * FROM T1 WHERE COL1 >= :A OR COL1 <= :B;</label><br>
-                                        <input type="radio" id="4" name="question1" value="4">
-                                        <label for="4">SELECT * FROM T1 WHERE COL1 <= :A OR COL1 <= :B;</label><br>
-                                        <input type="radio" id="5" name="question1" value="5">
-                                        <label for="5">SELECT * FROM T1 WHERE COL1 > :A AND COL1 < :B;</label><br>
+                                        <input type="radio" id="1_1" name="question1" value="1" checked>
+                                        <label for="1_1">SELECT * FROM T1 WHERE COL1 <= :A AND COL1 >= :B;</label><br>
+                                        <input type="radio" id="1_2" name="question1" value="2">
+                                        <label for="1_2">SELECT * FROM T1 WHERE COL1 >= :A AND COL1 <= :B;</label><br>
+                                        <input type="radio" id="1_3" name="question1" value="3">
+                                        <label for="1_3">SELECT * FROM T1 WHERE COL1 >= :A OR COL1 <= :B;</label><br>
+                                        <input type="radio" id="1_4" name="question1" value="4">
+                                        <label for="1_4">SELECT * FROM T1 WHERE COL1 <= :A OR COL1 <= :B;</label><br>
+                                        <input type="radio" id="1_5" name="question1" value="5">
+                                        <label for="1_5">SELECT * FROM T1 WHERE COL1 > :A AND COL1 < :B;</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -94,17 +94,17 @@
                                 </tr>
                                 <tr>
                                     <td class="initial-font">
-                                        <input type="radio" id="1" name="question2" value="1" checked>
-                                        <label for="1">SELECT * FROM EMPLOYEE WHERE SALARY <= 60</label><br>
-                                        <input type="radio" id="2" name="question2" value="2">
-                                        <label for="2">SELECT * FROM EMPLOYEE WHERE SALARY >= ANY(30,40,50,60,70)</label><br>
-                                        <input type="radio" id="3" name="question2" value="3">
-                                        <label for="3">SELECT * FROM EMPLOYEE WHERE SALARY <= (SELECT MAX(SALARY) FROM EMPLOYEE<br></label>
+                                        <input type="radio" id="2_1" name="question2" value="1" checked>
+                                        <label for="2_1">SELECT * FROM EMPLOYEE WHERE SALARY <= 60</label><br>
+                                        <input type="radio" id="2_2" name="question2" value="2">
+                                        <label for="2_2">SELECT * FROM EMPLOYEE WHERE SALARY >= ANY(30,40,50,60,70)</label><br>
+                                        <input type="radio" id="2_3" name="question2" value="3">
+                                        <label for="2_3">SELECT * FROM EMPLOYEE WHERE SALARY <= (SELECT MAX(SALARY) FROM EMPLOYEE<br></label>
                                             <label> GROUP BY POSITION);</label><br>
-                                        <input type="radio" id="4" name="question2" value="4">
-                                        <label for="4">SELECT * FROM EMPLOYEE WHERE SALARY <= ALL(30,40,50,60,70)</label><br>
-                                        <input type="radio" id="5" name="question2" value="5">
-                                        <label for="5">SELECT * FROM EMPLOYEE WHERE SALARY IN (30,50,60)</label><br>
+                                        <input type="radio" id="2_4" name="question2" value="4">
+                                        <label for="2_4">SELECT * FROM EMPLOYEE WHERE SALARY <= ALL(30,40,50,60,70)</label><br>
+                                        <input type="radio" id="2_5" name="question2" value="5">
+                                        <label for="2_5">SELECT * FROM EMPLOYEE WHERE SALARY IN (30,50,60)</label><br>
                                     </td>
                                 </tr>
                             </div>
@@ -177,7 +177,7 @@
                             <th class="table-secondary" colspan="2" >제출한 답</th>
                         </tr>
                         <tr>
-                            <td id="userDto-answer-1" class="initial-font" align="center"></td>
+                            <td id="user-answer-1" class="initial-font" align="center"></td>
                         </tr>
                         </tbody>
                     </table>
@@ -203,7 +203,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-2" class="initial-font" align="center"></td>
+                                <td id="user-answer-2" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         </tbody>
@@ -231,7 +231,7 @@
                                 <th class="table-secondary" colspan="2" >제출한 답</th>
                             </tr>
                             <tr>
-                                <td id="userDto-answer-3" class="initial-font" align="center"></td>
+                                <td id="user-answer-3" class="initial-font" align="center"></td>
                             </tr>
                         </div>
                         <div>
