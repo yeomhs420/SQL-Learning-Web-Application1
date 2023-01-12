@@ -7,7 +7,7 @@
 - 프로젝트 이름 : SQL 교육 사이트 - SQL Practice
 - 프로젝트 설명 : SQL 입문자들에게 SQL의 기본 문법부터 다중 테이블 연산까지의 내용을 교육시켜주고 학습 테스트 및 Q&A 게시판을 제공한다.
 - 기술 스택 : SpringBoot, JPA Hibernate, Spring AOP, Validation, OpenAPI(JSON), Spring Security(PasswordEncoder), MyBatis, DB(MySQL, H2), Ajax, Spring Test, JUnit, Front-end(mustache, bootstrap, html, css, js)
-- 진행 인원 및 작업 기간 : 4인, 2022.7.08 ~ 2023.01.11 (~8월 학습 기간, 9월~ 프로그래밍 기간)
+- 진행 인원 및 작업 기간 : 3인, 2022.7.08 ~ 2023.01.11 (~8월 학습 기간, 9월~ 프로그래밍 기간)
 - 사용 에디터 : IntelliJ
 - 사용 프로젝트 : Spring Maven
 - 버전 관리 툴 : Git
