@@ -100,7 +100,7 @@
 
 - 채점 결과 반영 : 채점 메소드의 반환을 AOP가 감지(@AfterReturning)하여 채점 결과 객체(TestResult)를 통해 유저의 테스트 현황 정보를 DB에 업데이트
 
-#### 2) OpenAPI 호출
+### 2) OpenAPI 호출
 
 - 데이터 샘플은 OpenAPI로 수집함
 - RestTemplate을 통해 다른 서버에 있는 OpenAPI를 가져오는 방법과 csv파일로 다운받아서 파싱하는 방법을 사용함. 데이터를 가져오는 동작은 서버 실행 시 Listener을 통해 최초 1회만 실행됨
