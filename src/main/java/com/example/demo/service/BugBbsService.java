@@ -4,6 +4,7 @@ import com.example.demo.entity.user.*;
 import com.example.demo.jpa.repository.user.BugBbsRepository;
 import com.example.demo.jpa.repository.user.BugCommentRepository;
 import com.example.demo.jpa.repository.user.UserRepository;
+import com.example.demo.vo.BbsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -51,15 +52,15 @@ public class BugBbsService {
 
         return Bbs;
     }
-    public Page<BugBbs> getBbsList(HttpServletRequest request, int p){
+    public Page<BugBbs> getBbsList(BbsDto.SearchRequest request, int p){
 
         Page<BugBbs> Bbs;
 
         PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
 
-        if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
-            String name = request.getParameter("name");
-            String keyword = request.getParameter("keyword");
+        if(request.getKeyword() != null && !(request.getKeyword().equals(""))) {
+            String name = request.getName();
+            String keyword = request.getKeyword();
 
 
             List<BugBbs> bbsList = eagerService.getBugBbsListWithEagerComments(name, keyword);
@@ -83,9 +84,9 @@ public class BugBbsService {
         return Bbs;
     }
 
-    public boolean insertBbs(HttpServletRequest request,String userID, Model model) {   // 게시판 글 등록
+    public boolean insertBbs(BbsDto.PostRequest request,String userID) {   // 게시판 글 등록
 
-        if(request.getParameter("Title").isEmpty() || request.getParameter("Content").isEmpty())
+        if(request.getTitle().isEmpty() || request.getContent().isEmpty())
             return false;
 
         else {
@@ -93,8 +94,8 @@ public class BugBbsService {
             BugBbs bbs = new BugBbs();
 
             bbs.setUser(user);
-            bbs.setTitle(request.getParameter("Title"));
-            bbs.setContent(request.getParameter("Content"));
+            bbs.setTitle(request.getTitle());
+            bbs.setContent(request.getContent());
 
             try {
                 bugBbsRepository.save(bbs);
@@ -113,21 +114,21 @@ public class BugBbsService {
         return bugCommentRepository.findById(comment_id).get().getUser().getUserID();
     }
 
-    public boolean updateBbs(HttpServletRequest request) {
+    public boolean updateBbs(BbsDto.UpdateRequest request) {
 
-        if(request.getParameter("Title").isEmpty() || request.getParameter("Content").isEmpty())
+        if(request.getTitle().isEmpty() || request.getContent().isEmpty())
             return false;
 
         else {
-            Long bbsID = Long.parseLong(request.getParameter("bbs_id"));
-            String title = request.getParameter("Title");
-            String content = request.getParameter("Content");
+            Long bbsId = request.getBbs_id();
+            String title = request.getTitle();
+            String content = request.getContent();
 
-            String userID = bugBbsRepository.findById(bbsID).get().getUser().getUserID();
+            String userID = bugBbsRepository.findById(bbsId).get().getUser().getUserID();
             User user = userRepository.findByUserID(userID).get(0);
 
-            BugBbs bbs = bugBbsRepository.findById(bbsID).orElse(null);
-            BugBbs updatedBbs = new BugBbs(bbsID, title, user, content, null, bugCommentRepository.findByBbsId(bbsID));
+            BugBbs bbs = bugBbsRepository.findById(bbsId).orElse(null);
+            BugBbs updatedBbs = new BugBbs(bbsId, title, user, content, null, bugCommentRepository.findByBbsId(bbsId));
 
             try {
                 if(bbs != null) {
@@ -166,15 +167,15 @@ public class BugBbsService {
         return comments;
     }
 
-    public boolean insertComment(HttpServletRequest request, User user, Model model) {
+    public boolean insertComment(BbsDto.CommentRequest request, User user, Model model) {
 
-        if(request.getParameter("body").isEmpty())
+        if(request.getBody().isEmpty())
             return false;
 
         else{
             User User = userRepository.findByUserID(user.getUserID()).get(0);
-            BugBbs bbs = bugBbsRepository.findById(Long.parseLong(request.getParameter("bbs_id"))).get();
-            BugComment comment = new BugComment(null, bbs, User, User.getUserName(), request.getParameter("body"), null);
+            BugBbs bbs = bugBbsRepository.findById(request.getBbs_id()).get();
+            BugComment comment = new BugComment(null, bbs, User, User.getUserName(), request.getBody(), null);
 
             try {
                 bugCommentRepository.save(comment);

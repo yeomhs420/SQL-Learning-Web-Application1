@@ -6,6 +6,7 @@ import com.example.demo.entity.user.BugComment;
 import com.example.demo.entity.user.User;
 import com.example.demo.service.BugBbsService;
 import com.example.demo.service.EagerService;
+import com.example.demo.vo.BbsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,14 +33,10 @@ public class BugForumController {
     EagerService eagerService;
 
     @RequestMapping({"/", ""})
-    public String bugforum(Model model, HttpServletRequest request){
+    public String bugForum(@RequestParam(defaultValue = "1") int page, Model model, BbsDto.SearchRequest request){
 
         boolean searchExist = false;    // 검색 유무
         List<Integer> pList = new ArrayList<>();
-        int page = 1;
-
-        if(request.getParameter("p") != null)
-            page = Integer.parseInt(request.getParameter("p"));    // 현재 페이지
 
         int fpage = page - (page - 1) % 5;    // 1~5 -> 1 , 6~10 -> 6
 
@@ -65,28 +62,26 @@ public class BugForumController {
         if(bugBbsService.getBbsList(request, fpage + 4).hasNext())
             model.addAttribute("nextIndex", fpage + 5); // 다음 페이지
 
-        if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
-            String name = request.getParameter("name");
-            String keyword = request.getParameter("keyword");
+        if(request.getKeyword() != null && !(request.getKeyword().equals(""))) {
+            String name = request.getName();
+            String keyword = request.getKeyword();
             searchExist = true;
 
             model.addAttribute("searchExist", searchExist);
             model.addAttribute("name", name);
             model.addAttribute("keyword", keyword);
-        }   // 검색 내용이 있을 시
+        }  // 검색 내용이 있을 시
 
 
         return "/board/bugforum";
     }
 
     @RequestMapping("/bbs_view")
-    public String bbsView(Model model, HttpServletRequest request){
+    public String bbsView(@RequestParam Long bbs_id, Model model){
 
-        Long bbsId = Long.parseLong(request.getParameter("bbs_id"));
+        BugBbs bbs = eagerService.getBugBbsWithEagerComments(bbs_id);
 
-        BugBbs bbs = eagerService.getBugBbsWithEagerComments(bbsId);
-
-        List<BugComment> comments = bugBbsService.getComments(bbsId);
+        List<BugComment> comments = bugBbsService.getComments(bbs_id);
 
         model.addAttribute("bbs", bbs);
         model.addAttribute("comments", comments);
@@ -102,10 +97,10 @@ public class BugForumController {
     }
 
     @RequestMapping("/writeAction")
-    public String bbsWriteAction(RedirectAttributes re, HttpServletRequest request){
+    public String bbsWriteAction(RedirectAttributes re, BbsDto.PostRequest request){
         User User = (User)session.getAttribute("user");
 
-        if(bugBbsService.insertBbs(request,User.getUserID(), re))
+        if(bugBbsService.insertBbs(request,User.getUserID()))
             return "redirect:/bugforum";
 
         else {
@@ -139,14 +134,14 @@ public class BugForumController {
     }
 
     @RequestMapping("/bbs_updateAction")
-    public String bbsUpdateAction(HttpServletRequest request, RedirectAttributes re){
+    public String bbsUpdateAction(BbsDto.UpdateRequest request, RedirectAttributes re){
 
         if(bugBbsService.updateBbs(request))
-            return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
+            return "redirect:bbs_view?bbs_id=" + request.getBbs_id();
 
         else {
             re.addFlashAttribute("msg", "입력이 안된 사항이 있습니다.");
-            return "redirect:/bugforum/bbs_update?bbs_id=" + request.getParameter("bbs_id");
+            return "redirect:/bugforum/bbs_update?bbs_id=" + request.getBbs_id();
         }
 
     }
@@ -174,22 +169,22 @@ public class BugForumController {
     }
 
     @RequestMapping("/commentAction")
-    public String commentAction(HttpServletRequest request, Model model, RedirectAttributes re){
+    public String commentAction(BbsDto.CommentRequest request, Model model, RedirectAttributes re){
 
-        model.addAttribute("bbsId", request.getParameter("bbs_id"));
+        model.addAttribute("bbsId", request.getBbs_id());
 
         User user = (User)session.getAttribute("user");
 
         if(user == null) {
             re.addFlashAttribute("msg", "로그인이 필요합니다.");
-            return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
+            return "redirect:bbs_view?bbs_id=" + request.getBbs_id();
         }
 
         if(bugBbsService.insertComment(request, user, model))
-            return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
+            return "redirect:bbs_view?bbs_id=" + request.getBbs_id();
         else {
             re.addFlashAttribute("msg", "내용을 입력해 주세요.");
-            return "redirect:bbs_view?bbs_id=" + request.getParameter("bbs_id");
+            return "redirect:bbs_view?bbs_id=" + request.getBbs_id();
         }
 
     }

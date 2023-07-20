@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.entity.user.Bbs;
 import com.example.demo.entity.user.BugBbs;
+import com.example.demo.entity.user.Comment;
 import com.example.demo.entity.user.User;
 import com.example.demo.jpa.repository.user.BbsRepository;
 import com.example.demo.jpa.repository.user.BugBbsRepository;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -107,6 +110,12 @@ public class EagerService {
         Page<Bbs> Bbs = bbsRepository.findAll(pageable);
 
         for(Bbs bbs : Bbs){Hibernate.initialize(bbs.getComments());}
+
+//        for(Bbs bbs: Bbs){
+//            for(Comment c : bbs.getComments()){
+//                c.getNickname();
+//            }
+//        } // 위와 동일하게 강제 로딩
 
         return Bbs;
 
