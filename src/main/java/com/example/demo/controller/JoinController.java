@@ -42,7 +42,7 @@ public class JoinController {
         }
 
         return "/login/join";
-    };
+    }
 
     @PostMapping("/action")
     public String JoinAction(@Valid UserDto userDto, BindingResult bindingResult, RedirectAttributes re, Model model) {

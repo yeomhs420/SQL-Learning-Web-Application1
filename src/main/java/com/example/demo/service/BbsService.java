@@ -6,6 +6,7 @@ import com.example.demo.entity.user.User;
 import com.example.demo.jpa.repository.user.BbsRepository;
 import com.example.demo.jpa.repository.user.CommentRepository;
 import com.example.demo.jpa.repository.user.UserRepository;
+import com.example.demo.vo.BbsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -52,15 +54,15 @@ public class BbsService {
 
         return Bbs;
     }
-    public Page<Bbs> getBbsList(HttpServletRequest request, int p){
+    public Page<Bbs> getBbsList(BbsDto.SearchRequest request, int p){
 
         Page<Bbs> Bbs;
 
         PageRequest pageable = PageRequest.of(p - 1,10, Sort.by(Sort.Direction.DESC, "id"));
 
-        if(request.getParameter("keyword") != null && !(request.getParameter("keyword").equals(""))) {
-            String name = request.getParameter("name");
-            String keyword = request.getParameter("keyword");
+        if(request.getKeyword() != null && !(request.getKeyword().equals(""))) {
+            String name = request.getName();
+            String keyword = request.getKeyword();
 
 
             List<Bbs> bbsList = eagerService.getBbsListWithEagerComments(name, keyword);
@@ -84,9 +86,9 @@ public class BbsService {
         return Bbs;
     }
 
-    public boolean insertBbs(HttpServletRequest request,String userID, RedirectAttributes re) {   // 게시판 글 등록
+    public boolean insertBbs(BbsDto.PostRequest request, String userID) {   // 게시판 글 등록
 
-        if(request.getParameter("Title").isEmpty() || request.getParameter("Content").isEmpty())
+        if(request.getTitle().isEmpty() || request.getContent().isEmpty())
             return false;
 
         else {
@@ -94,8 +96,8 @@ public class BbsService {
 
             Bbs bbs = new Bbs();
             bbs.setUser(user);
-            bbs.setTitle(request.getParameter("Title"));
-            bbs.setContent(request.getParameter("Content"));
+            bbs.setTitle(request.getTitle());
+            bbs.setContent(request.getContent());
 
             try {
                 bbsRepository.save(bbs);
@@ -112,22 +114,22 @@ public class BbsService {
 
     public String getUserIdByCommentId(Long comment_id) {return commentRepository.findById(comment_id).get().getUser().getUserID();}
 
-    public boolean updateBbs(HttpServletRequest request) {
+    public boolean updateBbs(BbsDto.UpdateRequest request) {
 
-        if(request.getParameter("Title").isEmpty() || request.getParameter("Content").isEmpty())
+        if(request.getTitle().isEmpty() || request.getContent().isEmpty())
             return false;
 
 
         else {
-            Long bbsID = Long.parseLong(request.getParameter("bbs_id"));
-            String title = request.getParameter("Title");
-            String content = request.getParameter("Content");
+            Long bbsId = request.getBbs_id();
+            String title = request.getTitle();
+            String content = request.getContent();
 
-            String userID = bbsRepository.findById(bbsID).get().getUser().getUserID();
-            User user = userRepository.findByUserID(userID).get(0);
+            String userId = bbsRepository.findById(bbsId).get().getUser().getUserID();
+            User user = userRepository.findByUserID(userId).get(0);
 
-            Bbs bbs = bbsRepository.findById(bbsID).orElseThrow(() -> new IllegalArgumentException("게시글 수정 실패: 해당 게시글이 존재하지 않습니다."));
-            Bbs updatedBbs = new Bbs(bbsID, title, user, content, null, commentRepository.findByBbsId(bbsID));
+            Bbs bbs = bbsRepository.findById(bbsId).orElseThrow(() -> new IllegalArgumentException("게시글 수정 실패: 해당 게시글이 존재하지 않습니다."));
+            Bbs updatedBbs = new Bbs(bbsId, title, user, content, null, commentRepository.findByBbsId(bbsId));
 
             try {
                 if(bbs != null) {
@@ -154,7 +156,6 @@ public class BbsService {
         }
     }
 
-
     public List<Comment> getComments(Long id){
 
         List<Comment> comments =  commentRepository.findByBbsId(id);
@@ -166,16 +167,16 @@ public class BbsService {
         return comments;
     }
 
-    public boolean insertComment(HttpServletRequest request, User user, Model model) {
+    public boolean insertComment(BbsDto.CommentRequest request, User user) {
 
-        if(request.getParameter("body").isEmpty())
+        if(request.getBody().isEmpty())
             return false;
 
         else{
             User User = userRepository.findByUserID(user.getUserID()).get(0);
-            Bbs bbs = bbsRepository.findById(Long.parseLong(request.getParameter("bbs_id"))).orElseThrow(() -> 
+            Bbs bbs = bbsRepository.findById(request.getBbs_id()).orElseThrow(() ->
                     new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."));
-            Comment comment = new Comment(null, bbs, User, User.getUserName(), request.getParameter("body"), null);
+            Comment comment = new Comment(null, bbs, User, User.getUserName(), request.getBody(), null);
 
             try {
                 commentRepository.save(comment);
