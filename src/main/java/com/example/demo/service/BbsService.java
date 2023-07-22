@@ -158,7 +158,10 @@ public class BbsService {
 
     public List<Comment> getComments(Long id){
 
-        List<Comment> comments =  commentRepository.findByBbsId(id);
+        Bbs bbs = bbsRepository.findByIdWithComments(id);   // Fetch join 을 사용하여 Comment 객체를 함께 로드
+        List<Comment> comments = bbs.getComments();
+
+//        List<Comment> comments =  commentRepository.findByBbsId(id);  // 해당 시점은 영속성 컨텍스트에 Bbs 객체정보가 없음
 
         for(Comment c : comments){
             c.setDatetime(c.getCreatedAt().toString().replace("T", " "));

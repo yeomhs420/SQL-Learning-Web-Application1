@@ -28,8 +28,7 @@ public class Bbs extends BaseEntity {
 
     private String Datetime;    // 자동생성된 datetime 'T' 제거를 위한 필드
 
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // 기본적으로 Lazy 로 설정
     @JoinColumn(name = "bbs_id")    // 양방향 매핑 (지연 로딩 문제)
     @ToString.Exclude   // toString() 결과에서 제외
     private List<Comment> comments = new ArrayList<>();
