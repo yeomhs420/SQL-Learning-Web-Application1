@@ -7,7 +7,7 @@
 - 프로젝트 이름 : SQL 교육 사이트 - SQL Practice
 - 프로젝트 설명 : SQL 입문자들에게 SQL의 기본 문법부터 다중 테이블 연산까지의 내용을 교육시켜주고 학습 테스트 및 Q&A 게시판을 제공한다.
 - 기술 스택 : SpringBoot, JPA Hibernate, Spring AOP, Validation, OpenAPI(JSON), Spring Security(PasswordEncoder), MyBatis, DB(MySQL, H2), Ajax, Spring Test, JUnit, Front-end(mustache, bootstrap, html, css, js)
-- 진행 인원 및 작업 기간 : 4인, 2022.7.08 ~ 2023.01.11 (~8월 학습 기간, 9월~ 프로그래밍 기간)
+- 진행 인원 및 작업 기간 : 3인, 2022.7.08 ~ 2023.01.11 (~8월 학습 기간, 9월~ 프로그래밍 기간)
 - 사용 에디터 : IntelliJ
 - 사용 프로젝트 : Spring Maven
 - 버전 관리 툴 : Git
@@ -100,7 +100,7 @@
 
 - 채점 결과 반영 : 채점 메소드의 반환을 AOP가 감지(@AfterReturning)하여 채점 결과 객체(TestResult)를 통해 유저의 테스트 현황 정보를 DB에 업데이트
 
-#### 2) OpenAPI 호출
+### 2) OpenAPI 호출
 
 - 데이터 샘플은 OpenAPI로 수집함
 - RestTemplate을 통해 다른 서버에 있는 OpenAPI를 가져오는 방법과 csv파일로 다운받아서 파싱하는 방법을 사용함. 데이터를 가져오는 동작은 서버 실행 시 Listener을 통해 최초 1회만 실행됨
@@ -129,8 +129,10 @@
 
 - 모든 JPA 연관관계 매핑에 지연로딩(Lazy) 방식 적용
 
+
 ※ 지연 로딩으로 설정된 필드를 강제로 초기화해야 할 때는 EagerService라는 서비스 계층에서 트랜잭션을 열어 Hibernate.initializer 메소드로 해결
 or Fetch join을 통해 연관된 객체를 함께 로딩하여 해결
+
 
 - 중복되는 채점 결과 반영 로직은 AOP를 통해 처리
 
