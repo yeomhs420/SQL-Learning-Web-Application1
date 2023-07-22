@@ -77,7 +77,7 @@ public class GeneralForumController {
     @RequestMapping("/bbs_view")
     public String bbsView(@RequestParam Long bbs_id, Model model){
 
-        Bbs bbs = eagerService.getBbsWithEagerComments(bbs_id);
+        Bbs bbs = eagerService.getBbs(bbs_id); // 메소드 종료 후 bbs 는 준영속 상태가 됨
 
         List<Comment> comments = bbsService.getComments(bbs_id);
 

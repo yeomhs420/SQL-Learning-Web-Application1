@@ -37,10 +37,10 @@ public class EagerService {
         return user;
     }
 
-    public Bbs getBbsWithEagerComments(Long id){
+    public Bbs getBbs(Long id){
         Bbs bbs = bbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
-        Hibernate.initialize(bbs.getComments());
+//        Hibernate.initialize(bbs.getComments());  // 강제 초기화 대신 Fetch join 을 활용했으므로 주석 처리
 
         return bbs;
     }
