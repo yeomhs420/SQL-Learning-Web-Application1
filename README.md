@@ -129,7 +129,8 @@
 
 - 모든 JPA 연관관계 매핑에 지연로딩(Lazy) 방식 적용
 
-※ 지연 로딩으로 설정된 필드를 강제로 초기화해야 할 때는 EagerService라는 서비스 계층에서 트랜잭션을 열어 Hibernate.initializer 메소드로 해결
+※ 지연 로딩으로 설정된 필드를 강제로 초기화해야 할 때는 EagerService라는 서비스 계층에서 트랜잭션을 열어 Hibernate.initializer 메소드로 해결 
+or Fetch join을 통해 연관된 객체를 함께 로딩하여 해결
 
 - 중복되는 채점 결과 반영 로직은 AOP를 통해 처리
 
