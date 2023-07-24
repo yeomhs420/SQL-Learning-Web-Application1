@@ -5,6 +5,7 @@ import com.example.demo.jpa.repository.user.BugBbsRepository;
 import com.example.demo.jpa.repository.user.BugCommentRepository;
 import com.example.demo.jpa.repository.user.UserRepository;
 import com.example.demo.vo.BbsDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -31,6 +32,9 @@ public class BugBbsService {
 
     @Autowired
     EagerService eagerService;
+
+    @Autowired
+    ModelMapper modelMapper;
 
     public BugBbs getBbs(Long id){
         BugBbs bbs = bugBbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
@@ -90,12 +94,11 @@ public class BugBbsService {
             return false;
 
         else {
+            BugBbs bbs = modelMapper.map(request, BugBbs.class);
+
             User user = userRepository.findByUserID(userID).get(0);
-            BugBbs bbs = new BugBbs();
 
             bbs.setUser(user);
-            bbs.setTitle(request.getTitle());
-            bbs.setContent(request.getContent());
 
             try {
                 bugBbsRepository.save(bbs);
@@ -124,15 +127,13 @@ public class BugBbsService {
             String title = request.getTitle();
             String content = request.getContent();
 
-            String userID = bugBbsRepository.findById(bbsId).get().getUser().getUserID();
-            User user = userRepository.findByUserID(userID).get(0);
-
-            BugBbs bbs = bugBbsRepository.findById(bbsId).orElse(null);
-            BugBbs updatedBbs = new BugBbs(bbsId, title, user, content, null, bugCommentRepository.findByBbsId(bbsId));
+            BugBbs bbs = bugBbsRepository.findById(bbsId).orElseThrow(() -> new IllegalArgumentException("게시글 수정 실패: 해당 게시글이 존재하지 않습니다."));
+            bbs.setTitle(title);
+            bbs.setContent(content);
 
             try {
                 if(bbs != null) {
-                    bugBbsRepository.save(updatedBbs); // 게시판 수정
+                    bugBbsRepository.save(bbs); // 게시판 수정
                 }
             }catch (Exception e) {
                 e.printStackTrace();
@@ -158,7 +159,8 @@ public class BugBbsService {
 
     public List<BugComment> getComments(Long id){
 
-        List<BugComment> comments =  bugCommentRepository.findByBbsId(id);
+        BugBbs bbs =  bugBbsRepository.findByIdWithBugComments(id);
+        List<BugComment> comments = bbs.getComments();
 
         for(BugComment c : comments){
             c.setDatetime(c.getCreatedAt().toString().replace("T", " "));
@@ -167,15 +169,18 @@ public class BugBbsService {
         return comments;
     }
 
-    public boolean insertComment(BbsDto.CommentRequest request, User user, Model model) {
+    public boolean insertComment(BbsDto.CommentRequest request, User user) {
 
         if(request.getBody().isEmpty())
             return false;
 
         else{
-            User User = userRepository.findByUserID(user.getUserID()).get(0);
-            BugBbs bbs = bugBbsRepository.findById(request.getBbs_id()).get();
-            BugComment comment = new BugComment(null, bbs, User, User.getUserName(), request.getBody(), null);
+            BugBbs bbs = bugBbsRepository.findById(request.getBbs_id()).orElseThrow(() -> new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."));
+
+            BugComment comment = modelMapper.map(request, BugComment.class);
+            comment.setUser(user);
+            comment.setBbs(bbs);
+            comment.setNickname(user.getUserName());
 
             try {
                 bugCommentRepository.save(comment);

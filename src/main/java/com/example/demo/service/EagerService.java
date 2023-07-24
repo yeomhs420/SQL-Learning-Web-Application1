@@ -111,12 +111,6 @@ public class EagerService {
 
         for(Bbs bbs : Bbs){Hibernate.initialize(bbs.getComments());}
 
-//        for(Bbs bbs: Bbs){
-//            for(Comment c : bbs.getComments()){
-//                c.getNickname();
-//            }
-//        } // 위와 동일하게 강제 로딩
-
         return Bbs;
 
     }
