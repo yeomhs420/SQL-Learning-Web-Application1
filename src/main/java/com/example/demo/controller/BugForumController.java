@@ -180,7 +180,7 @@ public class BugForumController {
             return "redirect:bbs_view?bbs_id=" + request.getBbs_id();
         }
 
-        if(bugBbsService.insertComment(request, user, model))
+        if(bugBbsService.insertComment(request, user))
             return "redirect:bbs_view?bbs_id=" + request.getBbs_id();
         else {
             re.addFlashAttribute("msg", "내용을 입력해 주세요.");

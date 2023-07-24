@@ -7,6 +7,7 @@ import com.example.demo.jpa.repository.user.BbsRepository;
 import com.example.demo.jpa.repository.user.CommentRepository;
 import com.example.demo.jpa.repository.user.UserRepository;
 import com.example.demo.vo.BbsDto;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,10 @@ public class BbsService {
 
     @Autowired
     EagerService eagerService;
+
+    @Autowired
+    ModelMapper modelMapper;
+
 
     public Bbs getBbs(Long id){
         Bbs bbs = bbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
@@ -92,12 +97,11 @@ public class BbsService {
             return false;
 
         else {
+            Bbs bbs = modelMapper.map(request, Bbs.class);
+
             User user = userRepository.findByUserID(userID).get(0);
 
-            Bbs bbs = new Bbs();
             bbs.setUser(user);
-            bbs.setTitle(request.getTitle());
-            bbs.setContent(request.getContent());
 
             try {
                 bbsRepository.save(bbs);
@@ -125,15 +129,13 @@ public class BbsService {
             String title = request.getTitle();
             String content = request.getContent();
 
-            String userId = bbsRepository.findById(bbsId).get().getUser().getUserID();
-            User user = userRepository.findByUserID(userId).get(0);
-
             Bbs bbs = bbsRepository.findById(bbsId).orElseThrow(() -> new IllegalArgumentException("게시글 수정 실패: 해당 게시글이 존재하지 않습니다."));
-            Bbs updatedBbs = new Bbs(bbsId, title, user, content, null, commentRepository.findByBbsId(bbsId));
+            bbs.setTitle(title);
+            bbs.setContent(content);
 
             try {
                 if(bbs != null) {
-                    bbsRepository.save(updatedBbs); // 게시판 수정
+                    bbsRepository.save(bbs); // 게시판 수정
                 }
             }catch (Exception e) {
                 e.printStackTrace();
@@ -156,30 +158,31 @@ public class BbsService {
         }
     }
 
-    public List<Comment> getComments(Long id){
+    public List<Comment> getComments(Long id){  // @Transactional 로 감싸 proxy 객체를 사용하는 방법과 Fetch join 을 사용하여 실제 객체를 가져오는 방법 2가지 사용가능
 
-        Bbs bbs = bbsRepository.findByIdWithComments(id);   // Fetch join 을 사용하여 Comment 객체를 함께 로드
-        List<Comment> comments = bbs.getComments();
+        Bbs bbs = bbsRepository.findByIdWithComments(id);   // @Transactional 이 없으면 Fetch join 을 사용하여 실제 Comment 객체를 함께 로드해야함
+        List<Comment> comments = bbs.getComments(); // Fetch join 을 사용하면 proxy 가 아닌 실제 객체를 가져오게 됨
 
-//        List<Comment> comments =  commentRepository.findByBbsId(id);  // 해당 시점은 영속성 컨텍스트에 Bbs 객체정보가 없음
-
-        for(Comment c : comments){
+        for(Comment c : comments){  // @Transactional 를 사용하게 될 경우, DB 로부터 로드되어 트랜잭션 범위 내에서 프록시 객체(지연 로딩된 comments)가 초기화됨 = 실제 엔티티로 로딩
             c.setDatetime(c.getCreatedAt().toString().replace("T", " "));
         }
 
         return comments;
     }
 
+    @Transactional
     public boolean insertComment(BbsDto.CommentRequest request, User user) {
 
         if(request.getBody().isEmpty())
             return false;
 
         else{
-            User User = userRepository.findByUserID(user.getUserID()).get(0);
-            Bbs bbs = bbsRepository.findById(request.getBbs_id()).orElseThrow(() ->
-                    new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."));
-            Comment comment = new Comment(null, bbs, User, User.getUserName(), request.getBody(), null);
+            Bbs bbs = bbsRepository.findById(request.getBbs_id()).orElseThrow(() -> new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다."));
+
+            Comment comment = modelMapper.map(request, Comment.class);
+            comment.setUser(user);
+            comment.setNickname(user.getUserName());
+            comment.setBbs(bbs);
 
             try {
                 commentRepository.save(comment);
@@ -192,9 +195,8 @@ public class BbsService {
     }
 
     public void deleteComment(Long commentId) {
-        Long bbsId = commentRepository.findById(commentId).get().getBbs().getId();
 
-        Comment comment = commentRepository.findById(commentId).orElse(null);
+        Comment comment = commentRepository.findById(commentId).orElseThrow(() -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다."));
 
         if(comment != null){
             try {
