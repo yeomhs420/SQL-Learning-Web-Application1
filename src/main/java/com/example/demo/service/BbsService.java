@@ -69,7 +69,6 @@ public class BbsService {
             String name = request.getName();
             String keyword = request.getKeyword();
 
-
             List<Bbs> bbsList = eagerService.getBbsListWithEagerComments(name, keyword);
 
             Bbs = listToPage(bbsList, pageable);   // List -> Page 변환

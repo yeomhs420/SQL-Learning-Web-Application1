@@ -30,7 +30,7 @@ public class Bbs extends BaseEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true) // 기본적으로 Lazy 로 설정
     @JoinColumn(name = "bbs_id")    // 양방향 매핑 (지연 로딩 문제)
-    @ToString.Exclude   // toString() 결과에서 제외
+    @ToString.Exclude   // toString() 결과에서 제외 -> 순환 참조 문제
     private List<Comment> comments = new ArrayList<>();
 
 }
