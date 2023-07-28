@@ -41,14 +41,11 @@ public class EagerService {
         Bbs bbs = bbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
 
 //        Hibernate.initialize(bbs.getComments());  // 강제 초기화 대신 Fetch join 을 활용했으므로 주석 처리
-
         return bbs;
     }
 
     public BugBbs getBugBbsWithEagerComments(Long id){
         BugBbs bbs = bugBbsRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
-
-        Hibernate.initialize(bbs.getComments());
 
         return bbs;
     }
@@ -58,25 +55,18 @@ public class EagerService {
         List<Bbs> bbsList;
 
         if(name.equals("Title")){   // Title 로 검색할 경우
-            bbsList = bbsRepository.findAll().stream().filter(x -> x.getTitle().contains(keyword)).collect(Collectors.toList());
-
-            for(Bbs bbs : bbsList){Hibernate.initialize(bbs.getComments());}
+            bbsList = bbsRepository.findByTitleWithComments(keyword);   // join fetch comments
         }
 
         else if (name.equals("Writer")) {
-            bbsList = bbsRepository.findAll().stream().filter(x -> x.getUser().getUserName().contains(keyword)).collect(Collectors.toList());
-
-            for(Bbs bbs : bbsList){Hibernate.initialize(bbs.getComments());}
+            bbsList = bbsRepository.findByWriterWithComments(keyword);
         }
 
         else{
-            bbsList = bbsRepository.findAll().stream().filter(x -> x.getContent().contains(keyword)).collect(Collectors.toList());
-
-            for(Bbs bbs : bbsList){Hibernate.initialize(bbs.getComments());}
+            bbsList = bbsRepository.findByContentWithComments(keyword);
         }
 
         return bbsList;
-
     }
 
     public List<BugBbs> getBugBbsListWithEagerComments(String name, String keyword){
@@ -84,44 +74,26 @@ public class EagerService {
         List<BugBbs> bbsList;
 
         if(name.equals("Title")){   // Title 로 검색할 경우
-            bbsList = bugBbsRepository.findAll().stream().filter(x -> x.getTitle().contains(keyword)).collect(Collectors.toList());
-
-            for(BugBbs bbs : bbsList){Hibernate.initialize(bbs.getComments());}
+            bbsList = bugBbsRepository.findByTitleWithComments(keyword);
         }
 
         else if (name.equals("Writer")) {
-            bbsList = bugBbsRepository.findAll().stream().filter(x -> x.getUser().getUserName().contains(keyword)).collect(Collectors.toList());
-
-            for(BugBbs bbs : bbsList){Hibernate.initialize(bbs.getComments());}
+            bbsList = bugBbsRepository.findByWriterWithComments(keyword);
         }
 
         else{
-            bbsList = bugBbsRepository.findAll().stream().filter(x -> x.getContent().contains(keyword)).collect(Collectors.toList());
-
-            for(BugBbs bbs : bbsList){Hibernate.initialize(bbs.getComments());}
+            bbsList = bugBbsRepository.findByContentWithComments(keyword);
         }
 
-
         return bbsList;
-
     }
 
     public Page<Bbs> getPagedBbsWithEagerComments(PageRequest pageable){
-        Page<Bbs> Bbs = bbsRepository.findAll(pageable);
-
-        for(Bbs bbs : Bbs){Hibernate.initialize(bbs.getComments());}
-
-        return Bbs;
-
+        return bbsRepository.findAll(pageable);
     }
 
     public Page<BugBbs> getPagedBugBbsWithEagerComments(PageRequest pageable){
-        Page<BugBbs> Bbs = bugBbsRepository.findAll(pageable);
-
-        for(BugBbs bbs : Bbs){Hibernate.initialize(bbs.getComments());}
-
-        return Bbs;
-
+        return bugBbsRepository.findAll(pageable);
     }
 
 }

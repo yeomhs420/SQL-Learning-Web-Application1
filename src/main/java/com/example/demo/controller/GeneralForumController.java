@@ -89,7 +89,7 @@ public class GeneralForumController {
     }
 
     @RequestMapping("/write")
-    public String bbsWrite(Model model){
+    public String bbsWrite(){
 
         return "/board/write";
     }
