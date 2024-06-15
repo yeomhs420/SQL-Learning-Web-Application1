@@ -21,7 +21,7 @@
 
 
 ## 1. 웹 애플리케이션 구성
-<img src="img.png" width="300">
+<img src="img/img.png" width="300">
 
 
 ## 2. UI 구성
@@ -38,9 +38,9 @@
 
 - 총 17개의 학습 주제로 구성
 
-<img src="img_1.png" width="300">
+<img src="img/img_1.png" width="300">
 -
-<img src="img_2.png" width="300">
+<img src="img/img_2.png" width="300">
 
 - 학습하기 Unit 1
 
@@ -56,15 +56,15 @@
 
 - 해결한 테스트 개수를 "/test"의 우측 유저 정보창에 표시
 
-<img src="img_4.png" width="300">
+<img src="img/img_4.png" width="300">
 
 - 학습 테스트 Unit 12 문제
 
-<img src="img_5.png" width="300">
+<img src="img/img_5.png" width="300">
 
 - 문제 제출 시 바로 아래에 결과 표시
 
-<img src="img_6.png" width="300">
+<img src="img/img_6.png" width="300">
 
 ##
 
@@ -72,11 +72,11 @@
 
 - 하단에 최대 5개의 페이지 인덱스 표시, 한 페이지 당 10개의 글 표시
 
-<img src="img_7.png" width="300">
+<img src="img/img_7.png" width="300">
 
 - 글 수정/삭제, 댓글 수정/삭제 기능 (댓글의 경우 ajax로 동작)
 
-<img src="img_8.png" width="300">
+<img src="img/img_8.png" width="300">
 
 ##
 
@@ -84,7 +84,7 @@
 
 - DB 쿼리 변환 사이트, 프로그래머스 SQL 고득점 Kit 등 SQL 학습에 도움이 될 만한 자료를 공유
 
-<img src="img_9.png" width="300">
+<img src="img/img_9.png" width="300">
 
 
 ### 

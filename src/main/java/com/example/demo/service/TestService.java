@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -24,6 +26,7 @@ public class TestService {
     EagerService eagerService;
     @Autowired
     private UserRepository userRepository;
+
 
     public List<LinkedHashMap<String, Object>> getSQLResult(String sql){
         List<LinkedHashMap<String, Object>> resultList;

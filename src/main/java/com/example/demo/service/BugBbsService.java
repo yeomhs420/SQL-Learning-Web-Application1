@@ -42,19 +42,11 @@ public class BugBbsService {
         return bbs;
     }
 
-    public Page<BugBbs> listToPage(List<BugBbs> bbsList, PageRequest pagable){
+    public Page<BugBbs> listToPage(List<BugBbs> bbsList, PageRequest pageable){
 
-        Page<BugBbs> Bbs;
+        Page<BugBbs> bbs = new PageImpl<>(bbsList, pageable, bbsList.size());
 
-        int start = (int)pagable.getOffset();
-        int end = Math.min((start + pagable.getPageSize()), bbsList.size());
-
-        if(start > end)
-            start = end;
-
-        Bbs = new PageImpl<BugBbs>(bbsList.subList(start, end), pagable, bbsList.size());
-
-        return Bbs;
+        return bbs;
     }
     public Page<BugBbs> getBbsList(BbsDto.SearchRequest request, int p){
 

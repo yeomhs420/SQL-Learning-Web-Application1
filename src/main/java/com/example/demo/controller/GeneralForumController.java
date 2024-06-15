@@ -32,7 +32,7 @@ public class GeneralForumController {
 
 
     @RequestMapping({"/", ""})
-    public String generalForum(@RequestParam(defaultValue = "1") int page, Model model, BbsDto.SearchRequest request){
+    public String generalForum(@RequestParam(defaultValue = "1", name = "p") int page, Model model, BbsDto.SearchRequest request){
 
         boolean searchExist = false;    // 검색 유무
         List<Integer> pList = new ArrayList<>();

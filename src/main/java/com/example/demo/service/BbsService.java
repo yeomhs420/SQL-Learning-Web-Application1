@@ -45,19 +45,11 @@ public class BbsService {
         return bbs;
     }
 
-    public Page<Bbs> listToPage(List<Bbs> bbsList, PageRequest pagable){
+    public Page<Bbs> listToPage(List<Bbs> bbsList, PageRequest pageable){
 
-        Page<Bbs> Bbs;
+        Page<Bbs> bbs = new PageImpl<>(bbsList, pageable, bbsList.size());
 
-        int start = (int)pagable.getOffset();
-        int end = Math.min((start + pagable.getPageSize()), bbsList.size());
-
-        if(start > end)
-            start = end;
-
-        Bbs = new PageImpl<Bbs>(bbsList.subList(start, end), pagable, bbsList.size());
-
-        return Bbs;
+        return bbs;
     }
     public Page<Bbs> getBbsList(BbsDto.SearchRequest request, int p){
 
@@ -71,7 +63,10 @@ public class BbsService {
 
             List<Bbs> bbsList = eagerService.getBbsListWithEagerComments(name, keyword);
 
-            Bbs = listToPage(bbsList, pageable);   // List -> Page 변환
+            // bbsRepository.findAll(Sort.by(Sort.Direction.DESC,"id")); id 역순 리스트
+            // bbsRepository.findAllByIdDesc(); 위와 동일
+
+            Bbs = listToPage(bbsList, pageable);   // List -> Page 변환 , Repository 에서 Page 를 생성해서도 가능
 
             for(Bbs bbs : Bbs){
                 bbs.setDatetime(bbs.getCreatedAt().toString().replace("T", " "));
@@ -80,6 +75,7 @@ public class BbsService {
             return Bbs;
 
         }
+
 
         Bbs = eagerService.getPagedBbsWithEagerComments(pageable);
 

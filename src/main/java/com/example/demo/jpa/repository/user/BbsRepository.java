@@ -17,7 +17,8 @@ public interface BbsRepository extends JpaRepository<Bbs, Long> {
     @EntityGraph(attributePaths = {"comments", "user"})   // comments, user fetch join
     Page<Bbs> findAll(Pageable pageable);
 
-    @Query("SELECT DISTINCT b FROM Bbs b LEFT JOIN FETCH b.comments WHERE b.id = :bbsId")
+    @Query("SELECT DISTINCT b FROM Bbs b LEFT JOIN FETCH b.comments WHERE b.id = :bbsId")   //
+        // 연관된 엔티티를 가져오려 할 때 추가적인 쿼리가 실행되어야함 -> JOIN FETCH 을 통한 N+1 문제 해결, 일반 join 은 연관 Entity 까지 초기화하지 않음
     Bbs findByIdWithComments(@Param("bbsId") Long bbsId);
 
     @Query("SELECT b FROM Bbs b LEFT JOIN FETCH b.comments WHERE b.Title LIKE %:title%")
