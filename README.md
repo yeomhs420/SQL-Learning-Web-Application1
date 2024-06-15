@@ -44,7 +44,7 @@
 
 - 학습하기 Unit 1
 
-<img src="img_3.png" width="300">
+<img src="img/img_3.png" width="300">
 
 ##
 
