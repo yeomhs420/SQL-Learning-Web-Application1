@@ -11,6 +11,7 @@
 - 사용 에디터 : IntelliJ
 - 사용 프로젝트 : Spring Maven
 - 버전 관리 툴 : Git
+- 프로젝트 협업 과정 정리 : https://kimcoder.tistory.com/category/%EA%B0%9C%EB%B0%9C%20%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8/%5B%ED%8C%80%5D%20Web%20-%20SQL%20%EA%B5%90%EC%9C%A1%20%EC%82%AC%EC%9D%B4%ED%8A%B8 
 
 
 ## 본인 담당 작업
